@@ -195,6 +195,26 @@
     .btn:disabled { opacity: 0.35; cursor: not-allowed; }
 
     .btn-primary { background: var(--grad-1); border-color: transparent; color: #fff; font-weight: 700; box-shadow: 0 0 26px rgba(99,102,241,0.35); }
+    .btn-next-illuminated {
+      background: linear-gradient(135deg, #22d3ee, #6366f1, #a78bfa) !important;
+      color: #ffffff !important;
+      border-color: #22d3ee !important;
+      box-shadow: 0 0 32px rgba(34,211,238,0.7), 0 0 65px rgba(99,102,241,0.4) !important;
+      animation: btnIlluminatePulse 1.8s ease-in-out infinite alternate !important;
+    }
+    @keyframes btnIlluminatePulse {
+      0% { transform: scale(1); box-shadow: 0 0 25px rgba(34,211,238,0.5), 0 0 50px rgba(99,102,241,0.25); }
+      100% { transform: scale(1.04); box-shadow: 0 0 45px rgba(34,211,238,0.85), 0 0 85px rgba(99,102,241,0.55); }
+    }
+    .dock-next-illuminated {
+      color: var(--cyan) !important;
+      text-shadow: 0 0 16px rgba(34,211,238,0.9) !important;
+      animation: dockIlluminatePulse 1.8s ease-in-out infinite alternate !important;
+    }
+    @keyframes dockIlluminatePulse {
+      0% { transform: translateY(-1px) scale(1); }
+      100% { transform: translateY(-3px) scale(1.12); }
+    }
     .btn-success { background: var(--grad-ok); border-color: transparent; color: #fff; font-weight: 700; font-size: 0.95rem; padding: 0.75rem 2.2rem; box-shadow: 0 0 28px rgba(52,211,153,0.35); border-radius: var(--radius); }
     .btn-danger { border-color: rgba(248,113,113,0.3); color: var(--red); background: rgba(248,113,113,0.08); }
     .btn-sm { min-height: 36px; padding: 0.38rem 0.8rem; font-size: 0.78rem; border-radius: 8px; }
@@ -1349,6 +1369,25 @@ function renderApp() {
   renderWizard(app);
 }
 
+function updateNextIllumination() {
+  const steps = getSteps();
+  const currentStep = steps[state.stepIndex];
+  if (!currentStep) return;
+  const answered = isAnswered(currentStep.id);
+
+  const nextBtn = document.getElementById('btn-next');
+  if (nextBtn) {
+    if (answered) nextBtn.classList.add('btn-next-illuminated');
+    else nextBtn.classList.remove('btn-next-illuminated');
+  }
+
+  const dockNext = document.getElementById('dock-next');
+  if (dockNext) {
+    if (answered) dockNext.classList.add('dock-next-illuminated');
+    else dockNext.classList.remove('dock-next-illuminated');
+  }
+}
+
 function renderWizard(app) {
   const steps = getSteps();
   const step = steps[state.stepIndex];
@@ -1428,6 +1467,7 @@ function renderWizard(app) {
       const i = parseInt(el.dataset.idx); const cur = getAnswer(step.id);
       let o = cur.o.slice(); o = o.includes(i) ? o.filter(x => x !== i) : [...o, i];
       setAnswer(step.id, o, cur.t); playSound('click');
+      updateNextIllumination();
     };
   });
 
@@ -1438,10 +1478,11 @@ function renderWizard(app) {
       setAnswer(step.id, cur.o, ci.value, true);
       const bb = document.getElementById('btn-build');
       if (bb) bb.disabled = !allAnswered();
+      updateNextIllumination();
     };
   }
 
-  const ep = document.getElementById('btn-enhance-prompt'); if (ep) ep.onclick = () => enhanceCustomPrompt(step.id);
+  const ep = document.getElementById('btn-enhance-prompt'); if (ep) ep.onclick = () => { enhanceCustomPrompt(step.id); updateNextIllumination(); };
   const vi = document.getElementById('btn-voice-input');
   if (vi) {
     vi.onclick = () => {
@@ -1449,6 +1490,7 @@ function renderWizard(app) {
         const cur = getAnswer(step.id);
         const updated = (cur.t ? cur.t + ' ' : '') + text;
         setAnswer(step.id, cur.o, updated);
+        updateNextIllumination();
       }, (listening) => {
         state.voiceListening = listening;
         render();
@@ -1456,11 +1498,13 @@ function renderWizard(app) {
     };
   }
 
-  app.querySelectorAll('.chip-btn').forEach(b => b.onclick = () => appendChipTag(step.id, b.dataset.chip));
+  app.querySelectorAll('.chip-btn').forEach(b => b.onclick = () => { appendChipTag(step.id, b.dataset.chip); updateNextIllumination(); });
 
   const nb = document.getElementById('btn-next'); if (nb) nb.onclick = goNext;
   const pb = document.getElementById('btn-prev'); if (pb) pb.onclick = goPrev;
   const bb = document.getElementById('btn-build'); if (bb) bb.onclick = build;
+
+  updateNextIllumination();
 }
 
 function renderDone(app) {
