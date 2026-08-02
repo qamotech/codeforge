@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CodeForge 2040 v13.0 — Universal App & Game Engine Generator</title>
-  <meta name="description" content="The ultimate AI codebase generator, architecture suite, and live IDE optimized for 2D/3D games, mobile apps, SaaS platforms, and AI agents. Featuring 60FPS game loop synthesis, touch D-pad overlays, Web Audio sound FX, and instant code exports." />
+  <title>CodeForge 2040 v14.0 — Comprehensive App & Game Engine Suite</title>
+  <meta name="description" content="The ultimate AI codebase generator, architecture suite, and live IDE with built-in CDN Engine Injectors for Three.js, Phaser, PixiJS, Matter.js, Chart.js, Tailwind, and Tone.js." />
   <meta name="color-scheme" content="dark light" />
   <meta name="theme-color" content="#03030d" media="(prefers-color-scheme: dark)" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     /* ================================================================
-       RESET & ROOT DESIGN TOKENS — Universal App & Game Suite v13.0
+       RESET & ROOT DESIGN TOKENS — Comprehensive App & Game Suite v14.0
        ================================================================ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
@@ -262,6 +262,11 @@
     }
     .chip-btn:hover { background: rgba(99,102,241,0.28); border-color: var(--indigo); box-shadow: 0 0 16px rgba(99,102,241,0.3); }
 
+    /* CDN ENGINE LIBRARY SELECTOR GRID */
+    .cdn-library-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.6rem; margin-top: 0.75rem; }
+    .cdn-item { padding: 0.6rem 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface); cursor: pointer; font-size: 0.78rem; font-weight: 600; display: flex; align-items: center; justify-content: space-between; transition: all 0.18s; }
+    .cdn-item.selected { border-color: var(--cyan); background: rgba(34,211,238,0.14); color: var(--cyan); box-shadow: 0 0 16px rgba(34,211,238,0.2); }
+
     /* WIZARD PROGRESS & STEPS */
     .progress-wrap { margin-bottom: 1.5rem; }
     .progress-meta { display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.45rem; font-weight: 600; }
@@ -443,11 +448,11 @@
 
 <div id="root">
   <header>
-    <div class="logo" id="main-logo" title="CodeForge 2040 v13.0">
+    <div class="logo" id="main-logo" title="CodeForge 2040 v14.0">
       <div class="logo-icon">&#x26A1;</div>
       <div>
-        <div class="logo-text">CodeForge <span class="logo-version">v13.0</span></div>
-        <div class="logo-sub">Universal App & 60FPS Game Engine Generator</div>
+        <div class="logo-text">CodeForge <span class="logo-version">v14.0</span></div>
+        <div class="logo-sub">Comprehensive App & CDN Game Engine Suite</div>
       </div>
     </div>
     <div class="header-controls" id="header-controls"></div>
@@ -467,6 +472,18 @@
 <script>
 (() => {
 'use strict';
+
+/* CDN LIBRARIES REGISTRY FOR HIGH-PERFORMANCE INJECTION */
+const CDN_LIBRARIES = [
+  { id: 'threejs', name: 'Three.js (3D Engine)', url: 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><' + '/script>' },
+  { id: 'phaser',  name: 'Phaser 3 (2D Game Engine)', url: 'https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js', tag: '<script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"><' + '/script>' },
+  { id: 'pixijs',  name: 'PixiJS (2D WebGL Engine)', url: 'https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.5.8/pixi.min.js', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.5.8/pixi.min.js"><' + '/script>' },
+  { id: 'matterjs',name: 'Matter.js (2D Physics Engine)', url: 'https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"><' + '/script>' },
+  { id: 'chartjs', name: 'Chart.js (Analytics Charts)', url: 'https://cdn.jsdelivr.net/npm/chart.js', tag: '<script src="https://cdn.jsdelivr.net/npm/chart.js"><' + '/script>' },
+  { id: 'tailwind',name: 'Tailwind CSS (CDN Utility)', url: 'https://cdn.tailwindcss.com', tag: '<script src="https://cdn.tailwindcss.com"><' + '/script>' },
+  { id: 'howler',  name: 'Howler.js (Audio Engine)', url: 'https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"><' + '/script>' },
+  { id: 'tonejs',  name: 'Tone.js (Interactive Music Synth)', url: 'https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"><' + '/script>' },
+];
 
 /* ================================================================
    1. REAL STANDARD QR CODE MATRIX GENERATOR (PURE JS)
@@ -913,7 +930,7 @@ document.addEventListener('touchend', e => {
 }, { passive: true });
 
 /* ================================================================
-   6. WIZARD STEP CONFIGURATION & UNIVERSAL APP/GAME BLUEPRINTS
+   6. WIZARD STEP CONFIGURATION & COMPREHENSIVE BLUEPRINTS
    ================================================================ */
 const ALL_STEPS = [
   {
@@ -932,10 +949,10 @@ const ALL_STEPS = [
   {
     id: 'app_type',
     q: 'What type of Application or Game are you building?',
-    hint: 'Optimized system prompts for 2D/3D games, mobile apps, & web platforms.',
+    hint: 'Select from 2D/3D games, mobile apps, & enterprise platforms.',
     opts: [
       { label: '🕹️ 2D Canvas Physics Game (60 FPS Loop)', emoji: '🕹️' },
-      { label: '🎮 Retro Arcade Game (8-Bit Sound & Chiptune)', emoji: '🎮' },
+      { label: '🎮 Retro Arcade Game (Phaser 3 / PixiJS)', emoji: '🎮' },
       { label: '🌐 3D WebGL / Three.js Interactive World', emoji: '🌐' },
       { label: '📱 Mobile PWA Touch App (iOS/Android Ergonomics)', emoji: '📱' },
       { label: '⚡ Full-Stack SaaS Platform & Admin Portal', emoji: '⚡' },
@@ -948,17 +965,17 @@ const ALL_STEPS = [
   },
   {
     id: 'framework',
-    q: 'Choose your tech stack & game engine:',
-    hint: 'The AI will synthesize code targeting your chosen stack.',
+    q: 'Choose tech stack & CDN engines:',
+    hint: 'Select CDN libraries to auto-inject into your app/game code.',
     opts: [
       { label: 'Vanilla JS (Zero-Dependency High Performance)', emoji: '⚡' },
       { label: 'HTML5 Canvas 2D Engine (requestAnimationFrame)', emoji: '🎨' },
-      { label: 'WebGL / Three.js 3D Engine', emoji: '🧊' },
+      { label: 'Three.js 3D WebGL Engine', emoji: '🧊' },
+      { label: 'Phaser 3 / PixiJS 2D Engine', emoji: '👾' },
+      { label: 'Matter.js 2D Physics Engine', emoji: '⚙️' },
       { label: 'React / Next.js', emoji: '⚛️' },
-      { label: 'Vue 3 / Vite',   emoji: '💚' },
-      { label: 'Node + Express', emoji: '🟢' },
-      { label: 'FastAPI / Python',emoji: '⚡' },
-      { label: 'Tauri / Rust Desktop', emoji: '🖥️' },
+      { label: 'Tailwind CSS + Chart.js', emoji: '📊' },
+      { label: 'Tone.js / Howler Audio Synth', emoji: '🔊' },
     ],
     custom: true,
     customPlaceholder: 'Other tech / game engine libraries…',
@@ -997,20 +1014,15 @@ const ALL_STEPS = [
   },
 ];
 
-/* 40+ HIGH-VALUE PROMPT ARCHETYPES */
 const PROMPT_ARCHETYPES = [
   { title: '1. Cyberpunk Mobile HUD', text: 'Build a mobile-first cyberpunk telemetry HUD dashboard with swipe gesture controls, ambient neon glow cards, live canvas particle wave charts, and sound synthesizer click feedback.' },
   { title: '2. 60 FPS HTML5 Physics Game', text: 'Build a 60 FPS HTML5 canvas physics game featuring virtual D-pad touch controls, particle collision emitters, high-score tracking, restart overlays, and Web Audio synthesizers.' },
   { title: '3. Space Invaders Arcade Game', text: 'Build a retro 8-bit arcade space shooter game with player laser cannons, alien fleet movement, particle explosion FX, high scores, and chiptune sound effects.' },
-  { title: '4. WebGL 3D Planetary World', text: 'Build a 3D interactive planetary orbit rendering canvas using WebGL, planet info cards, orbital speed controls, and camera zoom toggles.' },
+  { title: '4. WebGL 3D Planetary World', text: 'Build a 3D interactive planetary orbit rendering canvas using Three.js, planet info cards, orbital speed controls, and camera zoom toggles.' },
   { title: '5. Procedural Dungeon Crawler RPG', text: 'Build a top-down tilemap dungeon crawler with player movement, enemy AI pathfinding, inventory slots, health bars, and turn-based combat.' },
   { title: '6. Audio Synth & Piano Studio', text: 'Build an interactive 13-key Web Audio synthesizer keyboard supporting octave shifts, chord presets, audio spectrum canvas visualizer, and recording playback.' },
   { title: '7. Fitness & Workout Tracker', text: 'Build a mobile responsive fitness tracker featuring active calorie counters, workout timer rings, swipeable exercise logs, and achievement badges.' },
   { title: '8. Full-Stack SaaS Platform', text: 'Build a production-grade full-stack SaaS platform with user auth, team workspaces, Stripe subscription checkout, responsive charts, and dark glassmorphism.' },
-  { title: '9. AI Copilot Chatbot Assistant', text: 'Build a mobile AI Chatbot interface supporting streaming message bubbles, markdown code syntax highlighting, voice dictation input, preset prompt chips, and model selection.' },
-  { title: '10. Crypto DEX Trading Terminal', text: 'Build a dark cyber responsive crypto portfolio tracker with real-time WebSocket ticker simulation, dynamic SVG sparklines, and glassmorphic modal cards.' },
-  { title: '11. Developer Code Playground Studio', text: 'Build a sleek browser code playground with tabbed file tree, line-numbered editor, live iframe preview stage, and dark glass design tokens.' },
-  { title: '12. E-Commerce Mobile App', text: 'Build a mobile-first e-commerce app with product gallery sliders, size/color selectors, instant cart drawer, and 1-click checkout.' },
 ];
 
 const TEMPLATES = [
@@ -1025,53 +1037,23 @@ const TEMPLATES = [
     },
   },
   {
-    name: 'Retro 8-Bit Arcade Shooter',
-    desc: 'Space shooter game with laser cannons, alien fleets, & chiptune sound FX.',
-    icon: '👾', color: 'var(--grad-1)', tags: ['Arcade', '8-Bit', 'Chiptune'],
-    preset: {
-      output_format: { o: [0], t: 'Retro Arcade Game' },
-      app_type: { o: [1], t: 'Retro Arcade Game' },
-      framework: { o: [1], t: 'Vanilla JS' }, features: { o: [0,1,2], t: '' }, design: { o: [1,3], t: '' },
-    },
-  },
-  {
-    name: 'WebGL 3D Interactive World',
-    desc: '3D planetary orbit world rendering with lighting & camera controls.',
-    icon: '🌐', color: 'var(--grad-2)', tags: ['WebGL', '3D', 'Three.js'],
+    name: 'Three.js 3D WebGL World',
+    desc: '3D planetary orbit rendering with camera controls & lighting.',
+    icon: '🌐', color: 'var(--grad-2)', tags: ['WebGL', 'Three.js', '3D World'],
     preset: {
       output_format: { o: [0], t: '3D WebGL Bundle' },
       app_type: { o: [2], t: '3D WebGL World' },
-      framework: { o: [2], t: 'WebGL Three.js' }, features: { o: [2], t: '' }, design: { o: [0,3], t: '' },
+      framework: { o: [2], t: 'Three.js 3D WebGL Engine' }, features: { o: [2], t: '' }, design: { o: [0,3], t: '' },
     },
   },
   {
-    name: 'Mobile Neon App Landing',
-    desc: 'Standalone mobile-first HTML landing page with touch particle FX.',
-    icon: '📱', color: 'var(--grad-1)', tags: ['Mobile-First', 'Single-File', 'Touch FX'],
+    name: 'Phaser 3 Arcade Game Engine',
+    desc: 'Full Phaser 3 2D arcade physics game with particle emitters & sound FX.',
+    icon: '👾', color: 'var(--grad-1)', tags: ['Phaser 3', 'Arcade', '2D Game'],
     preset: {
-      output_format: { o: [0], t: 'Single self-contained HTML file' },
-      app_type: { o: [3], t: 'Mobile PWA Touch App' },
-      framework: { o: [0], t: '' }, features: { o: [2], t: '' }, design: { o: [0,1,2,5], t: '' },
-    },
-  },
-  {
-    name: 'Cyber Quantum Dashboard',
-    desc: 'Analytics dashboard with responsive charts & glass components.',
-    icon: '📊', color: 'var(--grad-2)', tags: ['Dashboard', 'Glassmorphism', 'Charts'],
-    preset: {
-      output_format: { o: [1], t: 'Multi-file web app' },
-      app_type: { o: [4], t: 'Admin Dashboard' },
-      framework: { o: [3], t: 'React' }, features: { o: [4,5], t: '' }, design: { o: [0,2,5], t: '' },
-    },
-  },
-  {
-    name: 'AI Copilot Assistant',
-    desc: 'Conversational agent UI with markdown syntax and voice input.',
-    icon: '🤖', color: 'var(--grad-1)', tags: ['AI Chat', 'Voice Input', 'Markdown'],
-    preset: {
-      output_format: { o: [0], t: 'Single-File Standalone' },
-      app_type: { o: [5], t: 'AI Agent' },
-      framework: { o: [0], t: 'Vanilla JS' }, features: { o: [7], t: '' }, design: { o: [0,2,4], t: '' },
+      output_format: { o: [0], t: 'Phaser 3 Standalone Game' },
+      app_type: { o: [1], t: 'Retro Arcade Game' },
+      framework: { o: [3], t: 'Phaser 3' }, features: { o: [0,1,2], t: '' }, design: { o: [1,3], t: '' },
     },
   },
 ];
@@ -1097,8 +1079,8 @@ const state = {
   settingsOpen: false, featuresOpen: false, shortcutsOpen: false, promptLabOpen: false, qrModalOpen: false, cmdPaletteOpen: false, blueprintOpen: false, diffOpen: false, themeEditorOpen: false, benchmarksOpen: false, backupOpen: false, synthOpen: false,
   keys: loadKeys(), features: loadFeatures(), activeTab: 'forge',
   history: loadHistory(), snapshots: [], activeCodeFile: null, buildStartTime: 0,
-  voiceListening: false, shareUrl: '', specVersion: 13.0, viewMode: 'code', deviceViewport: 'iphone', viewportOrientation: 'portrait',
-  sandboxLogs: [], lintResults: null, stepDirection: 'next', customBlueprints: loadBlueprints(),
+  voiceListening: false, shareUrl: '', specVersion: 14.0, viewMode: 'code', deviceViewport: 'iphone', viewportOrientation: 'portrait',
+  sandboxLogs: [], lintResults: null, stepDirection: 'next', customBlueprints: loadBlueprints(), selectedCdnLibs: ['threejs', 'tailwind'],
   searchQuery: '', searchReplaceText: '', selectedPromptProfile: 'cyberpunk', hotReloadTimer: null,
 };
 
@@ -1107,7 +1089,6 @@ function saveKeys() { localStorage.setItem('cf_keys', JSON.stringify(state.keys)
 function loadHistory() { try { return JSON.parse(localStorage.getItem('cf_history') || '[]'); } catch { return []; } }
 function saveHistory() { localStorage.setItem('cf_history', JSON.stringify(state.history.slice(0, 50))); }
 
-/* CUSTOM LOADOUT SAVING ENGINE FIX */
 function loadBlueprints() {
   try {
     return JSON.parse(localStorage.getItem('cf_blueprints') || '[]');
@@ -1115,13 +1096,13 @@ function loadBlueprints() {
 }
 
 function saveCustomLoadout() {
-  const name = prompt('Enter a name for your custom app/game loadout blueprint:', `Loadout #${state.customBlueprints.length + 1}`);
+  const name = prompt('Enter a name for your custom loadout blueprint:', `Loadout #${state.customBlueprints.length + 1}`);
   if (!name || !name.trim()) return;
 
   const loadout = {
     id: 'custom_' + Date.now(),
     name: name.trim(),
-    desc: `Custom app/game blueprint created on ${new Date().toLocaleDateString()}`,
+    desc: `Custom blueprint created on ${new Date().toLocaleDateString()}`,
     icon: '🎮',
     preset: JSON.parse(JSON.stringify(state.answers)),
     timestamp: Date.now()
@@ -1136,7 +1117,7 @@ function saveCustomLoadout() {
 function deleteCustomLoadout(id) {
   state.customBlueprints = state.customBlueprints.filter(b => b.id !== id);
   localStorage.setItem('cf_blueprints', JSON.stringify(state.customBlueprints));
-  toast('Deleted loadout blueprint!', 'info');
+  toast('Deleted blueprint!', 'info');
   render();
 }
 
@@ -1207,12 +1188,14 @@ function resetWizard() {
 }
 
 /* ================================================================
-   7. SINGLE-FILE COMPILER, LINTER & MULTI-FORMAT EXPORTERS
+   7. COMPILER, LINTER & MULTI-FORMAT EXPORTERS
    ================================================================ */
 function compileToSingleFileHTML(files) {
-  const htmlFile = files['index.html'] || files[Object.keys(files).find(f => f.endsWith('.html'))] || '<!doctype html><html><head><title>App</title></head><body><div id="app"></div></body></html>';
+  let htmlFile = files['index.html'] || files[Object.keys(files).find(f => f.endsWith('.html'))] || '<!doctype html><html><head><title>App</title></head><body><div id="app"></div></body></html>';
   const css = Object.entries(files).filter(([n])=>n.endsWith('.css')).map(([,c])=>c).join('\n\n');
   const js = Object.entries(files).filter(([n])=>/\.(js|mjs)$/.test(n)&&!n.includes('test')).map(([,c])=>c).join('\n\n');
+
+  const cdnTags = state.selectedCdnLibs.map(id => CDN_LIBRARIES.find(l => l.id === id)?.tag || '').join('\n');
   
   let compiled = htmlFile.replace(new RegExp('<link[^>]+href=["\'][^"\']+\\.css["\'][^>]*>', 'gi'), '');
   compiled = compiled.replace(new RegExp('<script[^>]+src=["\'][^"\']+\\.js["\'][^>]*><' + '/script>', 'gi'), '');
@@ -1227,8 +1210,10 @@ function compileToSingleFileHTML(files) {
     })();
   <' + '/script>`;
 
-  if (css) compiled = compiled.replace('</head>', `<style>\n${css}\n</style>\n${consoleScript}\n</head>`);
-  else compiled = compiled.replace('</head>', `${consoleScript}\n</head>`);
+  const headInsert = `${cdnTags}\n${consoleScript}\n`;
+
+  if (css) compiled = compiled.replace('</head>', `<style>\n${css}\n</style>\n${headInsert}</head>`);
+  else compiled = compiled.replace('</head>', `${headInsert}</head>`);
   
   if (js) compiled = compiled.replace('</body>', `<script>\n${js}\n<' + '/script>\n</body>`);
   return compiled;
@@ -1337,7 +1322,7 @@ function enhanceCustomPrompt(stepId) {
     saas: 'Production-grade enterprise SaaS layout, user auth flow, team workspace navigation, responsive chart widgets, clean REST API models, and high accessibility compliance.',
     minimal: 'Ultra-lightweight zero-dependency vanilla JS layout, maximum load performance, minimal CSS footprint, and clean semantic markup.',
     mobile: 'Mobile-first touch-friendly design, 48px minimum touch targets, gesture swipe navigation, bottom app dock, and responsive viewport optimization.',
-    game: '60 FPS HTML5 canvas physics engine, Web Audio sound synthesizer, particle collision effects, score tracking, and smooth keyboard/touch game controls.',
+    game: '60 FPS HTML5 game engine using Three.js/Phaser/Canvas 2D, Web Audio sound synthesizer, particle collision effects, score tracking, and smooth keyboard/touch controls.',
   };
 
   const selectedProf = profiles[state.selectedPromptProfile] || profiles.cyberpunk;
@@ -1456,8 +1441,12 @@ async function build() {
   state.mode = FSM.BUILDING; state.buildLog = []; state.buildStartTime = Date.now(); state.errorMsg = ''; render();
   const m = MODELS.find(x => x.id === state.selectedModel) || MODELS[0];
   const steps = getSteps();
+  
+  const cdnTags = state.selectedCdnLibs.map(id => CDN_LIBRARIES.find(l => l.id === id)?.tag || '').join('\n');
+
   const spec = {
     version: state.specVersion, hash: state.hash, generatedAt: new Date().toISOString(),
+    selectedCdnLibraries: state.selectedCdnLibs,
     steps: steps.map(s => { const a = getAnswer(s.id); return { question: s.q, selected: a.o.map(i => s.opts[i]?.label || ''), custom: a.t || null }; }),
   };
 
@@ -1466,12 +1455,15 @@ async function build() {
 
   log('⚡ Initializing universal quantum build pipeline…');
   log('🔧 Target AI Model: ' + m.label + ' (' + m.provider + ')');
+  log('🎯 Active CDN Libraries: ' + state.selectedCdnLibs.join(', '));
   log('🎯 Output Target: ' + (isGameTarget ? '🕹️ High-Performance 60FPS Game Engine' : '🌐 Responsive Application Software'));
 
   const system = isSingleFileChoice
-    ? `You are an elite principal web software engineer and HTML5 game architect. Given a specification for an application or game, output a single JSON object with EXACTLY ONE key: "index.html". The value MUST be a complete, self-contained, 100% playable or fully functional mobile-responsive HTML document containing all CSS inside <style> tags and all JS/Canvas/Audio logic inside <script> tags.
-IF THE SPECIFICATION IS A GAME: Implement a complete 60FPS game loop using requestAnimationFrame(), virtual touch D-pad & keyboard controls (WASD/Arrows), Web Audio API sound synthesizers (clicks, explosions, BGM), collision detection, score state, game over overlays, and high-DPI canvas scaling. Output ONLY valid JSON.`
-    : `You are an expert principal software engineer and game developer. Given a specification for an app or game, output a single valid JSON object where keys are relative file paths and values are complete file contents. Include index.html, styles.css, app.js (or game.js), package.json, and README.md. Ensure complete, production-ready code with zero missing imports or place-holders. Output ONLY valid JSON.`;
+    ? `You are an elite principal web software engineer and HTML5 game architect. Given a specification for an application or game, output a single JSON object with EXACTLY ONE key: "index.html". The value MUST be a complete, self-contained, 100% playable or fully functional mobile-responsive HTML document.
+Include the following CDN Script Tags in the <head>:
+${cdnTags}
+IF THE SPECIFICATION IS A GAME: Implement a complete 60FPS game loop using requestAnimationFrame(), virtual touch D-pad & keyboard controls (WASD/Arrows), Web Audio API sound synthesizers, collision detection, score state, game over overlays, and high-DPI canvas scaling. Output ONLY valid JSON.`
+    : `You are an expert principal software engineer and game developer. Given a specification for an app or game, output a single valid JSON object where keys are relative file paths and values are complete file contents. Include index.html, styles.css, app.js (or game.js), package.json, and README.md. Include requested CDN tags. Output ONLY valid JSON.`;
 
   const user = 'Application/Game Specification:\n' + JSON.stringify(spec, null, 2);
   await attemptBuild(m, system, user, spec, isSingleFileChoice, isGameTarget);
@@ -1524,6 +1516,7 @@ function generateLocalFallbackAppOrGame(spec, isSingleFileChoice, isGameTarget) 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>60FPS Quantum Game Engine - #${spec.hash}</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><' + '/script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: #03030d; color: #f0f0ff; font-family: system-ui, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; overflow: hidden; touch-action: none; }
@@ -1835,6 +1828,21 @@ function renderWizard(app) {
         }).join('')}
       </div>
 
+      ${state.stepIndex === 2 ? `
+        <div style="margin-bottom:1rem">
+          <div style="font-size:0.78rem;font-weight:bold;color:var(--cyan);margin-bottom:0.35rem">📦 Auto-Injected CDN Engine Libraries:</div>
+          <div class="cdn-library-grid">
+            ${CDN_LIBRARIES.map(lib => {
+              const sel = state.selectedCdnLibs.includes(lib.id);
+              return `<div class="cdn-item ${sel ? 'selected' : ''}" data-cdn="${lib.id}">
+                <span>${lib.name}</span>
+                <span>${sel ? '✓' : '+'}</span>
+              </div>`;
+            }).join('')}
+          </div>
+        </div>
+      ` : ''}
+
       ${step.custom ? `
         <div class="custom-section">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem;flex-wrap:wrap;gap:0.4rem">
@@ -1857,10 +1865,10 @@ function renderWizard(app) {
           <div class="chip-cloud">
             <button class="chip-btn" data-chip="#60FPSGameLoop">#60FPSGameLoop</button>
             <button class="chip-btn" data-chip="#TouchDPad">#TouchDPad</button>
+            <button class="chip-btn" data-chip="#ThreeJS3D">#ThreeJS3D</button>
+            <button class="chip-btn" data-chip="#Phaser2D">#Phaser2D</button>
             <button class="chip-btn" data-chip="#WebAudioSynth">#WebAudioSynth</button>
             <button class="chip-btn" data-chip="#CollisionPhysics">#CollisionPhysics</button>
-            <button class="chip-btn" data-chip="#MobileFirst">#MobileFirst</button>
-            <button class="chip-btn" data-chip="#DarkCyber">#DarkCyber</button>
           </div>
         </div>
       ` : ''}
@@ -1893,6 +1901,19 @@ function renderWizard(app) {
       let o = cur.o.slice(); o = o.includes(i) ? o.filter(x => x !== i) : [...o, i];
       setAnswer(step.id, o, cur.t); playSound('click');
       updateNextIllumination();
+    };
+  });
+
+  app.querySelectorAll('.cdn-item').forEach(el => {
+    el.onclick = () => {
+      const id = el.dataset.cdn;
+      if(state.selectedCdnLibs.includes(id)) {
+        state.selectedCdnLibs = state.selectedCdnLibs.filter(x => x !== id);
+      } else {
+        state.selectedCdnLibs.push(id);
+      }
+      playSound('click');
+      render();
     };
   });
 
@@ -1962,7 +1983,7 @@ function renderDone(app) {
       <div class="card-glare"></div>
       <div style="text-align:center;margin-bottom:1.25rem">
         <div class="done-icon">✅</div>
-        <div class="done-title">App / Game Codebase Forged!</div>
+        <div class="done-title">Comprehensive App / Game Forged!</div>
         <p style="color:var(--text-muted);font-size:0.85rem">${n} file${n !== 1 ? 's' : ''} generated for spec <strong style="color:var(--cyan)">#${state.hash}</strong></p>
       </div>
 
