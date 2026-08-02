@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CodeForge 2040 v15.0 — Supreme AI App, Game Engine & Level Designer Studio</title>
-  <meta name="description" content="The ultimate AI codebase generator, architecture suite, visual game level designer, and live IDE. Built-in drag-and-drop game world designer, AI Model Debate engine, 8-bit SFX generator, and CDN engine injectors." />
+  <title>CodeForge 2040 v16.0 — 50 Blueprints & Level Designer Studio</title>
+  <meta name="description" content="The ultimate AI codebase generator with 50 built-in application & game blueprints, drag-and-drop game world designer, AI Model Debate engine, 8-bit SFX generator, and CDN engine injectors." />
   <meta name="color-scheme" content="dark light" />
   <meta name="theme-color" content="#03030d" media="(prefers-color-scheme: dark)" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     /* ================================================================
-       RESET & ROOT DESIGN TOKENS — CodeForge v15.0 Supreme Edition
+       RESET & ROOT DESIGN TOKENS — CodeForge v16.0 50 Blueprints Edition
        ================================================================ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
@@ -255,7 +255,14 @@
     input:focus, textarea:focus { border-color: var(--cyan); box-shadow: 0 0 20px rgba(34,211,238,0.3); background: rgba(255,255,255,0.06); }
     textarea { resize: vertical; min-height: 95px; font-size: 0.86rem; line-height: 1.6; }
 
-    /* VISUAL GAME LEVEL DESIGNER GRID */
+    .chip-cloud { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.65rem; }
+    .chip-btn {
+      min-height: 32px; padding: 0.28rem 0.7rem; border-radius: 99px; font-size: 0.73rem; font-weight: 600;
+      background: rgba(99,102,241,0.14); border: 1px solid rgba(99,102,241,0.35); color: var(--indigo); cursor: pointer; transition: all 0.15s; touch-action: manipulation;
+    }
+    .chip-btn:hover { background: rgba(99,102,241,0.28); border-color: var(--indigo); box-shadow: 0 0 16px rgba(99,102,241,0.3); }
+
+    /* LEVEL DESIGNER STAGE */
     .level-designer-stage { margin-top: 1rem; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg3); padding: 1rem; box-shadow: inset 0 0 30px rgba(0,0,0,0.5); }
     .level-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 4px; margin-top: 0.6rem; background: #000; padding: 6px; border-radius: 8px; }
     .level-cell { aspect-ratio: 1; border: 1px dashed rgba(255,255,255,0.1); border-radius: 4px; cursor: pointer; display: grid; place-items: center; font-size: 0.9rem; -webkit-user-select: none; }
@@ -449,11 +456,11 @@
 
 <div id="root">
   <header>
-    <div class="logo" id="main-logo" title="CodeForge 2040 v15.0 Supreme Edition">
+    <div class="logo" id="main-logo" title="CodeForge 2040 v16.0 — 50 Blueprints Edition">
       <div class="logo-icon">&#x26A1;</div>
       <div>
-        <div class="logo-text">CodeForge <span class="logo-version">v15.0</span></div>
-        <div class="logo-sub">Supreme App & Game Engine Level Designer</div>
+        <div class="logo-text">CodeForge <span class="logo-version">v16.0</span></div>
+        <div class="logo-sub">50 Blueprints & Level Designer Studio</div>
       </div>
     </div>
     <div class="header-controls" id="header-controls"></div>
@@ -484,6 +491,70 @@ const CDN_LIBRARIES = [
   { id: 'tailwind',name: 'Tailwind CSS (CDN Utility)', tag: '<script src="https://cdn.tailwindcss.com"><' + '/script>' },
   { id: 'howler',  name: 'Howler.js (Audio Engine)', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"><' + '/script>' },
   { id: 'tonejs',  name: 'Tone.js (Interactive Music Synth)', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"><' + '/script>' },
+];
+
+/* 50 COMPREHENSIVE BUILT-IN BLUEPRINTS ACROSS ALL CATEGORIES */
+const TEMPLATES = [
+  // Games & Interactive (1-10)
+  { name: '60 FPS Canvas Game Engine', desc: '2D physics game with virtual D-pad, collision emitters, & Web Audio synth.', icon: '🎮', preset: { output_format: { o: [0], t: '' }, app_type: { o: [0], t: '' }, framework: { o: [1], t: '' }, features: { o: [0,1,2], t: '' }, design: { o: [0,1,3], t: '' } } },
+  { name: 'Three.js 3D WebGL World', desc: '3D planetary orbit world rendering with camera controls & lighting.', icon: '🌐', preset: { output_format: { o: [0], t: '' }, app_type: { o: [2], t: '' }, framework: { o: [2], t: '' }, features: { o: [2], t: '' }, design: { o: [0,3], t: '' } } },
+  { name: 'Phaser 3 Arcade Game Engine', desc: 'Full Phaser 3 2D arcade physics game with particle emitters & sound FX.', icon: '👾', preset: { output_format: { o: [0], t: '' }, app_type: { o: [1], t: '' }, framework: { o: [3], t: '' }, features: { o: [0,1,2], t: '' }, design: { o: [1,3], t: '' } } },
+  { name: 'Matter.js 2D Physics Sandbox', desc: 'Rigid body physics sandbox with gravity sliders & collision shapes.', icon: '⚙️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [0], t: '' }, framework: { o: [4], t: '' }, features: { o: [2], t: '' }, design: { o: [0,3], t: '' } } },
+  { name: 'PixiJS 2D Bullet Hell Shooter', desc: 'High-speed 2D WebGL sprite shooter with particle FX.', icon: '🛸', preset: { output_format: { o: [0], t: '' }, app_type: { o: [1], t: '' }, framework: { o: [3], t: '' }, features: { o: [0,1,2], t: '' }, design: { o: [1,3], t: '' } } },
+  { name: 'Procedural Dungeon RPG', desc: 'Top-down dungeon crawler with tilemap, inventory, & combat.', icon: '⚔️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [0], t: '' }, framework: { o: [1], t: '' }, features: { o: [0,2], t: '' }, design: { o: [1,4], t: '' } } },
+  { name: 'Retro 8-Bit Space Shooter', desc: 'Arcade laser cannon shooter with alien fleets & chiptune sound FX.', icon: '🚀', preset: { output_format: { o: [0], t: '' }, app_type: { o: [1], t: '' }, framework: { o: [0], t: '' }, features: { o: [0,1], t: '' }, design: { o: [1], t: '' } } },
+  { name: 'Pixel Art Sprite Editor', desc: '16x16 pixel editor with color palette swatches & PNG export.', icon: '🎨', preset: { output_format: { o: [0], t: '' }, app_type: { o: [6], t: '' }, framework: { o: [0], t: '' }, features: { o: [2], t: '' }, design: { o: [1,4], t: '' } } },
+  { name: '13-Key Audio Piano Synth', desc: 'Web Audio piano keyboard with octave shift & reverb FX.', icon: '🎼', preset: { output_format: { o: [0], t: '' }, app_type: { o: [0], t: '' }, framework: { o: [7], t: '' }, features: { o: [1], t: '' }, design: { o: [0,4], t: '' } } },
+  { name: 'Multi-Player Chess Engine', desc: 'Chess board engine with move validation & turn history.', icon: '♟️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [0], t: '' }, framework: { o: [0], t: '' }, features: { o: [5], t: '' }, design: { o: [2], t: '' } } },
+
+  // Mobile & PWA Apps (11-20)
+  { name: 'Mobile Neon App Landing', desc: 'Mobile-first HTML landing page with touch particle FX.', icon: '📱', preset: { output_format: { o: [0], t: '' }, app_type: { o: [3], t: '' }, framework: { o: [0], t: '' }, features: { o: [2], t: '' }, design: { o: [0,2,5], t: '' } } },
+  { name: 'Smart Home IoT Control Hub', desc: 'Mobile control panel with temperature sliders & light pickers.', icon: '🏠', preset: { output_format: { o: [0], t: '' }, app_type: { o: [3], t: '' }, framework: { o: [0], t: '' }, features: { o: [5], t: '' }, design: { o: [0,2,5], t: '' } } },
+  { name: 'E-Commerce Mobile Storefront', desc: 'Mobile shopping app with product sliders & checkout drawer.', icon: '🛍️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [3], t: '' }, framework: { o: [0], t: '' }, features: { o: [6], t: '' }, design: { o: [0,5], t: '' } } },
+  { name: 'Fitness & Health Tracker', desc: 'Workout timer rings, exercise logs, & active calorie counters.', icon: '💪', preset: { output_format: { o: [0], t: '' }, app_type: { o: [3], t: '' }, framework: { o: [0], t: '' }, features: { o: [2], t: '' }, design: { o: [0,4,5], t: '' } } },
+  { name: 'Mobile Food Delivery App', desc: 'Mobile food ordering app with live GPS driver tracking canvas.', icon: '🍔', preset: { output_format: { o: [0], t: '' }, app_type: { o: [3], t: '' }, framework: { o: [0], t: '' }, features: { o: [5,6], t: '' }, design: { o: [0,5], t: '' } } },
+  { name: 'Ambient Soundscape Player', desc: 'White-noise generator with rain/thunder audio sliders.', icon: '🌧️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [3], t: '' }, framework: { o: [7], t: '' }, features: { o: [1], t: '' }, design: { o: [0,4,5], t: '' } } },
+  { name: 'Personal Finance Budget App', desc: 'Mobile budget planner with expense pie charts & savings meters.', icon: '💰', preset: { output_format: { o: [0], t: '' }, app_type: { o: [3], t: '' }, framework: { o: [6], t: '' }, features: { o: [4], t: '' }, design: { o: [0,5], t: '' } } },
+  { name: 'Weather & Radar Forecast', desc: 'Mobile weather app with live radar animation & hourly forecasts.', icon: '🌤️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [3], t: '' }, framework: { o: [0], t: '' }, features: { o: [5], t: '' }, design: { o: [0,5], t: '' } } },
+  { name: 'Recipe & Meal Planner', desc: 'Mobile meal planner with ingredient checklists & nutrition meters.', icon: '🍲', preset: { output_format: { o: [0], t: '' }, app_type: { o: [3], t: '' }, framework: { o: [0], t: '' }, features: { o: [4], t: '' }, design: { o: [0,5], t: '' } } },
+  { name: 'Travel Itinerary Planner', desc: 'Mobile travel planner with day schedules & flight tracking cards.', icon: '✈️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [3], t: '' }, framework: { o: [0], t: '' }, features: { o: [5], t: '' }, design: { o: [0,5], t: '' } } },
+
+  // SaaS & Enterprise (21-30)
+  { name: 'Cyber Quantum Dashboard', desc: 'Analytics dashboard with responsive charts & glass components.', icon: '📊', preset: { output_format: { o: [1], t: '' }, app_type: { o: [4], t: '' }, framework: { o: [6], t: '' }, features: { o: [4,5], t: '' }, design: { o: [0,2,5], t: '' } } },
+  { name: 'Enterprise SaaS Platform', desc: 'Full-stack platform layout with OAuth, DB, & Stripe payments.', icon: '🏢', preset: { output_format: { o: [3], t: '' }, app_type: { o: [4], t: '' }, framework: { o: [5], t: '' }, features: { o: [3,4,5,6], t: '' }, design: { o: [0,2,5], t: '' } } },
+  { name: 'Customer Support AI Desk', desc: 'Support ticketing desk with automated AI response drafts.', icon: '🎧', preset: { output_format: { o: [1], t: '' }, app_type: { o: [4], t: '' }, framework: { o: [5], t: '' }, features: { o: [7], t: '' }, design: { o: [0,2], t: '' } } },
+  { name: 'Project Kanban Sprint Board', desc: 'Drag-and-drop Kanban task board supporting sprint columns.', icon: '📋', preset: { output_format: { o: [0], t: '' }, app_type: { o: [4], t: '' }, framework: { o: [0], t: '' }, features: { o: [4], t: '' }, design: { o: [0,2], t: '' } } },
+  { name: 'Workflow Automation Editor', desc: 'Visual node-based workflow editor connecting triggers & APIs.', icon: '🔄', preset: { output_format: { o: [1], t: '' }, app_type: { o: [4], t: '' }, framework: { o: [5], t: '' }, features: { o: [5], t: '' }, design: { o: [0,2], t: '' } } },
+  { name: 'Billing & Invoicing Portal', desc: 'Financial invoicing portal with recurring bill schedules.', icon: '🧾', preset: { output_format: { o: [1], t: '' }, app_type: { o: [4], t: '' }, framework: { o: [6], t: '' }, features: { o: [6], t: '' }, design: { o: [0,2], t: '' } } },
+  { name: 'Sales CRM Pipeline', desc: 'Sales CRM dashboard displaying deal funnels & lead scores.', icon: '🎯', preset: { output_format: { o: [1], t: '' }, app_type: { o: [4], t: '' }, framework: { o: [6], t: '' }, features: { o: [4,5], t: '' }, design: { o: [0,2], t: '' } } },
+  { name: 'HR & Payroll Workspace', desc: 'Employee management workspace with time-off request approvals.', icon: '👥', preset: { output_format: { o: [1], t: '' }, app_type: { o: [4], t: '' }, framework: { o: [5], t: '' }, features: { o: [4], t: '' }, design: { o: [0,2], t: '' } } },
+  { name: 'Event Ticketing & QR Scanner', desc: 'Event management platform with real scannable QR ticket scanner.', icon: '🎟️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [4], t: '' }, framework: { o: [0], t: '' }, features: { o: [3,6], t: '' }, design: { o: [0,5], t: '' } } },
+  { name: 'Microservices Monorepo', desc: 'FastAPI + Docker microservices architecture stack.', icon: '📦', preset: { output_format: { o: [3], t: '' }, app_type: { o: [4], t: '' }, framework: { o: [6], t: '' }, features: { o: [4,5], t: '' }, design: { o: [0,5], t: '' } } },
+
+  // AI & Voice Agents (31-36)
+  { name: 'AI Copilot Assistant', desc: 'Conversational agent UI with markdown syntax and voice input.', icon: '🤖', preset: { output_format: { o: [0], t: '' }, app_type: { o: [5], t: '' }, framework: { o: [0], t: '' }, features: { o: [7], t: '' }, design: { o: [0,2,4], t: '' } } },
+  { name: 'AI Voice Assistant Studio', desc: 'Hands-free voice copilot with web speech dictation & waveform canvas.', icon: '🎙️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [5], t: '' }, framework: { o: [0], t: '' }, features: { o: [1,7], t: '' }, design: { o: [0,4], t: '' } } },
+  { name: 'AI Code Security Auditor', desc: 'Automated code scanner analyzing AST syntax for memory leaks.', icon: '🔍', preset: { output_format: { o: [0], t: '' }, app_type: { o: [5], t: '' }, framework: { o: [0], t: '' }, features: { o: [7], t: '' }, design: { o: [0,4], t: '' } } },
+  { name: 'AI Image Generator Studio', desc: 'AI image workbench with style tag selectors & prompt enhancer.', icon: '🎨', preset: { output_format: { o: [0], t: '' }, app_type: { o: [5], t: '' }, framework: { o: [0], t: '' }, features: { o: [7], t: '' }, design: { o: [0,2], t: '' } } },
+  { name: 'AI PDF Document Summarizer', desc: 'PDF analyzer with side-by-side viewing & summary bullet points.', icon: '📄', preset: { output_format: { o: [0], t: '' }, app_type: { o: [5], t: '' }, framework: { o: [0], t: '' }, features: { o: [7], t: '' }, design: { o: [0,2], t: '' } } },
+  { name: 'Multi-Model AI Debate Arena', desc: 'Multi-agent debate platform querying Gemini & DeepSeek R1.', icon: '🧠', preset: { output_format: { o: [0], t: '' }, app_type: { o: [5], t: '' }, framework: { o: [0], t: '' }, features: { o: [7], t: '' }, design: { o: [0,4], t: '' } } },
+
+  // DevTools & Data Science (37-43)
+  { name: 'Developer Code Studio', desc: 'Browser code playground with file tree, editor, & live iframe.', icon: '💻', preset: { output_format: { o: [0], t: '' }, app_type: { o: [6], t: '' }, framework: { o: [0], t: '' }, features: { o: [2], t: '' }, design: { o: [0,2,4], t: '' } } },
+  { name: 'SQL Query Data Profiler', desc: 'SQL editor with schema inspectors & execution time benchmarks.', icon: '🗄️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [6], t: '' }, framework: { o: [0], t: '' }, features: { o: [4], t: '' }, design: { o: [0,4], t: '' } } },
+  { name: 'REST / OpenAPI Tester', desc: 'API client workbench supporting GET/POST methods & JSON body.', icon: '🔗', preset: { output_format: { o: [0], t: '' }, app_type: { o: [6], t: '' }, framework: { o: [0], t: '' }, features: { o: [5], t: '' }, design: { o: [0,4], t: '' } } },
+  { name: 'Regex Tester & AST Explorer', desc: 'Regex testing suite with real-time match highlighting.', icon: '🔣', preset: { output_format: { o: [0], t: '' }, app_type: { o: [6], t: '' }, framework: { o: [0], t: '' }, features: { o: [2], t: '' }, design: { o: [0,4], t: '' } } },
+  { name: 'Git Commit Graph Visualizer', desc: 'Git commit tree visualizer with branch merger nodes & author avatars.', icon: '🌿', preset: { output_format: { o: [0], t: '' }, app_type: { o: [6], t: '' }, framework: { o: [0], t: '' }, features: { o: [2], t: '' }, design: { o: [0,4], t: '' } } },
+  { name: 'Server Telemetry Monitor', desc: 'Server monitoring dashboard displaying live CPU/RAM gauge charts.', icon: '🖥️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [6], t: '' }, framework: { o: [6], t: '' }, features: { o: [5], t: '' }, design: { o: [0,4], t: '' } } },
+  { name: 'Interactive Quiz & Trivia App', desc: 'Trivia app with timer progress bar, score streak, & trivia bank.', icon: '💡', preset: { output_format: { o: [0], t: '' }, app_type: { o: [6], t: '' }, framework: { o: [0], t: '' }, features: { o: [1], t: '' }, design: { o: [0,4], t: '' } } },
+
+  // Web3 & Science (44-50)
+  { name: 'Crypto DEX Trading Terminal', desc: 'Crypto portfolio tracker with real-time ticker & SVG sparklines.', icon: '📈', preset: { output_format: { o: [1], t: '' }, app_type: { o: [7], t: '' }, framework: { o: [6], t: '' }, features: { o: [5], t: '' }, design: { o: [0,2,4], t: '' } } },
+  { name: 'Stock Market Screener', desc: 'Stock analytics dashboard with candlestick charts & MACD indicators.', icon: '📉', preset: { output_format: { o: [1], t: '' }, app_type: { o: [7], t: '' }, framework: { o: [6], t: '' }, features: { o: [5], t: '' }, design: { o: [0,2,4], t: '' } } },
+  { name: 'NFT Marketplace Gallery', desc: 'NFT digital art gallery with 3D card tilt physics & rarity badges.', icon: '🖼️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [7], t: '' }, framework: { o: [2], t: '' }, features: { o: [2], t: '' }, design: { o: [0,2,3], t: '' } } },
+  { name: 'Telehealth Doctor Portal', desc: 'Digital healthcare portal featuring appointment calendar & history.', icon: '🩺', preset: { output_format: { o: [1], t: '' }, app_type: { o: [4], t: '' }, framework: { o: [5], t: '' }, features: { o: [4,5], t: '' }, design: { o: [0,2], t: '' } } },
+  { name: 'Genomic Variant Explorer', desc: 'Bioinformatics variant annotation browser showing chromosome tracks.', icon: '🧬', preset: { output_format: { o: [1], t: '' }, app_type: { o: [6], t: '' }, framework: { o: [6], t: '' }, features: { o: [4], t: '' }, design: { o: [0,4], t: '' } } },
+  { name: 'Podcast & Audio Streamer', desc: 'Mobile podcast player with audio waveform & episode queue.', icon: '📻', preset: { output_format: { o: [0], t: '' }, app_type: { o: [3], t: '' }, framework: { o: [7], t: '' }, features: { o: [1], t: '' }, design: { o: [0,4,5], t: '' } } },
 ];
 
 /* ================================================================
@@ -928,7 +999,7 @@ document.addEventListener('touchend', e => {
 }, { passive: true });
 
 /* ================================================================
-   6. WIZARD STEP CONFIGURATION & COMPREHENSIVE BLUEPRINTS
+   6. WIZARD STEP CONFIGURATION & 50 BLUEPRINTS
    ================================================================ */
 const ALL_STEPS = [
   {
@@ -1012,50 +1083,6 @@ const ALL_STEPS = [
   },
 ];
 
-const PROMPT_ARCHETYPES = [
-  { title: '1. Cyberpunk Mobile HUD', text: 'Build a mobile-first cyberpunk telemetry HUD dashboard with swipe gesture controls, ambient neon glow cards, live canvas particle wave charts, and sound synthesizer click feedback.' },
-  { title: '2. 60 FPS HTML5 Physics Game', text: 'Build a 60 FPS HTML5 canvas physics game featuring virtual D-pad touch controls, particle collision emitters, high-score tracking, restart overlays, and Web Audio synthesizers.' },
-  { title: '3. Space Invaders Arcade Game', text: 'Build a retro 8-bit arcade space shooter game with player laser cannons, alien fleet movement, particle explosion FX, high scores, and chiptune sound effects.' },
-  { title: '4. WebGL 3D Planetary World', text: 'Build a 3D interactive planetary orbit rendering canvas using Three.js, planet info cards, orbital speed controls, and camera zoom toggles.' },
-  { title: '5. Procedural Dungeon Crawler RPG', text: 'Build a top-down tilemap dungeon crawler with player movement, enemy AI pathfinding, inventory slots, health bars, and turn-based combat.' },
-  { title: '6. Audio Synth & Piano Studio', text: 'Build an interactive 13-key Web Audio synthesizer keyboard supporting octave shifts, chord presets, audio spectrum canvas visualizer, and recording playback.' },
-  { title: '7. Fitness & Workout Tracker', text: 'Build a mobile responsive fitness tracker featuring active calorie counters, workout timer rings, swipeable exercise logs, and achievement badges.' },
-  { title: '8. Full-Stack SaaS Platform', text: 'Build a production-grade full-stack SaaS platform with user auth, team workspaces, Stripe subscription checkout, responsive charts, and dark glassmorphism.' },
-];
-
-const TEMPLATES = [
-  {
-    name: '60 FPS Canvas Game Engine',
-    desc: 'HTML5 canvas game with physics particles, virtual D-pad, & audio synth.',
-    icon: '🎮', color: 'var(--grad-3)', tags: ['Game Engine', '60 FPS', 'Audio Synth'],
-    preset: {
-      output_format: { o: [0], t: 'Single standalone HTML game' },
-      app_type: { o: [0], t: '2D Canvas Physics Game' },
-      framework: { o: [1], t: 'HTML5 Canvas 2D' }, features: { o: [0,1,2], t: '' }, design: { o: [0,1,3], t: '' },
-    },
-  },
-  {
-    name: 'Three.js 3D WebGL World',
-    desc: '3D planetary orbit rendering with camera controls & lighting.',
-    icon: '🌐', color: 'var(--grad-2)', tags: ['WebGL', 'Three.js', '3D World'],
-    preset: {
-      output_format: { o: [0], t: '3D WebGL Bundle' },
-      app_type: { o: [2], t: '3D WebGL World' },
-      framework: { o: [2], t: 'Three.js 3D WebGL Engine' }, features: { o: [2], t: '' }, design: { o: [0,3], t: '' },
-    },
-  },
-  {
-    name: 'Phaser 3 Arcade Game Engine',
-    desc: 'Full Phaser 3 2D arcade physics game with particle emitters & sound FX.',
-    icon: '👾', color: 'var(--grad-1)', tags: ['Phaser 3', 'Arcade', '2D Game'],
-    preset: {
-      output_format: { o: [0], t: 'Phaser 3 Standalone Game' },
-      app_type: { o: [1], t: 'Retro Arcade Game' },
-      framework: { o: [3], t: 'Phaser 3' }, features: { o: [0,1,2], t: '' }, design: { o: [1,3], t: '' },
-    },
-  },
-];
-
 const MODELS = [
   { id:'gemini2',      label:'Gemini 2.0 Flash',       provider:'OpenRouter', adapter:'openrouter', model:'google/gemini-2.0-flash-001', badge:'Recommended', speed:'180 t/s', lat:'0.3s', ctx:'1M' },
   { id:'deepseekr1',   label:'DeepSeek R1 Reasoning',  provider:'OpenRouter', adapter:'openrouter', model:'deepseek/deepseek-r1', badge:'Deep Logic', speed:'70 t/s', lat:'0.6s', ctx:'128k' },
@@ -1077,7 +1104,7 @@ const state = {
   settingsOpen: false, featuresOpen: false, shortcutsOpen: false, promptLabOpen: false, qrModalOpen: false, cmdPaletteOpen: false, blueprintOpen: false, diffOpen: false, themeEditorOpen: false, benchmarksOpen: false, backupOpen: false, synthOpen: false,
   keys: loadKeys(), features: loadFeatures(), activeTab: 'forge',
   history: loadHistory(), snapshots: [], activeCodeFile: null, buildStartTime: 0,
-  voiceListening: false, shareUrl: '', specVersion: 15.0, viewMode: 'code', deviceViewport: 'iphone', viewportOrientation: 'portrait',
+  voiceListening: false, shareUrl: '', specVersion: 16.0, viewMode: 'code', deviceViewport: 'iphone', viewportOrientation: 'portrait',
   sandboxLogs: [], lintResults: null, stepDirection: 'next', customBlueprints: loadBlueprints(), selectedCdnLibs: ['threejs', 'tailwind'],
   levelMap: Array.from({ length: 48 }, () => 'empty'), selectedTool: 'wall',
   searchQuery: '', searchReplaceText: '', selectedPromptProfile: 'cyberpunk', hotReloadTimer: null,
@@ -2019,7 +2046,7 @@ function renderDone(app) {
       <div class="card-glare"></div>
       <div style="text-align:center;margin-bottom:1.25rem">
         <div class="done-icon">✅</div>
-        <div class="done-title">Supreme App / Game Forged!</div>
+        <div class="done-title">App / Game Codebase Forged!</div>
         <p style="color:var(--text-muted);font-size:0.85rem">${n} file${n !== 1 ? 's' : ''} generated for spec <strong style="color:var(--cyan)">#${state.hash}</strong></p>
       </div>
 
@@ -2228,8 +2255,8 @@ function renderTemplates(app) {
   app.innerHTML = `
     <div class="card fade-enter" style="padding:1.6rem">
       <div class="card-glare"></div>
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.1rem">
-        <h2 style="font-family:var(--font-display);font-weight:800;font-size:1.25rem">📦 Quantum App & Game Blueprints (${TEMPLATES.length + state.customBlueprints.length})</h2>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.1rem;flex-wrap:wrap;gap:0.5rem">
+        <h2 style="font-family:var(--font-display);font-weight:800;font-size:1.25rem">📦 50 Quantum App & Game Blueprints</h2>
         <button class="btn btn-sm btn-primary" id="btn-save-current-loadout">💾 Save Current Loadout</button>
       </div>
 
