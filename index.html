@@ -796,12 +796,24 @@ function getSteps() { return ALL_STEPS; }
 function getAnswer(id) { return state.answers[id] || { o: [], t: '' }; }
 function setAnswer(id, o, t, skipRender = false) {
   state.answers[id] = { o, t }; state.hash = computeHash();
-  saveAutoState();
   if (!skipRender) render();
 }
-function saveAutoState() {
-  try { localStorage.setItem('cf_autosave', JSON.stringify({ answers: state.answers, stepIndex: state.stepIndex })); } catch(e){}
+
+let lastSavedState = '';
+function saveAutoState(isPeriodic = false) {
+  try {
+    const currentState = JSON.stringify({ answers: state.answers, stepIndex: state.stepIndex });
+    if (isPeriodic && currentState === lastSavedState) return;
+    localStorage.setItem('cf_autosave', currentState);
+    lastSavedState = currentState;
+    if (isPeriodic && Object.keys(state.answers).length > 0) {
+      toast('💾 Session auto-saved (20s interval)', 'info');
+    }
+  } catch(e){}
 }
+
+setInterval(() => { saveAutoState(true); }, 20000);
+
 function restoreAutoState() {
   try {
     const raw = localStorage.getItem('cf_autosave');
@@ -811,6 +823,7 @@ function restoreAutoState() {
         state.answers = parsed.answers;
         state.stepIndex = parsed.stepIndex || 0;
         state.hash = computeHash();
+        lastSavedState = JSON.stringify({ answers: state.answers, stepIndex: state.stepIndex });
         toast('✨ Auto-recovered previous session draft!', 'ok');
       }
     }
