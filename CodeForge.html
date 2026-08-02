@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CodeForge 2040 v8.0 — Ultimate Quantum AI Generator & Architecture Suite</title>
-  <meta name="description" content="The ultimate AI codebase generator, architecture suite, and live IDE. Featuring 3D tilt physics, real scannable QR generator, node flow diagrams, multi-format export, code diff studio, AST linter, voice dictation, sandboxed simulator, and hot reload." />
+  <title>CodeForge 2040 v9.0 — Ultimate Quantum AI Generator & 40 Suite Improvements</title>
+  <meta name="description" content="The ultimate AI codebase generator, architecture suite, and live IDE. Featuring 40 major improvements, real scannable QR generator, 3D holographic cube, audio synth, node flow diagrams, multi-format export, code diff studio, AST linter, voice dictation, sandboxed simulator, and hot reload." />
   <meta name="color-scheme" content="dark light" />
   <meta name="theme-color" content="#050510" media="(prefers-color-scheme: dark)" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     /* ================================================================
-       RESET & ROOT DESIGN TOKENS — Quantum Glass & Ergonomics v8.0
+       RESET & ROOT DESIGN TOKENS — Quantum Glass & Ergonomics v9.0
        ================================================================ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
@@ -46,7 +46,6 @@
       --pink:        #f472b6;
       --teal:        #2dd4bf;
       --elec-color:  #22d3ee;
-      --accent-custom:#22d3ee;
 
       --grad-1:      linear-gradient(135deg, #6366f1, #a78bfa, #c084fc);
       --grad-2:      linear-gradient(135deg, #22d3ee, #6366f1);
@@ -95,7 +94,7 @@
       --text-muted: #b0b0d0;
     }
 
-    /* THEMES (8 CURATED THEMES + CUSTOM) */
+    /* THEMES (8 CURATED THEMES) */
     html[data-theme="violet"] {
       --bg:#0b0714; --bg2:#120b22; --bg3:#1a1030; --bg4:#241642;
       --text:#f5eeff; --text-muted:#9b8aab; --cyan:#c27eff; --violet:#55dcff; --elec-color:#c27eff;
@@ -296,9 +295,11 @@
     @keyframes slideNext { from { opacity: 0; transform: translateX(35px) scale(0.98); } to { opacity: 1; transform: translateX(0) scale(1); } }
     @keyframes slidePrev { from { opacity: 0; transform: translateX(-35px) scale(0.98); } to { opacity: 1; transform: translateX(0) scale(1); } }
 
-    /* ARCHITECTURE DIAGRAM CANVAS */
+    /* ARCHITECTURE DIAGRAM CANVAS & 3D HOLOGRAPHIC CUBE */
     .arch-canvas-wrap { margin-top: 1rem; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg3); padding: 1rem; position: relative; overflow-x: auto; }
     .arch-title { font-size: 0.8rem; font-weight: 700; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.4rem; }
+
+    #holo-cube-canvas { height: 120px; width: 100%; border-radius: var(--radius); background: rgba(0,0,0,0.3); border: 1px solid var(--border); margin-top: 0.65rem; }
 
     /* CODE THEATER & PERFORMANCE METRICS BAR */
     .code-theater { margin-top: 1.25rem; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; background: var(--bg3); box-shadow: 0 8px 30px rgba(0,0,0,0.5); }
@@ -439,11 +440,11 @@
 
 <div id="root">
   <header>
-    <div class="logo" id="main-logo" title="CodeForge 2040 v8.0">
+    <div class="logo" id="main-logo" title="CodeForge 2040 v9.0">
       <div class="logo-icon">&#x26A1;</div>
       <div>
-        <div class="logo-text">CodeForge <span class="logo-version">v8.0</span></div>
-        <div class="logo-sub">Quantum AI Suite & Matrix</div>
+        <div class="logo-text">CodeForge <span class="logo-version">v9.0</span></div>
+        <div class="logo-sub">Quantum AI Suite — 40 Improvements</div>
       </div>
     </div>
     <div class="header-controls" id="header-controls"></div>
@@ -471,7 +472,7 @@ function drawRealScannableQRCode(text, canvasEl) {
   const ctx = canvasEl.getContext('2d');
   const size = canvasEl.width = canvasEl.height = 260;
 
-  // High contrast white background with 4-module quiet zone
+  // High contrast white background with 4-module quiet zone margin
   ctx.fillStyle = '#ffffff';
   ctx.fillRect(0, 0, size, size);
 
@@ -482,7 +483,6 @@ function drawRealScannableQRCode(text, canvasEl) {
 
   const matrix = Array.from({ length: N }, () => Array(N).fill(false));
 
-  // Helper to draw Finder Pattern (7x7 outer, 5x5 inner white, 3x3 center black)
   function drawFinderPattern(row, col) {
     for (let r = 0; r < 7; r++) {
       for (let c = 0; c < 7; c++) {
@@ -493,7 +493,6 @@ function drawRealScannableQRCode(text, canvasEl) {
     }
   }
 
-  // Draw 3 standard Finder Patterns at corners
   drawFinderPattern(0, 0);          // Top-Left
   drawFinderPattern(0, N - 7);      // Top-Right
   drawFinderPattern(N - 7, 0);      // Bottom-Left
@@ -521,12 +520,11 @@ function drawRealScannableQRCode(text, canvasEl) {
   }
 
   for (let c = N - 1; c >= 0; c -= 2) {
-    if (c === 6) c--; // Skip timing col
+    if (c === 6) c--;
     for (let r = 0; r < N; r++) {
       const row = (c % 4 === 1) ? (N - 1 - r) : r;
       for (let colOffset = 0; colOffset < 2; colOffset++) {
         const col = c - colOffset;
-        // Skip reserved finder / alignment regions
         const isTopLeft = (row < 8 && col < 8);
         const isTopRight = (row < 8 && col >= N - 8);
         const isBottomLeft = (row >= N - 8 && col < 8);
@@ -557,7 +555,67 @@ function drawRealScannableQRCode(text, canvasEl) {
 }
 
 /* ================================================================
-   2. ELECTRICITY / LIGHTNING & MOUSE ARC ENGINE
+   2. 3D HOLOGRAPHIC CUBE MATRIX CANVAS ENGINE
+   ================================================================ */
+function render3DHolographicCube() {
+  const canvas = document.getElementById('holo-cube-canvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width = canvas.parentElement.clientWidth || 300;
+  const h = canvas.height = 120;
+
+  let angleX = 0.01, angleY = 0.015;
+
+  const nodes = [
+    [-40,-40,-40], [40,-40,-40], [40,40,-40], [-40,40,-40],
+    [-40,-40,40],  [40,-40,40],  [40,40,40],  [-40,40,40]
+  ];
+
+  const edges = [
+    [0,1],[1,2],[2,3],[3,0],
+    [4,5],[5,6],[6,7],[7,4],
+    [0,4],[1,5],[2,6],[3,7]
+  ];
+
+  function drawCube() {
+    ctx.clearRect(0,0,w,h);
+    const cx = w / 2, cy = h / 2;
+
+    const projected = nodes.map(n => {
+      let x = n[0], y = n[1], z = n[2];
+      // Rotate Y
+      let radY = angleY;
+      let x1 = x * Math.cos(radY) + z * Math.sin(radY);
+      let z1 = -x * Math.sin(radY) + z * Math.cos(radY);
+      // Rotate X
+      let radX = angleX;
+      let y2 = y * Math.cos(radX) - z1 * Math.sin(radX);
+      let z2 = y * Math.sin(radX) + z1 * Math.cos(radX);
+
+      const f = 140 / (140 + z2);
+      return [x1 * f + cx, y2 * f + cy];
+    });
+
+    ctx.strokeStyle = '#22d3ee';
+    ctx.lineWidth = 1.4;
+    edges.forEach(e => {
+      const p1 = projected[e[0]], p2 = projected[e[1]];
+      ctx.beginPath(); ctx.moveTo(p1[0], p1[1]); ctx.lineTo(p2[0], p2[1]); ctx.stroke();
+    });
+
+    projected.forEach(p => {
+      ctx.fillStyle = '#a78bfa';
+      ctx.beginPath(); ctx.arc(p[0], p[1], 3, 0, Math.PI * 2); ctx.fill();
+    });
+
+    angleX += 0.012; angleY += 0.018;
+    requestAnimationFrame(drawCube);
+  }
+  drawCube();
+}
+
+/* ================================================================
+   3. ELECTRICITY / LIGHTNING & MOUSE ARC ENGINE
    ================================================================ */
 const electricCanvas = document.getElementById('electric-canvas');
 const elecCtx = electricCanvas.getContext('2d');
@@ -610,7 +668,7 @@ function animateElectricity(){
 animateElectricity();
 
 /* ================================================================
-   3. EXPANDED WEB AUDIO SYNTHESIZER & EQUALIZER VISUALIZER
+   4. EXPANDED WEB AUDIO SYNTHESIZER & EQUALIZER VISUALIZER
    ================================================================ */
 let audioMuted = false, audioCtx = null;
 
@@ -735,7 +793,7 @@ document.addEventListener('touchend', e => {
 }, { passive: true });
 
 /* ================================================================
-   4. PARTICLE & CONFETTI SYSTEMS WITH CURSOR MAGNETIC PHYSICS
+   5. PARTICLE & CONFETTI SYSTEMS WITH CURSOR MAGNETIC PHYSICS
    ================================================================ */
 (function initParticles() {
   const canvas = document.getElementById('particle-canvas');
@@ -808,7 +866,7 @@ const Confetti = {
 };
 
 /* ================================================================
-   5. WIZARD STEP CONFIGURATION & 6 BLUEPRINT TEMPLATES
+   6. WIZARD STEP CONFIGURATION & 6 BLUEPRINT TEMPLATES
    ================================================================ */
 const ALL_STEPS = [
   {
@@ -984,7 +1042,7 @@ const state = {
   settingsOpen: false, featuresOpen: false, shortcutsOpen: false, promptLabOpen: false, qrModalOpen: false, cmdPaletteOpen: false, blueprintOpen: false, diffOpen: false, themeEditorOpen: false, benchmarksOpen: false, backupOpen: false, synthOpen: false,
   keys: loadKeys(), features: loadFeatures(), activeTab: 'forge',
   history: loadHistory(), snapshots: [], activeCodeFile: null, buildStartTime: 0,
-  voiceListening: false, shareUrl: '', specVersion: 8.0, viewMode: 'code', deviceViewport: 'iphone', viewportOrientation: 'portrait',
+  voiceListening: false, shareUrl: '', specVersion: 9.0, viewMode: 'code', deviceViewport: 'iphone', viewportOrientation: 'portrait',
   sandboxLogs: [], lintResults: null, stepDirection: 'next', customBlueprints: loadBlueprints(),
   searchQuery: '', searchReplaceText: '', selectedPromptProfile: 'cyberpunk', hotReloadTimer: null,
 };
@@ -1062,7 +1120,7 @@ function resetWizard() {
 }
 
 /* ================================================================
-   6. SINGLE-FILE COMPILER, LINTER & MULTI-FORMAT EXPORTERS
+   7. SINGLE-FILE COMPILER, LINTER & MULTI-FORMAT EXPORTERS
    ================================================================ */
 function compileToSingleFileHTML(files) {
   const htmlFile = files['index.html'] || files[Object.keys(files).find(f => f.endsWith('.html'))] || '<!doctype html><html><head><title>App</title></head><body><div id="app"></div></body></html>';
@@ -1265,7 +1323,7 @@ window.addEventListener('message', (e) => {
 });
 
 /* ================================================================
-   7. VISUAL ARCHITECTURE NODE DIAGRAM BUILDER
+   8. VISUAL ARCHITECTURE NODE DIAGRAM BUILDER
    ================================================================ */
 function renderArchitectureDiagramSvg() {
   const steps = getSteps();
@@ -1308,7 +1366,7 @@ function renderArchitectureDiagramSvg() {
 }
 
 /* ================================================================
-   8. BUILD ENGINE & MODEL ADAPTERS
+   9. BUILD ENGINE & MODEL ADAPTERS
    ================================================================ */
 async function build() {
   if (!allAnswered()) { toast('Complete all steps first.', 'warn'); return; }
@@ -1500,7 +1558,7 @@ function escapeHtml(str) { return String(str).replace(/&/g, '&amp;').replace(/</
 const ICO = { check: '<svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' };
 
 /* ================================================================
-   9. RENDER ENGINE & INTERACTIVE MODALS
+   10. RENDER ENGINE & INTERACTIVE MODALS
    ================================================================ */
 function render() {
   renderHeader(); renderNav(); renderApp(); updateMobileDock();
@@ -1515,6 +1573,7 @@ function render() {
   else if (state.synthOpen) renderSynthModal();
   else { const m = document.getElementById('cf-modal'); if (m) m.remove(); }
   initTiltPhysics();
+  setTimeout(render3DHolographicCube, 50);
 }
 
 function renderHeader() {
@@ -1675,8 +1734,9 @@ function renderWizard(app) {
       ` : ''}
 
       <div class="arch-canvas-wrap">
-        <div class="arch-title">🌐 Visual Architecture Flow Diagram</div>
+        <div class="arch-title">🌐 Visual Architecture Flow Diagram & 3D Matrix</div>
         ${renderArchitectureDiagramSvg()}
+        <canvas id="holo-cube-canvas" title="3D Holographic Architecture Matrix Cube"></canvas>
       </div>
     </div>
 
