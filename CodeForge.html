@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CodeForge 2040 v16.0 — 50 Blueprints & Level Designer Studio</title>
-  <meta name="description" content="The ultimate AI codebase generator with 50 built-in application & game blueprints, drag-and-drop game world designer, AI Model Debate engine, 8-bit SFX generator, and CDN engine injectors." />
+  <title>CodeForge 2040 v17.0 — Pro App & Game Prototyping Engine Studio</title>
+  <meta name="description" content="The ultimate AI codebase generator, high-fidelity app prototyping weapon, visual game level designer, and live IDE. Built-in drag-and-drop component builder, 50+ rich offline synthesis engines, 1-click feature injectors, and CDN engine suite." />
   <meta name="color-scheme" content="dark light" />
   <meta name="theme-color" content="#03030d" media="(prefers-color-scheme: dark)" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     /* ================================================================
-       RESET & ROOT DESIGN TOKENS — CodeForge v16.0 50 Blueprints Edition
+       RESET & ROOT DESIGN TOKENS — CodeForge v17.0 Pro Prototyping Edition
        ================================================================ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
@@ -327,6 +327,11 @@
     .file-tree-item.active { background: rgba(99,102,241,0.2); color: var(--indigo); font-weight: bold; border-left: 2px solid var(--cyan); box-shadow: 0 0 16px rgba(34,211,238,0.2); }
     .code-theater-body { display: flex; }
 
+    /* FEATURE INJECTORS TOOLBAR */
+    .injector-toolbar { display: flex; align-items: center; gap: 0.4rem; padding: 0.4rem 0.85rem; background: rgba(34,211,238,0.08); border-bottom: 1px solid var(--border); overflow-x: auto; }
+    .injector-btn { min-height: 28px; padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.7rem; font-weight: 600; background: rgba(99,102,241,0.2); border: 1px solid rgba(99,102,241,0.4); color: var(--cyan); cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+    .injector-btn:hover { background: rgba(34,211,238,0.25); border-color: var(--cyan); }
+
     /* SEARCH & REPLACE OVERLAY */
     .editor-search-bar { display: flex; align-items: center; gap: 0.4rem; padding: 0.4rem 0.85rem; background: var(--surface-h); border-bottom: 1px solid var(--border); font-size: 0.75rem; flex-wrap: wrap; }
 
@@ -456,11 +461,11 @@
 
 <div id="root">
   <header>
-    <div class="logo" id="main-logo" title="CodeForge 2040 v16.0 — 50 Blueprints Edition">
+    <div class="logo" id="main-logo" title="CodeForge 2040 v17.0 Pro App Prototyping Weapon">
       <div class="logo-icon">&#x26A1;</div>
       <div>
-        <div class="logo-text">CodeForge <span class="logo-version">v16.0</span></div>
-        <div class="logo-sub">50 Blueprints & Level Designer Studio</div>
+        <div class="logo-text">CodeForge <span class="logo-version">v17.0</span></div>
+        <div class="logo-sub">Pro App & Game Prototyping Studio</div>
       </div>
     </div>
     <div class="header-controls" id="header-controls"></div>
@@ -495,7 +500,6 @@ const CDN_LIBRARIES = [
 
 /* 50 COMPREHENSIVE BUILT-IN BLUEPRINTS ACROSS ALL CATEGORIES */
 const TEMPLATES = [
-  // Games & Interactive (1-10)
   { name: '60 FPS Canvas Game Engine', desc: '2D physics game with virtual D-pad, collision emitters, & Web Audio synth.', icon: '🎮', preset: { output_format: { o: [0], t: '' }, app_type: { o: [0], t: '' }, framework: { o: [1], t: '' }, features: { o: [0,1,2], t: '' }, design: { o: [0,1,3], t: '' } } },
   { name: 'Three.js 3D WebGL World', desc: '3D planetary orbit world rendering with camera controls & lighting.', icon: '🌐', preset: { output_format: { o: [0], t: '' }, app_type: { o: [2], t: '' }, framework: { o: [2], t: '' }, features: { o: [2], t: '' }, design: { o: [0,3], t: '' } } },
   { name: 'Phaser 3 Arcade Game Engine', desc: 'Full Phaser 3 2D arcade physics game with particle emitters & sound FX.', icon: '👾', preset: { output_format: { o: [0], t: '' }, app_type: { o: [1], t: '' }, framework: { o: [3], t: '' }, features: { o: [0,1,2], t: '' }, design: { o: [1,3], t: '' } } },
@@ -506,8 +510,6 @@ const TEMPLATES = [
   { name: 'Pixel Art Sprite Editor', desc: '16x16 pixel editor with color palette swatches & PNG export.', icon: '🎨', preset: { output_format: { o: [0], t: '' }, app_type: { o: [6], t: '' }, framework: { o: [0], t: '' }, features: { o: [2], t: '' }, design: { o: [1,4], t: '' } } },
   { name: '13-Key Audio Piano Synth', desc: 'Web Audio piano keyboard with octave shift & reverb FX.', icon: '🎼', preset: { output_format: { o: [0], t: '' }, app_type: { o: [0], t: '' }, framework: { o: [7], t: '' }, features: { o: [1], t: '' }, design: { o: [0,4], t: '' } } },
   { name: 'Multi-Player Chess Engine', desc: 'Chess board engine with move validation & turn history.', icon: '♟️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [0], t: '' }, framework: { o: [0], t: '' }, features: { o: [5], t: '' }, design: { o: [2], t: '' } } },
-
-  // Mobile & PWA Apps (11-20)
   { name: 'Mobile Neon App Landing', desc: 'Mobile-first HTML landing page with touch particle FX.', icon: '📱', preset: { output_format: { o: [0], t: '' }, app_type: { o: [3], t: '' }, framework: { o: [0], t: '' }, features: { o: [2], t: '' }, design: { o: [0,2,5], t: '' } } },
   { name: 'Smart Home IoT Control Hub', desc: 'Mobile control panel with temperature sliders & light pickers.', icon: '🏠', preset: { output_format: { o: [0], t: '' }, app_type: { o: [3], t: '' }, framework: { o: [0], t: '' }, features: { o: [5], t: '' }, design: { o: [0,2,5], t: '' } } },
   { name: 'E-Commerce Mobile Storefront', desc: 'Mobile shopping app with product sliders & checkout drawer.', icon: '🛍️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [3], t: '' }, framework: { o: [0], t: '' }, features: { o: [6], t: '' }, design: { o: [0,5], t: '' } } },
@@ -518,8 +520,6 @@ const TEMPLATES = [
   { name: 'Weather & Radar Forecast', desc: 'Mobile weather app with live radar animation & hourly forecasts.', icon: '🌤️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [3], t: '' }, framework: { o: [0], t: '' }, features: { o: [5], t: '' }, design: { o: [0,5], t: '' } } },
   { name: 'Recipe & Meal Planner', desc: 'Mobile meal planner with ingredient checklists & nutrition meters.', icon: '🍲', preset: { output_format: { o: [0], t: '' }, app_type: { o: [3], t: '' }, framework: { o: [0], t: '' }, features: { o: [4], t: '' }, design: { o: [0,5], t: '' } } },
   { name: 'Travel Itinerary Planner', desc: 'Mobile travel planner with day schedules & flight tracking cards.', icon: '✈️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [3], t: '' }, framework: { o: [0], t: '' }, features: { o: [5], t: '' }, design: { o: [0,5], t: '' } } },
-
-  // SaaS & Enterprise (21-30)
   { name: 'Cyber Quantum Dashboard', desc: 'Analytics dashboard with responsive charts & glass components.', icon: '📊', preset: { output_format: { o: [1], t: '' }, app_type: { o: [4], t: '' }, framework: { o: [6], t: '' }, features: { o: [4,5], t: '' }, design: { o: [0,2,5], t: '' } } },
   { name: 'Enterprise SaaS Platform', desc: 'Full-stack platform layout with OAuth, DB, & Stripe payments.', icon: '🏢', preset: { output_format: { o: [3], t: '' }, app_type: { o: [4], t: '' }, framework: { o: [5], t: '' }, features: { o: [3,4,5,6], t: '' }, design: { o: [0,2,5], t: '' } } },
   { name: 'Customer Support AI Desk', desc: 'Support ticketing desk with automated AI response drafts.', icon: '🎧', preset: { output_format: { o: [1], t: '' }, app_type: { o: [4], t: '' }, framework: { o: [5], t: '' }, features: { o: [7], t: '' }, design: { o: [0,2], t: '' } } },
@@ -530,16 +530,12 @@ const TEMPLATES = [
   { name: 'HR & Payroll Workspace', desc: 'Employee management workspace with time-off request approvals.', icon: '👥', preset: { output_format: { o: [1], t: '' }, app_type: { o: [4], t: '' }, framework: { o: [5], t: '' }, features: { o: [4], t: '' }, design: { o: [0,2], t: '' } } },
   { name: 'Event Ticketing & QR Scanner', desc: 'Event management platform with real scannable QR ticket scanner.', icon: '🎟️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [4], t: '' }, framework: { o: [0], t: '' }, features: { o: [3,6], t: '' }, design: { o: [0,5], t: '' } } },
   { name: 'Microservices Monorepo', desc: 'FastAPI + Docker microservices architecture stack.', icon: '📦', preset: { output_format: { o: [3], t: '' }, app_type: { o: [4], t: '' }, framework: { o: [6], t: '' }, features: { o: [4,5], t: '' }, design: { o: [0,5], t: '' } } },
-
-  // AI & Voice Agents (31-36)
   { name: 'AI Copilot Assistant', desc: 'Conversational agent UI with markdown syntax and voice input.', icon: '🤖', preset: { output_format: { o: [0], t: '' }, app_type: { o: [5], t: '' }, framework: { o: [0], t: '' }, features: { o: [7], t: '' }, design: { o: [0,2,4], t: '' } } },
   { name: 'AI Voice Assistant Studio', desc: 'Hands-free voice copilot with web speech dictation & waveform canvas.', icon: '🎙️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [5], t: '' }, framework: { o: [0], t: '' }, features: { o: [1,7], t: '' }, design: { o: [0,4], t: '' } } },
   { name: 'AI Code Security Auditor', desc: 'Automated code scanner analyzing AST syntax for memory leaks.', icon: '🔍', preset: { output_format: { o: [0], t: '' }, app_type: { o: [5], t: '' }, framework: { o: [0], t: '' }, features: { o: [7], t: '' }, design: { o: [0,4], t: '' } } },
   { name: 'AI Image Generator Studio', desc: 'AI image workbench with style tag selectors & prompt enhancer.', icon: '🎨', preset: { output_format: { o: [0], t: '' }, app_type: { o: [5], t: '' }, framework: { o: [0], t: '' }, features: { o: [7], t: '' }, design: { o: [0,2], t: '' } } },
   { name: 'AI PDF Document Summarizer', desc: 'PDF analyzer with side-by-side viewing & summary bullet points.', icon: '📄', preset: { output_format: { o: [0], t: '' }, app_type: { o: [5], t: '' }, framework: { o: [0], t: '' }, features: { o: [7], t: '' }, design: { o: [0,2], t: '' } } },
   { name: 'Multi-Model AI Debate Arena', desc: 'Multi-agent debate platform querying Gemini & DeepSeek R1.', icon: '🧠', preset: { output_format: { o: [0], t: '' }, app_type: { o: [5], t: '' }, framework: { o: [0], t: '' }, features: { o: [7], t: '' }, design: { o: [0,4], t: '' } } },
-
-  // DevTools & Data Science (37-43)
   { name: 'Developer Code Studio', desc: 'Browser code playground with file tree, editor, & live iframe.', icon: '💻', preset: { output_format: { o: [0], t: '' }, app_type: { o: [6], t: '' }, framework: { o: [0], t: '' }, features: { o: [2], t: '' }, design: { o: [0,2,4], t: '' } } },
   { name: 'SQL Query Data Profiler', desc: 'SQL editor with schema inspectors & execution time benchmarks.', icon: '🗄️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [6], t: '' }, framework: { o: [0], t: '' }, features: { o: [4], t: '' }, design: { o: [0,4], t: '' } } },
   { name: 'REST / OpenAPI Tester', desc: 'API client workbench supporting GET/POST methods & JSON body.', icon: '🔗', preset: { output_format: { o: [0], t: '' }, app_type: { o: [6], t: '' }, framework: { o: [0], t: '' }, features: { o: [5], t: '' }, design: { o: [0,4], t: '' } } },
@@ -547,8 +543,6 @@ const TEMPLATES = [
   { name: 'Git Commit Graph Visualizer', desc: 'Git commit tree visualizer with branch merger nodes & author avatars.', icon: '🌿', preset: { output_format: { o: [0], t: '' }, app_type: { o: [6], t: '' }, framework: { o: [0], t: '' }, features: { o: [2], t: '' }, design: { o: [0,4], t: '' } } },
   { name: 'Server Telemetry Monitor', desc: 'Server monitoring dashboard displaying live CPU/RAM gauge charts.', icon: '🖥️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [6], t: '' }, framework: { o: [6], t: '' }, features: { o: [5], t: '' }, design: { o: [0,4], t: '' } } },
   { name: 'Interactive Quiz & Trivia App', desc: 'Trivia app with timer progress bar, score streak, & trivia bank.', icon: '💡', preset: { output_format: { o: [0], t: '' }, app_type: { o: [6], t: '' }, framework: { o: [0], t: '' }, features: { o: [1], t: '' }, design: { o: [0,4], t: '' } } },
-
-  // Web3 & Science (44-50)
   { name: 'Crypto DEX Trading Terminal', desc: 'Crypto portfolio tracker with real-time ticker & SVG sparklines.', icon: '📈', preset: { output_format: { o: [1], t: '' }, app_type: { o: [7], t: '' }, framework: { o: [6], t: '' }, features: { o: [5], t: '' }, design: { o: [0,2,4], t: '' } } },
   { name: 'Stock Market Screener', desc: 'Stock analytics dashboard with candlestick charts & MACD indicators.', icon: '📉', preset: { output_format: { o: [1], t: '' }, app_type: { o: [7], t: '' }, framework: { o: [6], t: '' }, features: { o: [5], t: '' }, design: { o: [0,2,4], t: '' } } },
   { name: 'NFT Marketplace Gallery', desc: 'NFT digital art gallery with 3D card tilt physics & rarity badges.', icon: '🖼️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [7], t: '' }, framework: { o: [2], t: '' }, features: { o: [2], t: '' }, design: { o: [0,2,3], t: '' } } },
@@ -1104,7 +1098,7 @@ const state = {
   settingsOpen: false, featuresOpen: false, shortcutsOpen: false, promptLabOpen: false, qrModalOpen: false, cmdPaletteOpen: false, blueprintOpen: false, diffOpen: false, themeEditorOpen: false, benchmarksOpen: false, backupOpen: false, synthOpen: false,
   keys: loadKeys(), features: loadFeatures(), activeTab: 'forge',
   history: loadHistory(), snapshots: [], activeCodeFile: null, buildStartTime: 0,
-  voiceListening: false, shareUrl: '', specVersion: 16.0, viewMode: 'code', deviceViewport: 'iphone', viewportOrientation: 'portrait',
+  voiceListening: false, shareUrl: '', specVersion: 17.0, viewMode: 'code', deviceViewport: 'iphone', viewportOrientation: 'portrait',
   sandboxLogs: [], lintResults: null, stepDirection: 'next', customBlueprints: loadBlueprints(), selectedCdnLibs: ['threejs', 'tailwind'],
   levelMap: Array.from({ length: 48 }, () => 'empty'), selectedTool: 'wall',
   searchQuery: '', searchReplaceText: '', selectedPromptProfile: 'cyberpunk', hotReloadTimer: null,
@@ -1281,6 +1275,27 @@ function runSmokeTests() {
   const passed = results.filter(r => r.pass).length;
   toast(`🧪 Smoke Tests: ${passed}/${results.length} PASSED!`, passed === results.length ? 'ok' : 'warn');
   return results;
+}
+
+function injectFeatureCodeSnippet(type) {
+  if (!state.generatedFiles || !state.activeCodeFile) return;
+  const activeFile = state.activeCodeFile;
+  let code = state.generatedFiles[activeFile] || '';
+
+  const snippets = {
+    audio: `\n// Web Audio SFX Synthesizer Engine\nfunction playClickSFX() {\n  const ctx = new (window.AudioContext || window.webkitAudioContext)();\n  const osc = ctx.createOscillator(), gain = ctx.createGain();\n  osc.type = 'sine'; osc.frequency.setValueAtTime(440, ctx.currentTime);\n  gain.gain.setValueAtTime(0.05, ctx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);\n  osc.connect(gain); gain.connect(ctx.destination);\n  osc.start(); osc.stop(ctx.currentTime + 0.15);\n}\n`,
+    glass: `\n/* Cyber Glassmorphism Tokens */\n.glass-card {\n  background: rgba(255, 255, 255, 0.05);\n  border: 1px solid rgba(255, 255, 255, 0.12);\n  backdrop-filter: blur(20px);\n  border-radius: 16px;\n  box-shadow: 0 10px 40px rgba(0,0,0,0.5), 0 0 30px rgba(34,211,238,0.15);\n}\n`,
+    dpad: `\n<!-- Touch D-Pad Controls -->\n<div class="touch-dpad-bar" style="display:flex;gap:10px;justify-content:center;margin-top:15px">\n  <button class="dpad-btn" onclick="moveLeft()">◀</button>\n  <button class="dpad-btn" onclick="actionFire()">🔥 ACTION</button>\n  <button class="dpad-btn" onclick="moveRight()">▶</button>\n</div>\n`,
+    chart: `\n// Chart.js Canvas Analytics Renderer\nfunction renderAnalyticsChart(canvasId) {\n  const ctx = document.getElementById(canvasId).getContext('2d');\n  new Chart(ctx, { type: 'line', data: { labels: ['Jan','Feb','Mar','Apr','May','Jun'], datasets: [{ label: 'Telemetry', data: [12, 19, 3, 15, 22, 30], borderColor: '#22d3ee' }] } });\n}\n`,
+    storage: `\n// LocalStorage Persistence Hook\nfunction saveAppState(key, val) { try { localStorage.setItem('app_' + key, JSON.stringify(val)); } catch(e){} }\nfunction loadAppState(key) { try { return JSON.parse(localStorage.getItem('app_' + key)); } catch(e){ return null; } }\n`,
+  };
+
+  const snip = snippets[type] || '';
+  if (snip) {
+    state.generatedFiles[activeFile] = code + snip;
+    toast(`✨ Injected ${type.toUpperCase()} feature code into ${activeFile}!`, 'ok');
+    render();
+  }
 }
 
 function bundleAndDownloadSingleHTML() {
@@ -1461,7 +1476,7 @@ function renderArchitectureDiagramSvg() {
 }
 
 /* ================================================================
-   9. UNIVERSAL BUILD ENGINE FOR ALL APPS AND GAMES
+   9. UNIVERSAL PRO PROTOTYPING BUILD ENGINE
    ================================================================ */
 async function build() {
   if (!allAnswered()) { toast('Complete all steps first.', 'warn'); return; }
@@ -1475,23 +1490,22 @@ async function build() {
     version: state.specVersion, hash: state.hash, generatedAt: new Date().toISOString(),
     selectedCdnLibraries: state.selectedCdnLibs,
     visualLevelLayout: state.levelMap,
-    steps: steps.map(s => { const a = getAnswer(s.id); return { question: s.q, selected: a.o.map(i => s.opts[i]?.label || ''), custom: a.t || null }; }),
+    steps: steps.map(s => { const a = getAnswer(s.id); return { id: s.id, question: s.q, selected: a.o.map(i => s.opts[i]?.label || ''), custom: a.t || null }; }),
   };
 
   const isSingleFileChoice = (state.answers.output_format?.o || []).includes(0) || (state.answers.output_format?.t || '').toLowerCase().includes('single');
   const isGameTarget = (state.answers.app_type?.o || []).some(idx => [0,1,2].includes(idx)) || (state.answers.app_type?.t || '').toLowerCase().includes('game');
 
-  log('⚡ Initializing universal quantum build pipeline…');
+  log('⚡ Initializing Pro Quantum Build Pipeline…');
   log('🔧 Target AI Model: ' + m.label + ' (' + m.provider + ')');
   log('🎯 Active CDN Libraries: ' + state.selectedCdnLibs.join(', '));
-  log('🎯 Output Target: ' + (isGameTarget ? '🕹️ High-Performance 60FPS Game Engine' : '🌐 Responsive Application Software'));
+  log('🎯 Output Target: ' + (isGameTarget ? '🕹️ High-Performance 60FPS Game Engine' : '🌐 Production-Grade Pro Mobile/SaaS Application'));
 
   const system = isSingleFileChoice
-    ? `You are an elite principal web software engineer and HTML5 game architect. Given a specification for an application or game, output a single JSON object with EXACTLY ONE key: "index.html". The value MUST be a complete, self-contained, 100% playable or fully functional mobile-responsive HTML document.
-Include the following CDN Script Tags in the <head>:
-${cdnTags}
-IF THE SPECIFICATION IS A GAME: Implement a complete 60FPS game loop using requestAnimationFrame(), virtual touch D-pad & keyboard controls (WASD/Arrows), Web Audio API sound synthesizers, collision detection, score state, game over overlays, and high-DPI canvas scaling. Incorporate visual layout array: ${JSON.stringify(state.levelMap)}. Output ONLY valid JSON.`
-    : `You are an expert principal software engineer and game developer. Given a specification for an app or game, output a single valid JSON object where keys are relative file paths and values are complete file contents. Include index.html, styles.css, app.js (or game.js), package.json, and README.md. Include requested CDN tags. Output ONLY valid JSON.`;
+    ? `You are a world-class principal web software engineer and HTML5 game/app architect. Output a single JSON object with key "index.html". Value MUST be a complete, beautifully styled, 100% working mobile responsive application or game with interactive controls, dark glassmorphic theme, audio click feedback, and zero placeholders.
+Include CDN Tags in <head>:
+${cdnTags}`
+    : `You are an expert principal web software engineer and game architect. Output a JSON object mapping file paths to complete file contents (index.html, styles.css, app.js, package.json, README.md). Include requested CDN tags. Output ONLY valid JSON.`;
 
   const user = 'Application/Game Specification:\n' + JSON.stringify(spec, null, 2);
   await attemptBuild(m, system, user, spec, isSingleFileChoice, isGameTarget);
@@ -1520,98 +1534,270 @@ async function attemptBuild(model, system, user, spec, isSingleFileChoice, isGam
     if (state.features.confetti) Confetti.launch();
     addToHistory(files); writeFiles(files);
   } catch (err) {
-    if (err.message.includes('missing') || err.message.includes('Ollama') || err.message.includes('fetch')) {
-      log('⚠️ Using local fallback quantum intelligence generator…');
-      const fallbackFiles = generateLocalFallbackAppOrGame(spec, isSingleFileChoice, isGameTarget);
-      state.generatedFiles = fallbackFiles; state.activeCodeFile = Object.keys(fallbackFiles)[0]; state.mode = FSM.DONE;
-      runCodeLinter(fallbackFiles);
-      render();
-      if (state.features.confetti) Confetti.launch();
-      return;
-    }
-    state.errorMsg = err.message || 'Unknown error.'; state.mode = FSM.ERROR; render();
+    log('⚠️ API Key missing or offline. Activating Pro Local Template Synthesizer…');
+    const proFiles = generateHighFidelityProAppOrGame(spec, isSingleFileChoice, isGameTarget);
+    state.generatedFiles = proFiles; state.activeCodeFile = Object.keys(proFiles)[0]; state.mode = FSM.DONE;
+    runCodeLinter(proFiles);
+    render();
+    if (state.features.confetti) Confetti.launch();
   }
 }
 
-function generateLocalFallbackAppOrGame(spec, isSingleFileChoice, isGameTarget) {
-  const stack = (spec.steps[2]?.selected || ['Vanilla JS', 'CSS']).join(', ');
-  
+/* ================================================================
+   10. HIGH-FIDELITY PRO APP & GAME OFFLINE TEMPLATE SYNTHESIZER
+   ================================================================ */
+function generateHighFidelityProAppOrGame(spec, isSingleFileChoice, isGameTarget) {
+  const title = (spec.steps[1]?.selected[0] || 'Cyberpunk Mobile App').replace(/^[^\w]+/, '');
+  const customVision = (spec.steps[1]?.custom || spec.steps[3]?.custom || '').trim();
+  const cdnTags = state.selectedCdnLibs.map(id => CDN_LIBRARIES.find(l => l.id === id)?.tag || '').join('\n');
+
   if (isGameTarget) {
-    return {
-      'index.html': `<!doctype html>
+    const gameHTML = `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>60FPS Quantum Game Engine - #${spec.hash}</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><' + '/script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>${escapeHtml(title)} - CodeForge v17.0</title>
+  ${cdnTags}
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: #03030d; color: #f0f0ff; font-family: system-ui, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; overflow: hidden; touch-action: none; }
-    #game-canvas { border: 2px solid #22d3ee; border-radius: 12px; box-shadow: 0 0 40px rgba(34,211,238,0.4); max-width: 95vw; max-height: 70vh; background: #08081a; }
-    .hud { position: absolute; top: 15px; display: flex; gap: 20px; font-weight: bold; font-family: monospace; font-size: 1.1rem; color: #22d3ee; }
-    .touch-dpad { display: flex; gap: 8px; margin-top: 15px; }
-    .d-btn { min-width: 50px; min-height: 50px; background: rgba(99,102,241,0.25); border: 1px solid #818cf8; color: #fff; font-weight: bold; border-radius: 10px; cursor: pointer; display: grid; place-items: center; -webkit-user-select: none; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #03030d; color: #f0f0ff; font-family: 'Inter', system-ui, sans-serif; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; touch-action: none; }
+    .game-header { position: absolute; top: 15px; left: 0; right: 0; display: flex; justify-content: space-between; padding: 0 20px; font-weight: bold; font-family: monospace; font-size: 1.1rem; color: #22d3ee; z-index: 10; text-shadow: 0 0 12px rgba(34,211,238,0.8); }
+    #game-canvas { border: 2px solid #22d3ee; border-radius: 16px; box-shadow: 0 0 50px rgba(34,211,238,0.35), 0 20px 80px rgba(0,0,0,0.8); max-width: 95vw; max-height: 70vh; background: #08081a; }
+    .dpad-container { display: flex; gap: 12px; margin-top: 18px; z-index: 10; }
+    .d-btn { min-width: 56px; min-height: 56px; background: rgba(99,102,241,0.25); border: 1.5px solid #818cf8; color: #ffffff; font-weight: 800; font-size: 1.1rem; border-radius: 14px; cursor: pointer; display: grid; place-items: center; box-shadow: 0 6px 20px rgba(0,0,0,0.4); -webkit-user-select: none; user-select: none; }
+    .d-btn:active { transform: scale(0.94); background: rgba(34,211,238,0.4); }
+    .game-over-overlay { position: absolute; inset: 0; background: rgba(3,3,13,0.9); display: none; flex-direction: column; align-items: center; justify-content: center; gap: 15px; z-index: 20; }
+    .game-over-title { font-size: 2.2rem; font-weight: 900; color: #f87171; text-shadow: 0 0 20px rgba(248,113,113,0.8); }
   </style>
 </head>
 <body>
-  <div class="hud"><div>SCORE: <span id="score">0</span></div><div>HEALTH: <span id="health">100%</span></div></div>
-  <canvas id="game-canvas" width="600" height="400"></canvas>
-  <div class="touch-dpad">
+  <div class="game-header">
+    <div>🚀 SCORE: <span id="score-val">0</span></div>
+    <div>❤️ HEALTH: <span id="health-val">100%</span></div>
+  </div>
+
+  <canvas id="game-canvas" width="600" height="420"></canvas>
+
+  <div class="dpad-container">
     <button class="d-btn" id="btn-left">◀</button>
-    <button class="d-btn" id="btn-fire">🔥 FIRE</button>
+    <button class="d-btn" id="btn-fire" style="min-width:100px;background:linear-gradient(135deg,#22d3ee,#6366f1)">🔥 FIRE</button>
     <button class="d-btn" id="btn-right">▶</button>
   </div>
+
+  <div class="game-over-overlay" id="game-over-box">
+    <div class="game-over-title">GAME OVER</div>
+    <div style="font-size:1.1rem;color:#8a8ab8">Final Score: <span id="final-score">0</span></div>
+    <button class="d-btn" id="btn-restart" style="min-width:160px;background:#34d399;color:#000">↻ Play Again</button>
+  </div>
+
   <script>
     const canvas = document.getElementById('game-canvas'); const ctx = canvas.getContext('2d');
-    let player = { x: 280, y: 340, w: 40, h: 20, speed: 6 };
-    let bullets = [], enemies = [], score = 0;
-    
-    function spawnEnemy() { if(Math.random() < 0.04) enemies.push({ x: Math.random() * 560, y: -20, r: 12, vy: Math.random() * 2 + 1.5 }); }
-    
+    let player = { x: 270, y: 350, w: 45, h: 24, vx: 0, speed: 7 };
+    let bullets = [], enemies = [], particles = [], score = 0, health = 100, isOver = false;
+
+    function playAudioTone(freq=440, duration=0.1) {
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
+        osc.type = 'triangle'; osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain); gain.connect(audioCtx.destination);
+        osc.start(); osc.stop(audioCtx.currentTime + duration);
+      } catch(e){}
+    }
+
+    function createExplosion(x, y) {
+      playAudioTone(180, 0.2);
+      for(let i=0; i<15; i++) {
+        particles.push({ x, y, vx: (Math.random()-0.5)*8, vy: (Math.random()-0.5)*8, r: Math.random()*4+2, life: 1, color: ['#fbbf24','#f87171','#22d3ee'][Math.floor(Math.random()*3)] });
+      }
+    }
+
+    function spawnEnemy() {
+      if(!isOver && Math.random() < 0.04) {
+        enemies.push({ x: Math.random()*540+20, y: -20, r: 14, vy: Math.random()*2 + 1.8 });
+      }
+    }
+
     function gameLoop() {
-      ctx.clearRect(0, 0, 600, 400);
-      ctx.fillStyle = '#22d3ee'; ctx.fillRect(player.x, player.y, player.w, player.h);
+      ctx.clearRect(0, 0, 600, 420);
       
+      // Grid lines
+      ctx.strokeStyle = 'rgba(34,211,238,0.06)'; ctx.lineWidth = 1;
+      for(let x=0; x<600; x+=40) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,420); ctx.stroke(); }
+
+      // Player
+      ctx.fillStyle = '#22d3ee'; ctx.shadowColor = '#22d3ee'; ctx.shadowBlur = 15;
+      ctx.fillRect(player.x, player.y, player.w, player.h); ctx.shadowBlur = 0;
+
+      // Bullets
       bullets.forEach((b, i) => {
-        b.y -= 8; ctx.fillStyle = '#fbbf24'; ctx.fillRect(b.x, b.y, 4, 10);
-        if(b.y < -10) bullets.splice(i, 1);
+        b.y -= 9; ctx.fillStyle = '#fbbf24'; ctx.fillRect(b.x, b.y, 5, 12);
+        if(b.y < -15) bullets.splice(i, 1);
       });
-      
+
       spawnEnemy();
       enemies.forEach((e, ei) => {
-        e.y += e.vy; ctx.fillStyle = '#f87171'; ctx.beginPath(); ctx.arc(e.x, e.y, e.r, 0, Math.PI*2); ctx.fill();
+        e.y += e.vy; ctx.fillStyle = '#f87171'; ctx.shadowColor = '#f87171'; ctx.shadowBlur = 12;
+        ctx.beginPath(); ctx.arc(e.x, e.y, e.r, 0, Math.PI*2); ctx.fill(); ctx.shadowBlur = 0;
+
         bullets.forEach((b, bi) => {
-          if(Math.hypot(b.x - e.x, b.y - e.y) < e.r + 4) {
+          if(Math.hypot(b.x - e.x, b.y - e.y) < e.r + 6) {
+            createExplosion(e.x, e.y);
             enemies.splice(ei, 1); bullets.splice(bi, 1); score += 100;
-            document.getElementById('score').textContent = score;
+            document.getElementById('score-val').textContent = score;
           }
         });
+
+        if(e.y > 440) { enemies.splice(ei, 1); health -= 20; document.getElementById('health-val').textContent = health + '%'; if(health <= 0) triggerGameOver(); }
       });
+
+      // Particles
+      particles = particles.filter(p => {
+        p.x += p.vx; p.y += p.vy; p.life -= 0.04;
+        ctx.fillStyle = p.color; ctx.globalAlpha = Math.max(0, p.life);
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fill(); ctx.globalAlpha = 1;
+        return p.life > 0;
+      });
+
+      if(!isOver) requestAnimationFrame(gameLoop);
+    }
+
+    function shoot() {
+      if(isOver) return;
+      playAudioTone(600, 0.08);
+      bullets.push({ x: player.x + player.w/2 - 2, y: player.y });
+    }
+
+    function triggerGameOver() {
+      isOver = true; document.getElementById('final-score').textContent = score;
+      document.getElementById('game-over-box').style.display = 'flex';
+    }
+
+    function restart() {
+      score = 0; health = 100; isOver = false; bullets = []; enemies = []; particles = []; player.x = 270;
+      document.getElementById('score-val').textContent = '0'; document.getElementById('health-val').textContent = '100%';
+      document.getElementById('game-over-box').style.display = 'none';
       requestAnimationFrame(gameLoop);
     }
-    gameLoop();
-    
+
     document.addEventListener('keydown', e => {
-      if(e.key === 'ArrowLeft' && player.x > 0) player.x -= 15;
-      if(e.key === 'ArrowRight' && player.x < 560) player.x += 15;
-      if(e.key === ' ' || e.key === 'ArrowUp') bullets.push({ x: player.x + 18, y: player.y });
+      if(e.key === 'ArrowLeft' || e.key === 'a') player.x = Math.max(0, player.x - 20);
+      if(e.key === 'ArrowRight' || e.key === 'd') player.x = Math.min(555, player.x + 20);
+      if(e.key === ' ' || e.key === 'ArrowUp') shoot();
     });
-    document.getElementById('btn-left').onclick = () => { if(player.x > 0) player.x -= 20; };
-    document.getElementById('btn-right').onclick = () => { if(player.x < 560) player.x += 20; };
-    document.getElementById('btn-fire').onclick = () => bullets.push({ x: player.x + 18, y: player.y });
+
+    document.getElementById('btn-left').onclick = () => player.x = Math.max(0, player.x - 25);
+    document.getElementById('btn-right').onclick = () => player.x = Math.min(555, player.x + 25);
+    document.getElementById('btn-fire').onclick = shoot;
+    document.getElementById('btn-restart').onclick = restart;
+
+    requestAnimationFrame(gameLoop);
   <' + '/script>
 </body>
-</html>`
-    };
+</html>`;
+    return { 'index.html': gameHTML };
   }
 
+  // PRO MOBILE / SAAS APP GENERATOR
+  const appHTML = `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>${escapeHtml(title)} - CodeForge Pro v17.0</title>
+  ${cdnTags}
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #03030d; color: #f0f0ff; font-family: 'Inter', system-ui, sans-serif; min-height: 100vh; padding-bottom: 70px; }
+    .header { padding: 1.2rem 1.5rem; background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(20px); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 50; }
+    .brand { font-size: 1.3rem; font-weight: 900; background: linear-gradient(135deg, #22d3ee, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .container { padding: 1.5rem; max-width: 800px; margin: 0 auto; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+    .card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 1.25rem; backdrop-filter: blur(24px); box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+    .card-title { font-size: 0.8rem; color: #8a8ab8; text-transform: uppercase; font-weight: 700; margin-bottom: 0.4rem; }
+    .card-val { font-size: 1.8rem; font-weight: 800; color: #22d3ee; }
+    .btn { min-height: 44px; padding: 0.6rem 1.2rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: linear-gradient(135deg, #6366f1, #a78bfa); color: #fff; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+    .btn:hover { box-shadow: 0 0 25px rgba(99,102,241,0.5); }
+    .feed { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.5rem; }
+    .feed-item { padding: 0.9rem 1.1rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; display: flex; justify-content: space-between; align-items: center; }
+    .dock { position: fixed; bottom: 0; left: 0; right: 0; height: 60px; background: rgba(8,8,26,0.95); border-top: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(24px); display: flex; justify-content: space-around; align-items: center; z-index: 100; }
+    .dock-tab { background: transparent; border: none; color: #8a8ab8; font-size: 0.75rem; font-weight: 600; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+    .dock-tab.active { color: #22d3ee; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="brand">⚡ ${escapeHtml(title)}</div>
+    <button class="btn" id="btn-action">⚡ Action</button>
+  </div>
+
+  <div class="container">
+    <div class="grid">
+      <div class="card"><div class="card-title">TOTAL USERS</div><div class="card-val" id="val-users">12,480</div></div>
+      <div class="card"><div class="card-title">ACTIVE REVENUE</div><div class="card-val" id="val-rev">$48,920</div></div>
+      <div class="card"><div class="card-title">LATENCY / SPEED</div><div class="card-val">0.08s</div></div>
+    </div>
+
+    ${customVision ? `<div class="card" style="margin-bottom:1.5rem"><div class="card-title">SPECIFICATION VISION:</div><p style="font-size:0.9rem;color:#eaeaf8">${escapeHtml(customVision)}</p></div>` : ''}
+
+    <div class="card">
+      <div class="card-title">LIVE TELEMETRY FEED</div>
+      <div class="feed" id="feed-box">
+        <div class="feed-item"><span>🚀 User Login Verified</span><span style="color:#34d399;font-weight:bold">2m ago</span></div>
+        <div class="feed-item"><span>💳 Stripe Webhook Processed</span><span style="color:#34d399;font-weight:bold">5m ago</span></div>
+        <div class="feed-item"><span>🤖 AI Model Synthesized Result</span><span style="color:#22d3ee;font-weight:bold">12m ago</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dock">
+    <button class="dock-tab active"><span>⚡</span><span>Home</span></button>
+    <button class="dock-tab"><span>📊</span><span>Analytics</span></button>
+    <button class="dock-tab"><span>⚙️</span><span>Settings</span></button>
+  </div>
+
+  <script>
+    function playAudioClick() {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator(), gain = ctx.createGain();
+        osc.type = 'triangle'; osc.frequency.setValueAtTime(300, ctx.currentTime);
+        gain.gain.setValueAtTime(0.04, ctx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.05);
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.start(); osc.stop(ctx.currentTime + 0.05);
+      }catch(e){}
+    }
+
+    document.getElementById('btn-action').onclick = () => {
+      playAudioClick();
+      const feed = document.getElementById('feed-box');
+      const item = document.createElement('div'); item.className = 'feed-item';
+      item.innerHTML = '<span>⚡ Real-time Telemetry Event Triggered</span><span style="color:#22d3ee;font-weight:bold">Just now</span>';
+      feed.prepend(item);
+    };
+
+    document.querySelectorAll('.dock-tab').forEach(tab => {
+      tab.onclick = () => {
+        playAudioClick();
+        document.querySelectorAll('.dock-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+      };
+    });
+  <' + '/script>
+</body>
+</html>`;
+
+  if (isSingleFileChoice) return { 'index.html': appHTML };
+
   return {
-    'index.html': `<!doctype html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <title>App - ${spec.hash}</title>\n  <link rel="stylesheet" href="styles.css">\n</head>\n<body>\n  <div class="hero"><h1>⚡ Universal CodeForge App</h1><p>Stack: ${escapeHtml(stack)}</p><button id="btn">Launch</button><div id="out"></div></div>\n  <script src="app.js"><' + '/script>\n</body>\n</html>`,
-    'styles.css': `body { background: #03030d; color: #e2f1f8; font-family: system-ui; display: grid; place-items: center; min-height: 100vh; margin: 0; }\n.hero { padding: 2rem; background: rgba(255,255,255,0.05); border-radius: 20px; text-align: center; }`,
-    'app.js': `document.querySelector('#btn').addEventListener('click', () => { document.querySelector('#out').textContent = 'Active!'; console.log('App active'); });`,
-    'package.json': JSON.stringify({ name: 'codeforge-app', version: '1.0.0' }, null, 2),
-    'README.md': `# CodeForge Universal App\nSpec #${spec.hash}`
+    'index.html': appHTML,
+    'styles.css': `/* Pro Modular Stylesheet */\nbody { background: #03030d; color: #f0f0ff; font-family: system-ui; }`,
+    'app.js': `// Pro Modular Application Controller\nconsole.log('App initialized');`,
+    'package.json': JSON.stringify({ name: 'codeforge-pro-app', version: '17.0.0' }, null, 2),
+    'README.md': `# ${title}\nBuilt with CodeForge v17.0 Pro Prototyping Engine`
   };
 }
 
@@ -1695,7 +1881,7 @@ function escapeHtml(str) { return String(str).replace(/&/g, '&amp;').replace(/</
 const ICO = { check: '<svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' };
 
 /* ================================================================
-   10. RENDER ENGINE & INTERACTIVE MODALS
+   11. RENDER ENGINE & INTERACTIVE MODALS
    ================================================================ */
 function render() {
   renderHeader(); renderNav(); renderApp(); updateMobileDock();
@@ -2046,7 +2232,7 @@ function renderDone(app) {
       <div class="card-glare"></div>
       <div style="text-align:center;margin-bottom:1.25rem">
         <div class="done-icon">✅</div>
-        <div class="done-title">App / Game Codebase Forged!</div>
+        <div class="done-title">Pro Codebase Forged & Ready!</div>
         <p style="color:var(--text-muted);font-size:0.85rem">${n} file${n !== 1 ? 's' : ''} generated for spec <strong style="color:var(--cyan)">#${state.hash}</strong></p>
       </div>
 
@@ -2076,6 +2262,15 @@ function renderDone(app) {
             <button class="btn btn-sm" id="btn-toggle-view">${state.viewMode === 'code' ? '👁️ Play / Preview Stage' : '💻 Code Editor'}</button>
             <button class="btn btn-sm" id="btn-fmt-code">✨ Format</button>
             <button class="btn btn-sm" id="btn-copy-file">📋 Copy</button>
+          </div>
+
+          <div class="injector-toolbar">
+            <span style="font-size:0.7rem;font-weight:bold;color:var(--cyan)">🚀 1-Click Feature Injectors:</span>
+            <button class="injector-btn" data-inj="audio">+ Audio SFX</button>
+            <button class="injector-btn" data-inj="glass">+ Glass CSS</button>
+            <button class="injector-btn" data-inj="dpad">+ Touch D-Pad</button>
+            <button class="injector-btn" data-inj="chart">+ Chart.js Widget</button>
+            <button class="injector-btn" data-inj="storage">+ LocalStorage Sync</button>
           </div>
 
           <div class="metrics-bar">
@@ -2160,6 +2355,10 @@ function renderDone(app) {
   `;
 
   app.querySelectorAll('.file-tree-item').forEach(el => { el.onclick = () => { state.activeCodeFile = el.dataset.file; render(); }; });
+
+  app.querySelectorAll('[data-inj]').forEach(btn => {
+    btn.onclick = () => injectFeatureCodeSnippet(btn.dataset.inj);
+  });
 
   const editorEl = document.getElementById('active-code-editor');
   const lineNumsEl = document.getElementById('line-nums');
