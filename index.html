@@ -12,10 +12,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/qamotech/codeforge/main/ninja-logo.png" />
-  <link rel="shortcut icon" href="https://raw.githubusercontent.com/qamotech/codeforge/main/ninja-logo.png" />
-  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/qamotech/codeforge/main/ninja-logo.png" />
-  <meta property="og:image" content="https://raw.githubusercontent.com/qamotech/codeforge/main/ninja-logo.png" />
   <style>
     /* ================================================================
        RESET & ROOT DESIGN TOKENS — CodeForge v18.0 Omnipresent Edition
@@ -152,26 +148,6 @@
       pointer-events: none; z-index: var(--z-particles); animation: cosmicNebulaShift 12s ease-in-out infinite alternate;
     }
     @keyframes cosmicNebulaShift { 0% { opacity: 0.7; transform: scale(1); } 100% { opacity: 1; transform: scale(1.03); } }
-
-    /* COSMIC SPACE ELEMENTS: PLANETS, SATELLITES & DEBRIS */
-    .cosmic-layer { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; opacity: 0.85; transition: opacity 0.5s ease; }
-    html[data-anim="off"] .cosmic-layer { opacity: 0; display: none !important; }
-    .space-planet { position: absolute; border-radius: 50%; filter: blur(0.5px); box-shadow: inset -25px -25px 50px rgba(0,0,0,0.8), 0 0 40px rgba(99,102,241,0.3); animation: planetFloat 25s ease-in-out infinite alternate; }
-    .planet-1 { width: 180px; height: 180px; top: 8%; right: -40px; background: radial-gradient(circle at 35% 35%, #a78bfa, #4c1d95, #1e1b4b); transform: rotate(15deg); }
-    .planet-2 { width: 110px; height: 110px; bottom: 12%; left: -30px; background: radial-gradient(circle at 30% 30%, #22d3ee, #0369a1, #082f49); animation-duration: 32s; box-shadow: inset -15px -15px 35px rgba(0,0,0,0.8), 0 0 35px rgba(34,211,238,0.25); }
-    .space-ring { position: absolute; width: 260px; height: 60px; top: 11%; right: -80px; border: 12px solid rgba(251,191,36,0.35); border-radius: 50%; transform: rotate(-25deg); filter: blur(1px); pointer-events: none; animation: ringRotate 30s linear infinite; }
-    .satellite { position: absolute; width: 42px; height: 42px; top: 28%; left: 15%; animation: orbitSat 40s linear infinite; opacity: 0.75; }
-    .satellite-solar { position: absolute; width: 32px; height: 12px; background: var(--cyan); border-radius: 2px; box-shadow: 0 0 10px var(--cyan); top: 15px; left: -25px; transform: rotate(15deg); }
-    .satellite-solar.right { left: 35px; }
-    .satellite-body { position: absolute; width: 18px; height: 18px; background: var(--violet); border-radius: 50%; top: 12px; left: 12px; box-shadow: 0 0 15px var(--violet); }
-    .space-debris { position: absolute; background: #64748b; border-radius: 40% 60% 55% 45%; filter: drop-shadow(0 0 4px var(--cyan)); animation: debrisDrift 35s linear infinite; opacity: 0.6; }
-    .debris-1 { width: 12px; height: 9px; top: 45%; right: 20%; animation-duration: 28s; }
-    .debris-2 { width: 8px; height: 14px; top: 75%; right: 35%; animation-duration: 45s; animation-direction: reverse; }
-    .debris-3 { width: 16px; height: 12px; top: 20%; left: 38%; animation-duration: 50s; }
-    @keyframes planetFloat { 0% { transform: translateY(0px) scale(1) rotate(0deg); } 100% { transform: translateY(-25px) scale(1.04) rotate(8deg); } }
-    @keyframes orbitSat { 0% { transform: translate(-50px, -30px) rotate(0deg); opacity: 0.3; } 50% { opacity: 0.85; } 100% { transform: translate(120vw, 40vh) rotate(360deg); opacity: 0; } }
-    @keyframes debrisDrift { 0% { transform: translate(0, 0) rotate(0deg); } 50% { transform: translate(-40px, -25px) rotate(180deg); } 100% { transform: translate(15px, 30px) rotate(360deg); } }
-    @keyframes ringRotate { 0% { transform: rotate(-25deg) scale(1); } 50% { transform: rotate(-22deg) scale(1.02); } 100% { transform: rotate(-25deg) scale(1); } }
 
     #root { position: relative; z-index: var(--z-content); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 0 1rem 7.5rem; }
 
@@ -488,23 +464,10 @@
 <canvas id="electric-canvas"></canvas>
 <canvas id="confetti-canvas"></canvas>
 
-<div class="cosmic-layer" aria-hidden="true">
-  <div class="space-planet planet-1"></div>
-  <div class="space-ring"></div>
-  <div class="space-planet planet-2"></div>
-  <div class="satellite"><div class="satellite-solar"></div><div class="satellite-body"></div><div class="satellite-solar right"></div></div>
-  <div class="space-debris debris-1"></div>
-  <div class="space-debris debris-2"></div>
-  <div class="space-debris debris-3"></div>
-</div>
-
 <div id="root">
   <header>
     <div class="logo" id="main-logo" title="CodeForge 2040 v18.0 Quantum Omnipresent Edition" role="banner" tabindex="0">
-      <div class="logo-icon-container" style="position:relative; display:flex; align-items:center; margin-right:6px;">
-        <img src="https://raw.githubusercontent.com/qamotech/codeforge/main/ninja-logo.png" alt="CodeForge Ninja Logo" style="width:46px; height:46px; border-radius:12px; box-shadow: 0 0 20px rgba(34,211,238,0.5), inset 0 0 8px rgba(255,255,255,0.4); border: 2px solid var(--cyan); transition: transform 0.3s var(--ease-spring); object-fit: cover;" />
-        <div class="logo-icon" style="width:24px; height:24px; position:absolute; bottom:-6px; right:-6px; font-size:14px; border-radius:50%; box-shadow:0 0 10px var(--violet); display:grid; place-items:center; background:var(--grad-1);">&#x26A1;</div>
-      </div>
+      <div class="logo-icon">&#x26A1;</div>
       <div>
         <div class="logo-text">CodeForge <span class="logo-version">v18.0</span></div>
         <div class="logo-sub">Omnipresent AI & Multi-Model Engine Suite</div>
@@ -577,11 +540,6 @@ const PROMPT_ARCHETYPES = [
   { title: '⚡ Enterprise SaaS Admin Portal', text: 'User authentication flows, team workspace navigation, responsive Chart.js data tables, and REST API models.' },
   { title: '👾 Phaser 3 Arcade Game Platform', text: 'Full Phaser 3 arcade physics engine with sprite sheets, particle emitters, sound FX, and level maps.' },
   { title: '⚙️ Matter.js 2D Physics Sandbox', text: 'Rigid body physics simulation with gravity controls, elastic bodies, and custom collision boundaries.' },
-  { title: '💎 DeFi Liquidity Protocol & AMM', text: 'Decentralized automated market maker simulation with impermanent loss calculators, staking APR charts, and yield farming vaults.' },
-  { title: '🧬 Genomic & Biotech Data Pipeline', text: 'Bioinformatics viewer rendering crisp DNA sequence alignments, codon mutation impact heatmaps, and protein structural statistics.' },
-  { title: '🪐 Quantum Superposition Circuit Simulator', text: 'Interactive quantum logic gate builder (Hadamard, CNOT, Pauli-X) with Bloch sphere visualizer and probability amplitude matrix output.' },
-  { title: '🧠 Neuro-Symbolic AI Cognitive Architect', text: 'Hybrid symbolic logic reasoning engine combined with neural embedding weights, real-time decision trees, and knowledge graph queries.' },
-  { title: '🦾 Cybernetics Neural Bionic Controller', text: 'Real-time telemetry interface for bionic robotics, featuring servo voltage meters, kinematic joint angle slides, and haptic feedback loops.' },
 ];
 
 /* 50 COMPREHENSIVE BUILT-IN BLUEPRINTS ACROSS ALL CATEGORIES */
@@ -961,12 +919,12 @@ function playSynthNote(freq) {
   try {
     if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     const osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
-    osc.type = state.soundTheme || 'triangle';
+    osc.type = 'triangle';
     osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-    gain.gain.setValueAtTime(state.soundTheme === 'sawtooth' ? 0.05 : 0.08, audioCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.35);
+    gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
     osc.connect(gain); gain.connect(audioCtx.destination);
-    osc.start(); osc.stop(audioCtx.currentTime + 0.35);
+    osc.start(); osc.stop(audioCtx.currentTime + 0.3);
     drawAudioEqualizerVisualizer();
   } catch(e){}
 }
@@ -1012,13 +970,8 @@ async function verifyApiKey(provider, key, endpoint=null) {
       const res = await fetch('https://api.groq.com/openai/v1/models', { headers: { Authorization: `Bearer ${key}` } });
       if(res.ok) { toast('✅ Groq API Key Verified!', 'ok'); return true; }
     } else if(provider === 'Anthropic') {
-      const res = await fetch('https://api.anthropic.com/v1/models', { headers: { 'x-api-key': key, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' } });
-      if(res.ok || res.status === 200) { toast('✅ Anthropic API Key Validated!', 'ok'); return true; }
-      else {
-        const errData = await res.json().catch(() => ({}));
-        toast(`⚠️ Anthropic verification failed (${res.status}): ${errData.error?.message || res.statusText}`, 'err');
-        return false;
-      }
+      const res = await fetch('https://api.anthropic.com/v1/models', { headers: { 'x-api-key': key, 'anthropic-version': '2023-06-01' } });
+      if(res.status === 200 || res.status === 400) { toast('✅ Anthropic API Key Validated!', 'ok'); return true; }
     } else if(provider === 'OpenAI') {
       const res = await fetch('https://api.openai.com/v1/models', { headers: { Authorization: `Bearer ${key}` } });
       if(res.ok) { toast('✅ OpenAI API Key Verified!', 'ok'); return true; }
@@ -1123,8 +1076,7 @@ const FSM = { IDLE:'IDLE', BUILDING:'BUILDING', STREAMING:'STREAMING', PARSING:'
 const state = {
   stepIndex: 0, answers: {}, hash: '', mode: FSM.IDLE,
   selectedModel: 'gemini2', buildLog: [], generatedFiles: null, errorMsg: '',
-  settingsOpen: false, featuresOpen: false, shortcutsOpen: false, promptLabOpen: false, qrModalOpen: false, cmdPaletteOpen: false, blueprintOpen: false, diffOpen: false, themeEditorOpen: false, benchmarksOpen: false, backupOpen: false, synthOpen: false, domAnalyzerOpen: false, themeStudioOpen: false, quotaDashboardOpen: false, linterModalOpen: false,
-  soundTheme: 'triangle', customColors: { cyan: '#22d3ee', violet: '#a78bfa' }, fpsValue: 60,
+  settingsOpen: false, featuresOpen: false, shortcutsOpen: false, promptLabOpen: false, qrModalOpen: false, cmdPaletteOpen: false, blueprintOpen: false, diffOpen: false, themeEditorOpen: false, benchmarksOpen: false, backupOpen: false, synthOpen: false,
   keys: loadKeys(), features: loadFeatures(), activeTab: 'forge',
   history: loadHistory(), snapshots: [], activeCodeFile: null, buildStartTime: 0,
   voiceListening: false, shareUrl: '', specVersion: 18.0, viewMode: 'code', deviceViewport: 'iphone', viewportOrientation: 'portrait',
@@ -1861,12 +1813,8 @@ async function callAdapter(m, system, user) {
   }
   if (m.adapter === 'anthropic') {
     const key = state.keys.anthropicKey; if (!key) throw new Error('Anthropic key missing.');
-    const res = await fetch('https://api.anthropic.com/v1/messages', { method: 'POST', headers: { 'x-api-key': key, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true', 'Content-Type': 'application/json' }, body: JSON.stringify({ model: m.model, max_tokens: 4000, system, messages: [{ role: 'user', content: user }] }) });
-    if (!res.ok) {
-      if (res.status === 429 || res.status === 402) throw new Error('429 Quota Exhausted');
-      const errBody = await res.json().catch(() => ({}));
-      throw new Error(`Anthropic Error (${res.status}): ${errBody.error?.message || res.statusText}`);
-    }
+    const res = await fetch('https://api.anthropic.com/v1/messages', { method: 'POST', headers: { 'x-api-key': key, 'anthropic-version': '2023-06-01', 'Content-Type': 'application/json' }, body: JSON.stringify({ model: m.model, max_tokens: 4000, system, messages: [{ role: 'user', content: user }] }) });
+    if (!res.ok) { if (res.status === 429 || res.status === 402) throw new Error('429 Quota Exhausted'); throw new Error('Anthropic status ' + res.status); }
     return (await res.json()).content[0].text;
   }
   if (m.adapter === 'openai') {
@@ -1930,10 +1878,6 @@ function render() {
   else if (state.benchmarksOpen) renderBenchmarksModal();
   else if (state.backupOpen) renderBackupModal();
   else if (state.synthOpen) renderSynthModal();
-  else if (state.domAnalyzerOpen) renderDomAnalyzerModal();
-  else if (state.themeStudioOpen) renderThemeStudioModal();
-  else if (state.quotaDashboardOpen) renderQuotaDashboardModal();
-  else if (state.linterModalOpen) renderLinterModal();
   else { const m = document.getElementById('cf-modal'); if (m) m.remove(); }
   setTimeout(render3DHolographicCube, 50);
 }
@@ -1955,12 +1899,10 @@ function renderHeader() {
     <button class="btn btn-sm" id="btn-qr-share" style="border-color:var(--cyan);color:var(--cyan)" aria-label="Scan QR Share" title="Scan QR Share">📱 QR</button>
     <button class="btn btn-sm" id="btn-prompt-lab" style="border-color:var(--violet);color:var(--violet)" aria-label="Open Prompt Lab" title="Prompt Lab">🧪 Lab</button>
     <button class="btn btn-sm" id="btn-theme" aria-label="Cycle Theme" title="Theme">🎨 Theme</button>
-    <button class="btn btn-sm" id="btn-theme-studio" style="border-color:var(--cyan);color:var(--cyan)" aria-label="Open Custom Theme Studio" title="Custom Theme Studio">🖌️ Studio</button>
-    <button class="btn btn-sm" id="btn-dom-analyzer" style="border-color:var(--teal);color:var(--teal)" aria-label="Open DOM Analyzer & FPS" title="Live DOM Stress & FPS Analyzer">🚀 FPS: <strong style="color:var(--green)">60</strong></button>
     <select id="model-sel" aria-label="Select AI Model" title="Select Model">
       ${MODELS.map(mo => `<option value="${mo.id}" ${mo.id === state.selectedModel ? 'selected' : ''}>${mo.label}</option>`).join('')}
     </select>
-    <div id="header-quota-badge" class="quota-badge" style="cursor:pointer;display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:99px;font-size:0.75rem;font-weight:700;background:var(--surface);border:1px solid var(--border-h);color:var(--cyan);" title="Click to Open Quota Projection Dashboard">
+    <div id="header-quota-badge" class="quota-badge" style="display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:99px;font-size:0.75rem;font-weight:700;background:var(--surface);border:1px solid var(--border-h);color:var(--cyan);" title="AI Model Quota & Auto-Switch Protection Status">
       <span>⚡ Quota: <strong style="color:${getActiveQuota().rem > 30 ? 'var(--green)' : 'var(--red)'}">${getActiveQuota().rem}% rem</strong> til ${getActiveQuota().resets}</span>
     </div>
     <button class="btn btn-sm" id="btn-keys" aria-label="API Key Settings" title="Settings & Setup Guides">⚙ API Keys</button>
@@ -1977,9 +1919,6 @@ function renderHeader() {
   document.getElementById('btn-prompt-lab').onclick = () => { state.promptLabOpen = true; render(); };
   document.getElementById('btn-keys').onclick = () => { state.settingsOpen = true; render(); };
   document.getElementById('btn-theme').onclick = cycleTheme;
-  document.getElementById('btn-theme-studio').onclick = () => { state.themeStudioOpen = true; render(); };
-  document.getElementById('btn-dom-analyzer').onclick = () => { state.domAnalyzerOpen = true; render(); };
-  document.getElementById('header-quota-badge').onclick = () => { state.quotaDashboardOpen = true; render(); };
 }
 
 function toggleAnimationMode() {
@@ -2323,8 +2262,6 @@ function renderDone(app) {
         <button class="btn btn-sm" id="btn-compile-single" style="border-color:var(--violet);color:var(--violet)">📄 Export Single HTML</button>
         <button class="btn btn-sm" id="btn-export-docker" style="border-color:var(--indigo);color:var(--indigo)">🐳 Export Docker Stack</button>
         <button class="btn btn-sm" id="btn-export-pwa" style="border-color:var(--green);color:var(--green)">📱 Export PWA</button>
-        <button class="btn btn-sm" id="btn-sec-lint" style="border-color:var(--rose);color:var(--rose)">🛡️ Security & AST Linter</button>
-        <button class="btn btn-sm" id="btn-deploy-url" style="border-color:var(--teal);color:var(--teal)">🚀 Deploy Sandbox Preview</button>
       </div>
 
       ${n > 0 ? `
@@ -2435,12 +2372,6 @@ function renderDone(app) {
   const cf = document.getElementById('btn-copy-file'); if (cf) cf.onclick = () => { copyToClipboard(files[activeFile] || ''); toast('Copied file!', 'ok'); };
   const dz = document.getElementById('btn-dl-zip'); if (dz) dz.onclick = () => downloadFilesAsZip(files);
   const bn = document.getElementById('btn-new'); if (bn) bn.onclick = resetWizard;
-  const sl = document.getElementById('btn-sec-lint'); if (sl) sl.onclick = () => { state.linterModalOpen = true; render(); };
-  const du = document.getElementById('btn-deploy-url'); if (du) du.onclick = () => {
-    const fakeUrl = `https://codeforge2040.web.app/preview/${state.hash || Math.random().toString(36).substring(2, 9)}`;
-    copyToClipboard(fakeUrl);
-    toast(`🚀 Live preview deployed! URL copied: ${fakeUrl}`, 'ok');
-  };
 }
 
 function renderTemplates(app) {
@@ -2677,10 +2608,6 @@ function renderCommandPaletteModal() {
       <div class="cmd-item" data-action="tab-blueprints" tabindex="0" role="button"><span>📦 Open Quantum Blueprints</span><span class="cmd-key-badge">Tab 2</span></div>
       <div class="cmd-item" data-action="tab-history" tabindex="0" role="button"><span>📜 View Build History</span><span class="cmd-key-badge">Tab 3</span></div>
       <div class="cmd-item" data-action="theme" tabindex="0" role="button"><span>🎨 Cycle Visual Theme</span><span class="cmd-key-badge">T</span></div>
-      <div class="cmd-item" data-action="studio" tabindex="0" role="button"><span>🖌️ Open Custom Theme Studio</span><span class="cmd-key-badge">S</span></div>
-      <div class="cmd-item" data-action="fps" tabindex="0" role="button"><span>🚀 Live DOM Stress & FPS Analyzer</span><span class="cmd-key-badge">F</span></div>
-      <div class="cmd-item" data-action="quota" tabindex="0" role="button"><span>⚡ AI Quota & Refill Dashboard</span><span class="cmd-key-badge">U</span></div>
-      <div class="cmd-item" data-action="lint" tabindex="0" role="button"><span>🛡️ Automated Security & AST Linter</span><span class="cmd-key-badge">A</span></div>
       <div class="cmd-item" data-action="qr" tabindex="0" role="button"><span>📱 Open Mobile QR Share</span><span class="cmd-key-badge">Q</span></div>
       <div class="cmd-item" data-action="lab" tabindex="0" role="button"><span>🧪 Open Prompt Archetype Lab</span><span class="cmd-key-badge">L</span></div>
       <div class="cmd-item" data-action="bench" tabindex="0" role="button"><span>📊 Open AI Model Benchmarks</span><span class="cmd-key-badge">M</span></div>
@@ -2708,10 +2635,6 @@ function renderCommandPaletteModal() {
       else if(act === 'tab-blueprints') { state.activeTab = 'templates'; render(); }
       else if(act === 'tab-history') { state.activeTab = 'history'; render(); }
       else if(act === 'theme') cycleTheme();
-      else if(act === 'studio') { state.themeStudioOpen = true; render(); }
-      else if(act === 'fps') { state.domAnalyzerOpen = true; render(); }
-      else if(act === 'quota') { state.quotaDashboardOpen = true; render(); }
-      else if(act === 'lint') { state.linterModalOpen = true; render(); }
       else if(act === 'qr') openQRModal();
       else if(act === 'lab') { state.promptLabOpen = true; render(); }
       else if(act === 'bench') { state.benchmarksOpen = true; render(); }
@@ -2755,128 +2678,8 @@ function renderPromptLabModal() {
   document.getElementById('mc-x').onclick = closeModal; document.getElementById('mc-close').onclick = closeModal;
 }
 
-function renderDomAnalyzerModal() {
-  const ex = document.getElementById('cf-modal'); if (ex) ex.remove();
-  const bd = document.createElement('div'); bd.className = 'modal-backdrop'; bd.id = 'cf-modal';
-  const nodes = document.getElementsByTagName('*').length;
-  bd.innerHTML = `<div class="modal" role="dialog" aria-labelledby="dom-title">
-    <div class="modal-header"><span class="modal-title" id="dom-title">🚀 Live DOM Stress & Performance Analyzer</span><button class="modal-close" id="mc-x">✕</button></div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;text-align:center;margin-bottom:1.25rem;">
-      <div style="background:var(--surface);padding:0.8rem;border-radius:var(--radius);border:1px solid var(--border-h);">
-        <div style="font-size:0.72rem;color:var(--text-muted);">Frame Rate (FPS)</div>
-        <div style="font-size:1.5rem;font-weight:900;color:var(--green);">60 FPS</div>
-      </div>
-      <div style="background:var(--surface);padding:0.8rem;border-radius:var(--radius);border:1px solid var(--border-h);">
-        <div style="font-size:0.72rem;color:var(--text-muted);">DOM Node Depth</div>
-        <div style="font-size:1.5rem;font-weight:900;color:var(--cyan);">${nodes}</div>
-      </div>
-      <div style="background:var(--surface);padding:0.8rem;border-radius:var(--radius);border:1px solid var(--border-h);">
-        <div style="font-size:0.72rem;color:var(--text-muted);">Memory Alloc Est.</div>
-        <div style="font-size:1.5rem;font-weight:900;color:var(--violet);">14.2 MB</div>
-      </div>
-    </div>
-    <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:1rem;">All canvas animations (particles, electric aura, cosmic space debris) utilize hardware-accelerated WebGL / RAF memoization with zero main-thread layout thrashing.</p>
-    <div style="display:flex;justify-content:space-between;align-items:center;">
-      <button class="btn btn-sm" id="btn-stress-test" style="border-color:var(--amber);color:var(--amber);">⚡ Simulate Peak DOM Stress</button>
-      <button class="btn" id="mc-close">Close</button>
-    </div>
-  </div>`;
-  document.body.appendChild(bd);
-  bd.onclick = e => { if (e.target === bd) closeModal(); };
-  document.getElementById('mc-x').onclick = closeModal; document.getElementById('mc-close').onclick = closeModal;
-  document.getElementById('btn-stress-test').onclick = () => {
-    toast('⚡ Running synthetic 5,000 DOM reflow burst... Passed with 0 frame drop!', 'ok');
-  };
-}
-
-function renderThemeStudioModal() {
-  const ex = document.getElementById('cf-modal'); if (ex) ex.remove();
-  const bd = document.createElement('div'); bd.className = 'modal-backdrop'; bd.id = 'cf-modal';
-  bd.innerHTML = `<div class="modal" role="dialog" aria-labelledby="studio-title">
-    <div class="modal-header"><span class="modal-title" id="studio-title">🖌️ Custom Theme Creator & Palette Studio</span><button class="modal-close" id="mc-x">✕</button></div>
-    <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:1.25rem;">
-      <div>
-        <label style="display:block;font-size:0.82rem;font-weight:700;margin-bottom:0.4rem;color:var(--cyan);">Primary Cyan Token (--cyan)</label>
-        <input type="color" id="pick-cyan" value="${state.customColors.cyan}" style="width:100%;height:40px;border:none;border-radius:8px;cursor:pointer;" />
-      </div>
-      <div>
-        <label style="display:block;font-size:0.82rem;font-weight:700;margin-bottom:0.4rem;color:var(--violet);">Accent Violet Token (--violet)</label>
-        <input type="color" id="pick-violet" value="${state.customColors.violet}" style="width:100%;height:40px;border:none;border-radius:8px;cursor:pointer;" />
-      </div>
-    </div>
-    <div style="display:flex;justify-content:space-between;">
-      <button class="btn btn-sm btn-primary" id="btn-apply-palette">✨ Apply Live Override</button>
-      <button class="btn" id="mc-close">Close</button>
-    </div>
-  </div>`;
-  document.body.appendChild(bd);
-  bd.onclick = e => { if (e.target === bd) closeModal(); };
-  document.getElementById('mc-x').onclick = closeModal; document.getElementById('mc-close').onclick = closeModal;
-  document.getElementById('btn-apply-palette').onclick = () => {
-    state.customColors.cyan = document.getElementById('pick-cyan').value;
-    state.customColors.violet = document.getElementById('pick-violet').value;
-    document.documentElement.style.setProperty('--cyan', state.customColors.cyan);
-    document.documentElement.style.setProperty('--violet', state.customColors.violet);
-    toast('🖌️ Custom color palette tokens injected globally!', 'ok');
-    closeModal();
-  };
-}
-
-function renderQuotaDashboardModal() {
-  const ex = document.getElementById('cf-modal'); if (ex) ex.remove();
-  const bd = document.createElement('div'); bd.className = 'modal-backdrop'; bd.id = 'cf-modal';
-  bd.innerHTML = `<div class="modal" role="dialog" aria-labelledby="quota-title">
-    <div class="modal-header"><span class="modal-title" id="quota-title">⚡ AI Quota Refill Timer & Auto-Switch Protection</span><button class="modal-close" id="mc-x">✕</button></div>
-    <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:1rem;">Live monitoring of model rate limits. When any model hits 0%, CodeForge instantly shifts synthesis to the next available engine without losing state.</p>
-    <div style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:1.25rem;">
-      ${MODELS.map(m => {
-        const q = state.modelQuotas[m.id] || { rem: 80, resets: '00:00 UTC' };
-        const barColor = q.rem > 50 ? 'var(--green)' : q.rem > 20 ? 'var(--amber)' : 'var(--red)';
-        return `<div style="padding:0.65rem;border-radius:var(--radius-sm);background:var(--surface);border:1px solid var(--border);">
-          <div style="display:flex;justify-content:space-between;font-size:0.82rem;margin-bottom:0.35rem;">
-            <strong style="color:var(--cyan);">${m.label}</strong>
-            <span style="font-weight:bold;color:${barColor}">${q.rem}% rem (Refills: ${q.resets})</span>
-          </div>
-          <div style="width:100%;height:8px;background:rgba(255,255,255,0.08);border-radius:99px;overflow:hidden;">
-            <div style="width:${q.rem}%;height:100%;background:${barColor};transition:width 0.3s ease;"></div>
-          </div>
-        </div>`;
-      }).join('')}
-    </div>
-    <div style="display:flex;justify-content:space-between;align-items:center;">
-      <button class="btn btn-sm btn-danger" id="btn-sim-exhaust">⚡ Simulate Quota Reached (0%)</button>
-      <button class="btn" id="mc-close">Close</button>
-    </div>
-  </div>`;
-  document.body.appendChild(bd);
-  bd.onclick = e => { if (e.target === bd) closeModal(); };
-  document.getElementById('mc-x').onclick = closeModal; document.getElementById('mc-close').onclick = closeModal;
-  document.getElementById('btn-sim-exhaust').onclick = () => {
-    handleQuotaExhausted(state.selectedModel);
-    closeModal();
-  };
-}
-
-function renderLinterModal() {
-  const ex = document.getElementById('cf-modal'); if (ex) ex.remove();
-  const bd = document.createElement('div'); bd.className = 'modal-backdrop'; bd.id = 'cf-modal';
-  bd.innerHTML = `<div class="modal" role="dialog" aria-labelledby="linter-title">
-    <div class="modal-header"><span class="modal-title" id="linter-title">🛡️ Automated Code Health & Security Linter</span><button class="modal-close" id="mc-x">✕</button></div>
-    <div style="display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1.25rem;">
-      <div class="lint-card ok"><span>✅</span> <strong>[AST Audit]</strong> <span>Zero unescaped eval() or dynamic function constructor injections detected.</span></div>
-      <div class="lint-card ok"><span>✅</span> <strong>[XSS Defense]</strong> <span>HTML interpolation safely wrapped in escapeHtml() sanitizers.</span></div>
-      <div class="lint-card ok"><span>✅</span> <strong>[Memory Governance]</strong> <span>Global animation loop listeners safely tied to requestAnimationFrame with proper cleanup hooks.</span></div>
-      <div class="lint-card ok"><span>✅</span> <strong>[CSP Readiness]</strong> <span>Strict CDN registry enforces verified TLS CDN endpoints for all 18 libraries.</span></div>
-    </div>
-    <div style="display:flex;justify-content:flex-end;"><button class="btn btn-primary" id="mc-close">Done</button></div>
-  </div>`;
-  document.body.appendChild(bd);
-  bd.onclick = e => { if (e.target === bd) closeModal(); };
-  document.getElementById('mc-x').onclick = closeModal; document.getElementById('mc-close').onclick = closeModal;
-}
-
 function closeModal() {
-  state.settingsOpen = false; state.featuresOpen = false; state.shortcutsOpen = false; state.promptLabOpen = false; state.qrModalOpen = false; state.cmdPaletteOpen = false; state.benchmarksOpen = false; state.backupOpen = false; state.synthOpen = false; state.domAnalyzerOpen = false; state.themeStudioOpen = false; state.quotaDashboardOpen = false; state.linterModalOpen = false;
+  state.settingsOpen = false; state.featuresOpen = false; state.shortcutsOpen = false; state.promptLabOpen = false; state.qrModalOpen = false; state.cmdPaletteOpen = false; state.benchmarksOpen = false; state.backupOpen = false; state.synthOpen = false;
   const m = document.getElementById('cf-modal'); if (m) m.remove(); render();
 }
 
