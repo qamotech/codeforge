@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CodeForge 2040 v10.0 — Ultimate Quantum AI Generator & Loadout Suite</title>
-  <meta name="description" content="The ultimate AI codebase generator, architecture suite, and live IDE. Featuring toned-down subtle animations, custom loadouts saving, reset form controls, 32 improvements, real scannable QR generator, and hot reload." />
+  <title>CodeForge 2040 v10.1 — Ultimate Quantum AI Generator & Clean UI</title>
+  <meta name="description" content="The ultimate AI codebase generator, architecture suite, and live IDE. Featuring clean steady UI cards, custom loadouts saving, reset form controls, real scannable QR generator, and hot reload." />
   <meta name="color-scheme" content="dark light" />
   <meta name="theme-color" content="#050510" media="(prefers-color-scheme: dark)" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     /* ================================================================
-       RESET & ROOT DESIGN TOKENS — Quantum Glass & Ergonomics v10.0
+       RESET & ROOT DESIGN TOKENS — Quantum Glass & Ergonomics v10.1
        ================================================================ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
@@ -94,12 +94,10 @@
       --text-muted: #b0b0d0;
     }
 
-    /* ANIMATION INTENSITY CONTROL (SUBTLE / STANDARD / OFF) */
+    /* ANIMATION INTENSITY CONTROL */
     html[data-anim="off"] #particle-canvas, html[data-anim="off"] #electric-canvas { display: none !important; }
     html[data-anim="off"] body::after { display: none !important; }
-    html[data-anim="subtle"] body::after { opacity: 0.35 !important; animation: auroraShiftSubtle 14s ease-in-out infinite alternate !important; }
-
-    @keyframes auroraShiftSubtle { 0% { opacity: 0.25; transform: scale(1); } 100% { opacity: 0.4; transform: scale(1.01); } }
+    html[data-anim="subtle"] body::after { opacity: 0.25 !important; }
 
     /* THEMES (8 CURATED THEMES) */
     html[data-theme="violet"] {
@@ -139,13 +137,11 @@
     }
 
     #particle-canvas, #electric-canvas { position: fixed; inset: 0; z-index: var(--z-particles); pointer-events: none; }
-    #electric-canvas { z-index: 2; opacity: 0.45; }
+    #electric-canvas { z-index: 2; opacity: 0.3; }
 
     body::after {
       content: ''; position: fixed; inset: 0;
-      background:
-        radial-gradient(ellipse 100% 60% at 50% -20%, rgba(99,102,241,0.14) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 40% at 85% 15%, rgba(34,211,238,0.1) 0%, transparent 50%);
+      background: radial-gradient(ellipse 100% 60% at 50% -20%, rgba(99,102,241,0.1) 0%, transparent 60%);
       pointer-events: none; z-index: var(--z-particles);
     }
 
@@ -189,17 +185,17 @@
     .nav-tab:hover { color: var(--text); background: var(--surface-h); }
     .nav-tab.active { color: #fff; background: var(--grad-1); box-shadow: 0 0 20px rgba(99,102,241,0.3); }
 
-    /* CARDS — SUBTLE ELEGANT GLASS */
+    /* CARDS — STEADY CLEAN LAYOUT (GLARE & TILT REMOVED FROM MAIN CARD) */
     .card {
       width: 100%; max-width: 980px; background: var(--surface); border: 1px solid var(--border);
       border-radius: var(--radius-xl); -webkit-backdrop-filter: blur(32px); backdrop-filter: blur(32px);
       padding: 1.85rem; box-shadow: 0 10px 40px rgba(0,0,0,0.45); transition: border-color var(--dur) var(--ease);
       position: relative; overflow: hidden;
     }
-    .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1.5px; background: var(--grad-border); opacity: 0.5; }
+    .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1.5px; background: var(--grad-border); opacity: 0.4; }
 
-    .card-glare { position: absolute; inset: 0; background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255,255,255,0.08) 0%, transparent 60%); pointer-events: none; opacity: 0; transition: opacity 0.2s; }
-    .card:hover .card-glare { opacity: 1; }
+    /* GLARE REMOVED COMPLETELY FOR A CLEAN LOOK */
+    .card-glare { display: none !important; }
 
     /* BUTTONS & ILLUMINATED NEXT ARROW */
     .btn {
@@ -208,7 +204,7 @@
       font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.18s var(--ease); white-space: nowrap;
       touch-action: manipulation; -webkit-user-select: none; user-select: none; position: relative; overflow: hidden;
     }
-    .btn:hover:not(:disabled) { background: var(--surface-h); border-color: var(--border-h); transform: translateY(-1px); }
+    .btn:hover:not(:disabled) { background: var(--surface-h); border-color: var(--border-h); }
     .btn:active:not(:disabled) { transform: scale(0.97); }
     .btn:disabled { opacity: 0.35; cursor: not-allowed; }
 
@@ -217,7 +213,7 @@
       background: linear-gradient(135deg, #22d3ee, #6366f1) !important;
       color: #ffffff !important;
       border-color: #22d3ee !important;
-      box-shadow: 0 0 26px rgba(34,211,238,0.6) !important;
+      box-shadow: 0 0 24px rgba(34,211,238,0.5) !important;
     }
     .dock-next-illuminated {
       color: var(--cyan) !important;
@@ -434,11 +430,11 @@
 
 <div id="root">
   <header>
-    <div class="logo" id="main-logo" title="CodeForge 2040 v10.0">
+    <div class="logo" id="main-logo" title="CodeForge 2040 v10.1">
       <div class="logo-icon">&#x26A1;</div>
       <div>
-        <div class="logo-text">CodeForge <span class="logo-version">v10.0</span></div>
-        <div class="logo-sub">Quantum AI Suite & Custom Loadouts</div>
+        <div class="logo-text">CodeForge <span class="logo-version">v10.1</span></div>
+        <div class="logo-sub">Quantum AI Suite & Clean UI</div>
       </div>
     </div>
     <div class="header-controls" id="header-controls"></div>
@@ -466,7 +462,6 @@ function drawRealScannableQRCode(text, canvasEl) {
   const ctx = canvasEl.getContext('2d');
   const size = canvasEl.width = canvasEl.height = 260;
 
-  // High contrast white background with 4-module quiet zone margin
   ctx.fillStyle = '#ffffff';
   ctx.fillRect(0, 0, size, size);
 
@@ -622,12 +617,13 @@ function lightningPath(x1,y1,x2,y2,roughness=0.55,depth=0){
   return [...lightningPath(x1,y1,mid[0],mid[1],roughness*.65,depth+1), ...lightningPath(mid[0],mid[1],x2,y2,roughness*.65,depth+1)];
 }
 
-function drawLightning(x1,y1,x2,y2,color='rgba(34,211,238,',alpha=0.45,width=1.2){
+function drawLightning(x1,y1,x2,y2,color='rgba(34,211,238,',alpha=0.3,width=1.2){
   const pts = lightningPath(x1,y1,x2,y2,0.5);
   elecCtx.beginPath(); elecCtx.moveTo(pts[0][0],pts[0][1]);
   for(let i=1;i<pts.length;i++) elecCtx.lineTo(pts[i][0],pts[i][1]);
-  elecCtx.strokeStyle = color+alpha+')'; elecCtx.lineWidth = width; elecCtx.shadowColor = color+'1)'; elecCtx.shadowBlur = 8; elecCtx.stroke(); elecCtx.shadowBlur = 0;
+  elecCtx.strokeStyle = color+alpha+')'; elecCtx.lineWidth = width; strokeBlur(elecCtx, color, 4); elecCtx.stroke(); elecCtx.shadowBlur = 0;
 }
+function strokeBlur(ctx, c, b) { ctx.shadowColor = c+'1)'; ctx.shadowBlur = b; }
 
 let elecBolts = [];
 function spawnElecBolt(){
@@ -636,14 +632,14 @@ function spawnElecBolt(){
   const endX = startX + (Math.random()-0.5)*280;
   const endY = startY + Math.random()*elecH*0.5;
   const colors = ['rgba(34,211,238,','rgba(167,139,250,'];
-  elecBolts.push({x1:startX,y1:startY,x2:endX,y2:endY,color:colors[Math.floor(Math.random()*colors.length)],life:0,maxLife:Math.random()*14+8,alpha:Math.random()*0.4+0.2,width:Math.random()*1.2+0.5});
+  elecBolts.push({x1:startX,y1:startY,x2:endX,y2:endY,color:colors[Math.floor(Math.random()*colors.length)],life:0,maxLife:Math.random()*14+8,alpha:Math.random()*0.3+0.15,width:Math.random()*1.2+0.5});
 }
 
 function animateElectricity(){
   const animMode = document.documentElement.getAttribute('data-anim') || 'subtle';
   if(animMode === 'off'){ elecCtx.clearRect(0,0,elecW,elecH); requestAnimationFrame(animateElectricity); return; }
   elecCtx.clearRect(0,0,elecW,elecH);
-  if(Math.random()<0.04) spawnElecBolt();
+  if(Math.random()<0.03) spawnElecBolt();
   elecBolts = elecBolts.filter(b=>{
     const t=b.life/b.maxLife; const a=b.alpha*(1-t);
     drawLightning(b.x1,b.y1,b.x2,b.y2,b.color,a,b.width); b.life++; return b.life<b.maxLife;
@@ -773,19 +769,18 @@ document.addEventListener('touchend', e => {
 (function initParticles() {
   const canvas = document.getElementById('particle-canvas');
   const ctx = canvas.getContext('2d');
-  let particles = [], mouse = { x: -1000, y: -1000 }, w, h;
+  let particles = [], w, h;
 
   function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
   resize(); window.addEventListener('resize', resize);
-  document.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
 
-  const PARTICLE_COUNT = Math.min(65, Math.floor(window.innerWidth * window.innerHeight / 18000));
+  const PARTICLE_COUNT = Math.min(50, Math.floor(window.innerWidth * window.innerHeight / 22000));
   const colors = ['99,102,241','167,139,250','34,211,238'];
 
   for (let i = 0; i < PARTICLE_COUNT; i++) {
     particles.push({
-      x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
-      r: Math.random() * 1.8 + 0.5, color: colors[Math.floor(Math.random() * colors.length)], alpha: Math.random() * 0.35 + 0.1,
+      x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - 0.5) * 0.25, vy: (Math.random() - 0.5) * 0.25,
+      r: Math.random() * 1.6 + 0.5, color: colors[Math.floor(Math.random() * colors.length)], alpha: Math.random() * 0.25 + 0.08,
     });
   }
 
@@ -1013,7 +1008,7 @@ const state = {
   settingsOpen: false, featuresOpen: false, shortcutsOpen: false, promptLabOpen: false, qrModalOpen: false, cmdPaletteOpen: false, blueprintOpen: false, diffOpen: false, themeEditorOpen: false, benchmarksOpen: false, backupOpen: false, synthOpen: false,
   keys: loadKeys(), features: loadFeatures(), activeTab: 'forge',
   history: loadHistory(), snapshots: [], activeCodeFile: null, buildStartTime: 0,
-  voiceListening: false, shareUrl: '', specVersion: 10.0, viewMode: 'code', deviceViewport: 'iphone', viewportOrientation: 'portrait',
+  voiceListening: false, shareUrl: '', specVersion: 10.1, viewMode: 'code', deviceViewport: 'iphone', viewportOrientation: 'portrait',
   sandboxLogs: [], lintResults: null, stepDirection: 'next', customBlueprints: loadBlueprints(),
   searchQuery: '', searchReplaceText: '', selectedPromptProfile: 'cyberpunk', hotReloadTimer: null,
 };
@@ -1581,7 +1576,7 @@ function renderHeader() {
 
   c.innerHTML = `
     <canvas id="eq-canvas" title="Web Audio Equalizer Visualizer"></canvas>
-    <button class="btn btn-sm" id="btn-toggle-anim" title="Animation Intensity Mode: ${animMode.toUpperCase()}">✨ Anim: ${animMode.toUpperCase()}</button>
+    <button class="btn btn-sm" id="btn-toggle-anim" title="Animation Mode: ${animMode.toUpperCase()}">✨ Anim: ${animMode.toUpperCase()}</button>
     <button class="btn btn-sm btn-danger" id="btn-header-reset" title="Reset Form">↻ Reset</button>
     <button class="btn btn-sm" id="btn-synth-kbd" style="border-color:var(--pink);color:var(--pink)" title="Audio Synth Keyboard">🎹 Synth</button>
     <button class="btn btn-sm" id="btn-bench" style="border-color:var(--amber);color:var(--amber)" title="AI Model Benchmarks">📊 Matrix</button>
@@ -1691,7 +1686,6 @@ function renderWizard(app) {
 
   app.innerHTML = `
     <div class="card ${slideClass}">
-      <div class="card-glare"></div>
       <div class="progress-wrap">
         <div class="progress-meta">
           <span>Step ${state.stepIndex + 1} of ${steps.length}</span>
@@ -1841,7 +1835,6 @@ function renderDone(app) {
 
   app.innerHTML = `
     <div class="overlay fade-enter"><div class="card" style="padding:1.6rem" id="done-main-card">
-      <div class="card-glare"></div>
       <div style="text-align:center;margin-bottom:1.25rem">
         <div class="done-icon">✅</div>
         <div class="done-title">Quantum Codebase Forged!</div>
@@ -2029,7 +2022,6 @@ function renderDone(app) {
   const dz = document.getElementById('btn-dl-zip'); if (dz) dz.onclick = () => downloadFilesAsZip(files);
   const bn = document.getElementById('btn-new'); if (bn) bn.onclick = resetWizard;
 
-  /* DRAG AND DROP FILE IMPORT */
   const theaterBox = document.getElementById('code-theater-box');
   if(theaterBox) {
     theaterBox.ondragover = e => e.preventDefault();
