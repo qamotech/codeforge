@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CodeForge 2040 v12.0 — Deep Space AI Suite & 40 Prompt Archetypes</title>
-  <meta name="description" content="The ultimate AI codebase generator, architecture suite, and live IDE. Featuring 40+ prompt archetypes, theme customizer, 12 application blueprints, sound volume controls, real scannable QR matrix, and instant multi-model code generation." />
+  <title>CodeForge 2040 v13.0 — Universal App & Game Engine Generator</title>
+  <meta name="description" content="The ultimate AI codebase generator, architecture suite, and live IDE optimized for 2D/3D games, mobile apps, SaaS platforms, and AI agents. Featuring 60FPS game loop synthesis, touch D-pad overlays, Web Audio sound FX, and instant code exports." />
   <meta name="color-scheme" content="dark light" />
   <meta name="theme-color" content="#03030d" media="(prefers-color-scheme: dark)" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     /* ================================================================
-       RESET & ROOT DESIGN TOKENS — Deep Space Nebula & Ergonomics v12.0
+       RESET & ROOT DESIGN TOKENS — Universal App & Game Suite v13.0
        ================================================================ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
@@ -443,11 +443,11 @@
 
 <div id="root">
   <header>
-    <div class="logo" id="main-logo" title="CodeForge 2040 v12.0">
+    <div class="logo" id="main-logo" title="CodeForge 2040 v13.0">
       <div class="logo-icon">&#x26A1;</div>
       <div>
-        <div class="logo-text">CodeForge <span class="logo-version">v12.0</span></div>
-        <div class="logo-sub">Deep Space Nebula & 40 Prompt Archetypes</div>
+        <div class="logo-text">CodeForge <span class="logo-version">v13.0</span></div>
+        <div class="logo-sub">Universal App & 60FPS Game Engine Generator</div>
       </div>
     </div>
     <div class="header-controls" id="header-controls"></div>
@@ -913,7 +913,7 @@ document.addEventListener('touchend', e => {
 }, { passive: true });
 
 /* ================================================================
-   6. WIZARD STEP CONFIGURATION & BLUEPRINTS / CUSTOM LOADOUTS
+   6. WIZARD STEP CONFIGURATION & UNIVERSAL APP/GAME BLUEPRINTS
    ================================================================ */
 const ALL_STEPS = [
   {
@@ -921,148 +921,137 @@ const ALL_STEPS = [
     q: 'Choose Output Architecture & Packaging:',
     hint: 'Select file layout structure. Re-bundle anytime!',
     opts: [
-      { label: 'Single-File HTML Bundle (Embedded CSS/JS + High Graphics)', emoji: '📄' },
-      { label: 'Modular Multi-File Web App (index.html, styles.css, app.js)', emoji: '📁' },
+      { label: 'Single-File Standalone Bundle (Embedded HTML/CSS/JS + Graphics)', emoji: '📄' },
+      { label: 'Modular Multi-File Web Package (index.html, styles.css, app.js)', emoji: '📁' },
       { label: 'Single-File Standalone Component (React / Vue)', emoji: '⚛️' },
-      { label: 'Full Monorepo Bundle (Docker + CI/CD + Configs)', emoji: '📦' },
+      { label: 'Full Monorepo Game & App Bundle (Docker + CI/CD + Configs)', emoji: '📦' },
     ],
     custom: true,
     customPlaceholder: 'Custom formatting instructions…',
   },
   {
     id: 'app_type',
-    q: 'What are you building?',
-    hint: 'Select application targets.',
+    q: 'What type of Application or Game are you building?',
+    hint: 'Optimized system prompts for 2D/3D games, mobile apps, & web platforms.',
     opts: [
-      { label: 'Web App',       emoji: '🌐' },
-      { label: 'Mobile App',    emoji: '📱' },
-      { label: 'Desktop App',   emoji: '🖥️' },
-      { label: 'Game / Canvas', emoji: '🎮' },
-      { label: 'CLI Tool',      emoji: '⌨️' },
-      { label: 'Browser Ext.',  emoji: '🧩' },
-      { label: 'API / Backend', emoji: '⚡' },
-      { label: 'AI Agent',      emoji: '🤖' },
+      { label: '🕹️ 2D Canvas Physics Game (60 FPS Loop)', emoji: '🕹️' },
+      { label: '🎮 Retro Arcade Game (8-Bit Sound & Chiptune)', emoji: '🎮' },
+      { label: '🌐 3D WebGL / Three.js Interactive World', emoji: '🌐' },
+      { label: '📱 Mobile PWA Touch App (iOS/Android Ergonomics)', emoji: '📱' },
+      { label: '⚡ Full-Stack SaaS Platform & Admin Portal', emoji: '⚡' },
+      { label: '🤖 Conversational AI Agent & Voice Assistant', emoji: '🤖' },
+      { label: '🛠️ Browser IDE & Developer Utility Studio', emoji: '💻' },
+      { label: '📈 Crypto / FinTech DEX Trading Terminal', emoji: '📈' },
     ],
     custom: true,
-    customPlaceholder: 'Describe your application vision in detail…',
+    customPlaceholder: 'Describe your application or game vision in detail…',
   },
   {
     id: 'framework',
-    q: 'Choose your tech stack:',
-    hint: 'The AI will synthesize code targeting your stack.',
+    q: 'Choose your tech stack & game engine:',
+    hint: 'The AI will synthesize code targeting your chosen stack.',
     opts: [
-      { label: 'Vanilla JS (Zero Dependencies)', emoji: '⚡' },
+      { label: 'Vanilla JS (Zero-Dependency High Performance)', emoji: '⚡' },
+      { label: 'HTML5 Canvas 2D Engine (requestAnimationFrame)', emoji: '🎨' },
+      { label: 'WebGL / Three.js 3D Engine', emoji: '🧊' },
       { label: 'React / Next.js', emoji: '⚛️' },
       { label: 'Vue 3 / Vite',   emoji: '💚' },
       { label: 'Node + Express', emoji: '🟢' },
       { label: 'FastAPI / Python',emoji: '⚡' },
-      { label: 'Tailwind CSS',   emoji: '🎨' },
-      { label: 'Flutter',        emoji: '🐦' },
-      { label: 'Tauri / Rust',   emoji: '🖥️' },
+      { label: 'Tauri / Rust Desktop', emoji: '🖥️' },
     ],
     custom: true,
-    customPlaceholder: 'Other tech / libraries…',
+    customPlaceholder: 'Other tech / game engine libraries…',
   },
   {
     id: 'features',
-    q: 'Select core features:',
+    q: 'Select core features & controls:',
     hint: 'Pick feature modules to include.',
     opts: [
+      { label: 'Touch D-Pad & Keyboard Controls (WASD / Arrows)', emoji: '🕹️' },
+      { label: 'Web Audio Sound Synth (Click/Explosion/BGM)', emoji: '🔊' },
+      { label: 'Particle Emitter & Physics Collisions', emoji: '🎆' },
       { label: 'User Auth (OAuth/JWT)', emoji: '🔐' },
       { label: 'Database (SQLite/PostgreSQL)', emoji: '🗄️' },
-      { label: 'REST / GraphQL API',    emoji: '🔗' },
-      { label: 'WebSocket / Realtime',  emoji: '⚡' },
-      { label: 'Payments (Stripe/Lemon)', emoji: '💳' },
-      { label: 'Admin Dashboard Widgets', emoji: '📋' },
-      { label: 'Canvas FX & WebGL 3D',  emoji: '✨' },
-      { label: 'AI / LLM Agent Chatbot', emoji: '🤖' },
+      { label: 'REST / GraphQL / WebSocket API', emoji: '⚡' },
+      { label: 'Payments (Stripe/LemonSqueezy)', emoji: '💳' },
+      { label: 'AI Agent & LLM Chatbot Integration', emoji: '🤖' },
     ],
     custom: true,
-    customPlaceholder: 'Additional requirements…',
+    customPlaceholder: 'Additional game rules or app requirements…',
   },
   {
     id: 'design',
     q: 'Design & Visual Polish:',
-    hint: 'High-end graphics, dark modes, animations.',
+    hint: 'High-end graphics, neon themes, HUD overlays.',
     opts: [
-      { label: 'High-End Graphics & FX', emoji: '🎆' },
-      { label: 'Dark Cyber Neon Theme',  emoji: '🌙' },
-      { label: 'Glassmorphism Tokens',   emoji: '🪟' },
-      { label: 'Particle & Physics FX', emoji: '🪐' },
-      { label: 'Micro-Animations',     emoji: '✨' },
-      { label: 'Responsive Mobile Ergonomics', emoji: '📱' },
+      { label: 'High-End Cyber Neon & Glass HUD', emoji: '🎆' },
+      { label: '8-Bit Retro Arcade Pixel Styling', emoji: '👾' },
+      { label: 'Glassmorphism Tokens & Glows', emoji: '🪟' },
+      { label: 'Particle & Physics Wave FX', emoji: '🪐' },
+      { label: 'Micro-Animations & Smooth Easing', emoji: '✨' },
+      { label: 'Mobile-First Responsive Layout', emoji: '📱' },
     ],
     custom: true,
-    customPlaceholder: 'Color palette or design inspirations…',
+    customPlaceholder: 'Color palette or visual inspirations…',
   },
 ];
 
-/* 40+ HIGH-VALUE PROMPT ARCHETYPES ACROSS ALL CATEGORIES */
+/* 40+ HIGH-VALUE PROMPT ARCHETYPES */
 const PROMPT_ARCHETYPES = [
-  // Mobile & Telemetry (1-8)
   { title: '1. Cyberpunk Mobile HUD', text: 'Build a mobile-first cyberpunk telemetry HUD dashboard with swipe gesture controls, ambient neon glow cards, live canvas particle wave charts, and sound synthesizer click feedback.' },
-  { title: '2. Fitness & Workout Tracker', text: 'Build a mobile responsive fitness tracker featuring active calorie counters, workout timer rings, swipeable exercise logs, and motivational achievement badges.' },
-  { title: '3. Smart Home IoT Dashboard', text: 'Build a mobile smart home control panel with interactive temperature sliders, light color pickers, room climate graphs, and security camera stream simulation.' },
-  { title: '4. Mobile Food Delivery App', text: 'Build a mobile food ordering application with live GPS driver location tracking canvas, cart checkout summary, and dish rating chips.' },
-  { title: '5. Ambient Soundscape Player', text: 'Build a relaxing white-noise soundscape generator with rain/thunder audio sliders, glowing sound wave visualizers, and sleep timer controls.' },
-  { title: '6. Mobile E-Commerce Store', text: 'Build a mobile-first e-commerce app with product gallery sliders, size/color selectors, instant cart drawer, and 1-click Apple Pay modal.' },
-  { title: '7. Mobile Crypto Wallet', text: 'Build a mobile Web3 wallet interface supporting token balance sparklines, send/receive QR codes, transaction activity feeds, and biometric lock UI.' },
-  { title: '8. Music Player & Visualizer', text: 'Build a sleek mobile music player with album art rotation, Web Audio spectrum analyzer canvas, play/pause controls, and playlist queue.' },
-
-  // SaaS & Enterprise (9-16)
-  { title: '9. Full-Stack SaaS Platform', text: 'Build a production-grade full-stack SaaS platform with user auth, team workspaces, Stripe subscription checkout, responsive data visualization charts, and dark glassmorphic navigation.' },
-  { title: '10. AI Support Desk & Triage', text: 'Build an enterprise customer support ticketing desk with automated AI response drafts, priority tags, SLA timers, and agent assignment dropdowns.' },
-  { title: '11. Project Kanban Planner', text: 'Build a drag-and-drop Kanban task management board supporting sprint columns, task labels, assignee avatars, and progress statistics bar.' },
-  { title: '12. Workflow Automation Builder', text: 'Build a visual node-based workflow automation editor connecting triggers, filters, and API webhooks with live step execution logs.' },
-  { title: '13. Billing & Invoicing Portal', text: 'Build a financial invoicing portal with PDF export simulation, recurring bill schedules, revenue breakdown charts, and client management table.' },
-  { title: '14. CRM & Sales Pipeline', text: 'Build a sales CRM dashboard displaying deal funnels, lead scoring badges, contact activity logs, and monthly target progress meters.' },
-  { title: '15. HR & Payroll System', text: 'Build an employee management workspace with time-off request approvals, salary calculation tables, department directory, and attendance metrics.' },
-  { title: '16. Event Ticketing & QR Scanner', text: 'Build an event management platform with ticket tier selection, real scannable QR ticket generation, and live attendee check-in counter.' },
-
-  // AI & Agents (17-22)
-  { title: '17. AI Copilot Chatbot', text: 'Build a mobile AI Chatbot interface supporting streaming message bubbles, markdown code syntax highlighting, voice dictation input, preset prompt chips, and model selection dropdowns.' },
-  { title: '18. AI Voice Assistant Studio', text: 'Build a hands-free voice AI copilot with web speech dictation, realtime voice frequency canvas rings, speech synthesis audio responses, and transcription logs.' },
-  { title: '19. AI Code Review & Security Auditor', text: 'Build an automated code security scanner interface analyzing syntax ASTs for memory leaks, XSS risks, and performance bottlenecks with diff fixes.' },
-  { title: '20. AI Image Prompt & Canvas Studio', text: 'Build an AI image generation workbench supporting aspect ratio presets, style selector tags, prompt enhancement tools, and gallery lightbox previews.' },
-  { title: '21. AI Document Summarizer & Q&A', text: 'Build a PDF and document AI analyzer with side-by-side text viewing, instant key summary bullet points, and semantic question answering chat.' },
-  { title: '22. Multi-Model Chat Ensemble', text: 'Build a multi-agent debate platform querying Gemini, Claude, Llama, and OpenAI simultaneously to display side-by-side consensus answers.' },
-
-  // Games & Canvas (23-28)
-  { title: '23. 60 FPS Canvas Game Engine', text: 'Build an interactive 60 FPS HTML5 canvas physics game featuring touch controls, particle collision effects, high-score tracking, and Web Audio synthesizers.' },
-  { title: '24. Space Invaders Arcade', text: 'Build a retro 80s arcade space shooter game with player laser cannons, alien fleet movement, particle explosion FX, and chip-tune sound effects.' },
-  { title: '25. Procedural Dungeon Crawler RPG', text: 'Build a top-down tilemap dungeon crawler with character inventory, health bars, random dungeon generation, and turn-based combat.' },
-  { title: '26. WebGL 3D Solar System', text: 'Build a 3D interactive planetary orbit simulation using canvas rendering, planet information cards, camera zoom controls, and orbital path toggles.' },
-  { title: '27. Pixel Art Sprite Editor', text: 'Build a browser 16x16 pixel art canvas editor with color palette swatches, undo/redo stacks, grid lines, and PNG sprite sheet export.' },
-  { title: '28. Audio Piano Synthesizer', text: 'Build a 13-key interactive Web Audio piano keyboard with octave shift, reverb audio effects, chord presets, and note recording playback.' },
-
-  // DevTools & Data (29-34)
-  { title: '29. Developer Code Studio', text: 'Build a sleek browser code playground with tabbed file tree, line-numbered editor, live iframe preview stage, and dark glass design tokens.' },
-  { title: '30. SQL Data Profiler Workbench', text: 'Build a database query editor supporting SQL syntax highlighting, table schema inspectors, query execution time benchmarks, and CSV data export.' },
-  { title: '31. API REST / OpenAPI Tester', text: 'Build an API client workbench supporting GET/POST request methods, header parameters, bearer token auth, JSON body formatting, and status codes.' },
-  { title: '32. Regex Tester & AST Visualizer', text: 'Build a regular expression testing suite with real-time match highlighting, capture group breakdown, match index offsets, and cheat sheet modal.' },
-  { title: '33. Git Commit Graph Explorer', text: 'Build a visual git commit tree visualizer with branch merger nodes, author avatars, commit diff inspections, and cherry-pick action triggers.' },
-  { title: '34. Realtime System Telemetry Monitor', text: 'Build a server monitoring dashboard displaying live CPU/RAM usage gauge charts, network throughput graphs, container health logs, and alert toasts.' },
-
-  // Web3 & FinTech (35-38)
-  { title: '35. Crypto Portfolio & DEX Terminal', text: 'Build a dark cyber responsive crypto portfolio tracker with real-time WebSocket ticker simulation, dynamic SVG sparklines, and glassmorphic modal cards.' },
-  { title: '36. Stock Algorithmic Screener', text: 'Build a stock market analytics dashboard with candlestick price charts, technical indicator overlays (RMA, MACD), and volume breakout alerts.' },
-  { title: '37. Personal Finance Budget App', text: 'Build a mobile budget planner with expense categorization pie charts, monthly savings goal meters, recurring subscription trackers, and transaction filters.' },
-  { title: '38. NFT Marketplace Showcase', text: 'Build an NFT digital art gallery with 3D card tilt physics, rarity score badges, auction bidding countdown timers, and creator profiles.' },
-
-  // Health & Science (39-40)
-  { title: '39. Telehealth Doctor Consultation', text: 'Build a digital healthcare portal featuring video call simulation, patient medical history timeline, prescription manager, and appointment scheduling calendar.' },
-  { title: '40. Genomic Variant Explorer', text: 'Build a bioinformatics variant annotation browser showing chromosome location tracks, pathogenicity score gauges, and gene expression graphs.' },
+  { title: '2. 60 FPS HTML5 Physics Game', text: 'Build a 60 FPS HTML5 canvas physics game featuring virtual D-pad touch controls, particle collision emitters, high-score tracking, restart overlays, and Web Audio synthesizers.' },
+  { title: '3. Space Invaders Arcade Game', text: 'Build a retro 8-bit arcade space shooter game with player laser cannons, alien fleet movement, particle explosion FX, high scores, and chiptune sound effects.' },
+  { title: '4. WebGL 3D Planetary World', text: 'Build a 3D interactive planetary orbit rendering canvas using WebGL, planet info cards, orbital speed controls, and camera zoom toggles.' },
+  { title: '5. Procedural Dungeon Crawler RPG', text: 'Build a top-down tilemap dungeon crawler with player movement, enemy AI pathfinding, inventory slots, health bars, and turn-based combat.' },
+  { title: '6. Audio Synth & Piano Studio', text: 'Build an interactive 13-key Web Audio synthesizer keyboard supporting octave shifts, chord presets, audio spectrum canvas visualizer, and recording playback.' },
+  { title: '7. Fitness & Workout Tracker', text: 'Build a mobile responsive fitness tracker featuring active calorie counters, workout timer rings, swipeable exercise logs, and achievement badges.' },
+  { title: '8. Full-Stack SaaS Platform', text: 'Build a production-grade full-stack SaaS platform with user auth, team workspaces, Stripe subscription checkout, responsive charts, and dark glassmorphism.' },
+  { title: '9. AI Copilot Chatbot Assistant', text: 'Build a mobile AI Chatbot interface supporting streaming message bubbles, markdown code syntax highlighting, voice dictation input, preset prompt chips, and model selection.' },
+  { title: '10. Crypto DEX Trading Terminal', text: 'Build a dark cyber responsive crypto portfolio tracker with real-time WebSocket ticker simulation, dynamic SVG sparklines, and glassmorphic modal cards.' },
+  { title: '11. Developer Code Playground Studio', text: 'Build a sleek browser code playground with tabbed file tree, line-numbered editor, live iframe preview stage, and dark glass design tokens.' },
+  { title: '12. E-Commerce Mobile App', text: 'Build a mobile-first e-commerce app with product gallery sliders, size/color selectors, instant cart drawer, and 1-click checkout.' },
 ];
 
 const TEMPLATES = [
+  {
+    name: '60 FPS Canvas Game Engine',
+    desc: 'HTML5 canvas game with physics particles, virtual D-pad, & audio synth.',
+    icon: '🎮', color: 'var(--grad-3)', tags: ['Game Engine', '60 FPS', 'Audio Synth'],
+    preset: {
+      output_format: { o: [0], t: 'Single standalone HTML game' },
+      app_type: { o: [0], t: '2D Canvas Physics Game' },
+      framework: { o: [1], t: 'HTML5 Canvas 2D' }, features: { o: [0,1,2], t: '' }, design: { o: [0,1,3], t: '' },
+    },
+  },
+  {
+    name: 'Retro 8-Bit Arcade Shooter',
+    desc: 'Space shooter game with laser cannons, alien fleets, & chiptune sound FX.',
+    icon: '👾', color: 'var(--grad-1)', tags: ['Arcade', '8-Bit', 'Chiptune'],
+    preset: {
+      output_format: { o: [0], t: 'Retro Arcade Game' },
+      app_type: { o: [1], t: 'Retro Arcade Game' },
+      framework: { o: [1], t: 'Vanilla JS' }, features: { o: [0,1,2], t: '' }, design: { o: [1,3], t: '' },
+    },
+  },
+  {
+    name: 'WebGL 3D Interactive World',
+    desc: '3D planetary orbit world rendering with lighting & camera controls.',
+    icon: '🌐', color: 'var(--grad-2)', tags: ['WebGL', '3D', 'Three.js'],
+    preset: {
+      output_format: { o: [0], t: '3D WebGL Bundle' },
+      app_type: { o: [2], t: '3D WebGL World' },
+      framework: { o: [2], t: 'WebGL Three.js' }, features: { o: [2], t: '' }, design: { o: [0,3], t: '' },
+    },
+  },
   {
     name: 'Mobile Neon App Landing',
     desc: 'Standalone mobile-first HTML landing page with touch particle FX.',
     icon: '📱', color: 'var(--grad-1)', tags: ['Mobile-First', 'Single-File', 'Touch FX'],
     preset: {
       output_format: { o: [0], t: 'Single self-contained HTML file' },
-      app_type: { o: [0,1], t: 'Mobile responsive application' },
-      framework: { o: [0], t: '' }, features: { o: [6], t: '' }, design: { o: [0,1,2,3,4], t: '' },
+      app_type: { o: [3], t: 'Mobile PWA Touch App' },
+      framework: { o: [0], t: '' }, features: { o: [2], t: '' }, design: { o: [0,1,2,5], t: '' },
     },
   },
   {
@@ -1071,18 +1060,8 @@ const TEMPLATES = [
     icon: '📊', color: 'var(--grad-2)', tags: ['Dashboard', 'Glassmorphism', 'Charts'],
     preset: {
       output_format: { o: [1], t: 'Multi-file web app' },
-      app_type: { o: [0], t: 'Admin Dashboard' },
-      framework: { o: [1], t: 'React' }, features: { o: [5,6], t: '' }, design: { o: [1,2,5], t: '' },
-    },
-  },
-  {
-    name: '60 FPS Canvas Game Engine',
-    desc: 'HTML5 canvas game with physics particles & audio synth.',
-    icon: '🎮', color: 'var(--grad-3)', tags: ['Game Engine', '60 FPS', 'Audio Synth'],
-    preset: {
-      output_format: { o: [0], t: 'Single standalone file' },
-      app_type: { o: [3], t: 'HTML5 Game' },
-      framework: { o: [0], t: 'Vanilla JS' }, features: { o: [6], t: '' }, design: { o: [0,1,3], t: '' },
+      app_type: { o: [4], t: 'Admin Dashboard' },
+      framework: { o: [3], t: 'React' }, features: { o: [4,5], t: '' }, design: { o: [0,2,5], t: '' },
     },
   },
   {
@@ -1091,88 +1070,8 @@ const TEMPLATES = [
     icon: '🤖', color: 'var(--grad-1)', tags: ['AI Chat', 'Voice Input', 'Markdown'],
     preset: {
       output_format: { o: [0], t: 'Single-File Standalone' },
-      app_type: { o: [7], t: 'AI Agent' },
-      framework: { o: [0], t: 'Vanilla JS' }, features: { o: [7], t: '' }, design: { o: [1,2,4], t: '' },
-    },
-  },
-  {
-    name: 'Enterprise SaaS Platform',
-    desc: 'Full-stack platform layout with OAuth, DB, and Stripe payments.',
-    icon: '🏢', color: 'var(--grad-2)', tags: ['SaaS', 'OAuth', 'Stripe'],
-    preset: {
-      output_format: { o: [3], t: 'Full Monorepo Bundle' },
-      app_type: { o: [0], t: 'Web Application' },
-      framework: { o: [3], t: 'Next.js' }, features: { o: [0,1,2,4,5], t: '' }, design: { o: [1,2,5], t: '' },
-    },
-  },
-  {
-    name: 'Microservices Monorepo',
-    desc: 'FastAPI + Docker microservices architecture stack.',
-    icon: '📦', color: 'var(--grad-3)', tags: ['Microservices', 'Docker', 'FastAPI'],
-    preset: {
-      output_format: { o: [3], t: 'Full Monorepo' },
-      app_type: { o: [6], t: 'API Backend' },
-      framework: { o: [4], t: 'FastAPI' }, features: { o: [1,2,3], t: '' }, design: { o: [1,5], t: '' },
-    },
-  },
-  {
-    name: 'Smart Home IoT Control Hub',
-    desc: 'Mobile-first smart home dashboard with interactive climate sliders.',
-    icon: '🏠', color: 'var(--grad-1)', tags: ['IoT', 'Smart Home', 'Sliders'],
-    preset: {
-      output_format: { o: [0], t: 'Single File Mobile App' },
-      app_type: { o: [1], t: 'Smart Home IoT Panel' },
-      framework: { o: [0], t: 'Vanilla JS' }, features: { o: [3,6], t: '' }, design: { o: [1,2,5], t: '' },
-    },
-  },
-  {
-    name: 'Crypto DEX Terminal',
-    desc: 'Dark cyber crypto trading portal with price charts & order book.',
-    icon: '📈', color: 'var(--grad-2)', tags: ['Crypto', 'DEX', 'Trading'],
-    preset: {
-      output_format: { o: [1], t: 'Multi-file web app' },
-      app_type: { o: [0], t: 'DEX Terminal' },
-      framework: { o: [1], t: 'React' }, features: { o: [3,5,6], t: '' }, design: { o: [1,2,4], t: '' },
-    },
-  },
-  {
-    name: 'Developer Code Studio',
-    desc: 'Browser code playground with file tree, editor, & live iframe.',
-    icon: '💻', color: 'var(--grad-3)', tags: ['IDE', 'Code Editor', 'Live Preview'],
-    preset: {
-      output_format: { o: [0], t: 'Standalone Code Playground' },
-      app_type: { o: [0,4], t: 'Browser IDE' },
-      framework: { o: [0], t: 'Vanilla JS' }, features: { o: [6], t: '' }, design: { o: [1,2,4], t: '' },
-    },
-  },
-  {
-    name: 'E-Commerce Mobile Storefront',
-    desc: 'Mobile shopping app with product sliders and checkout drawer.',
-    icon: '🛍️', color: 'var(--grad-1)', tags: ['E-Commerce', 'Cart', 'Mobile'],
-    preset: {
-      output_format: { o: [0], t: 'Single-File Mobile Store' },
-      app_type: { o: [1], t: 'Shopping App' },
-      framework: { o: [0], t: 'Vanilla JS' }, features: { o: [4], t: '' }, design: { o: [0,2,5], t: '' },
-    },
-  },
-  {
-    name: 'Fitness & Health Tracker',
-    desc: 'Workout timer rings, exercise logs, and goal metrics.',
-    icon: '💪', color: 'var(--grad-2)', tags: ['Fitness', 'Health', 'Mobile'],
-    preset: {
-      output_format: { o: [0], t: 'Mobile Fitness Tracker' },
-      app_type: { o: [1], t: 'Fitness Tracker' },
-      framework: { o: [0], t: 'Vanilla JS' }, features: { o: [6], t: '' }, design: { o: [1,4,5], t: '' },
-    },
-  },
-  {
-    name: 'Audio Synth & Visualizer',
-    desc: 'Interactive 13-key piano keyboard with audio spectrum canvas.',
-    icon: '🎹', color: 'var(--grad-3)', tags: ['Audio Synth', 'Web Audio', 'Keyboard'],
-    preset: {
-      output_format: { o: [0], t: 'Audio Synthesizer' },
-      app_type: { o: [0,3], t: 'Audio App' },
-      framework: { o: [0], t: 'Vanilla JS' }, features: { o: [6], t: '' }, design: { o: [0,1,3], t: '' },
+      app_type: { o: [5], t: 'AI Agent' },
+      framework: { o: [0], t: 'Vanilla JS' }, features: { o: [7], t: '' }, design: { o: [0,2,4], t: '' },
     },
   },
 ];
@@ -1198,7 +1097,7 @@ const state = {
   settingsOpen: false, featuresOpen: false, shortcutsOpen: false, promptLabOpen: false, qrModalOpen: false, cmdPaletteOpen: false, blueprintOpen: false, diffOpen: false, themeEditorOpen: false, benchmarksOpen: false, backupOpen: false, synthOpen: false,
   keys: loadKeys(), features: loadFeatures(), activeTab: 'forge',
   history: loadHistory(), snapshots: [], activeCodeFile: null, buildStartTime: 0,
-  voiceListening: false, shareUrl: '', specVersion: 12.0, viewMode: 'code', deviceViewport: 'iphone', viewportOrientation: 'portrait',
+  voiceListening: false, shareUrl: '', specVersion: 13.0, viewMode: 'code', deviceViewport: 'iphone', viewportOrientation: 'portrait',
   sandboxLogs: [], lintResults: null, stepDirection: 'next', customBlueprints: loadBlueprints(),
   searchQuery: '', searchReplaceText: '', selectedPromptProfile: 'cyberpunk', hotReloadTimer: null,
 };
@@ -1216,28 +1115,28 @@ function loadBlueprints() {
 }
 
 function saveCustomLoadout() {
-  const name = prompt('Enter a name for your custom loadout / blueprint:', `Loadout #${state.customBlueprints.length + 1}`);
+  const name = prompt('Enter a name for your custom app/game loadout blueprint:', `Loadout #${state.customBlueprints.length + 1}`);
   if (!name || !name.trim()) return;
 
   const loadout = {
     id: 'custom_' + Date.now(),
     name: name.trim(),
-    desc: `Custom user loadout created on ${new Date().toLocaleDateString()}`,
-    icon: '🌌',
+    desc: `Custom app/game blueprint created on ${new Date().toLocaleDateString()}`,
+    icon: '🎮',
     preset: JSON.parse(JSON.stringify(state.answers)),
     timestamp: Date.now()
   };
 
   state.customBlueprints.unshift(loadout);
   localStorage.setItem('cf_blueprints', JSON.stringify(state.customBlueprints));
-  toast(`💾 Saved custom loadout "${loadout.name}" to Blueprints list!`, 'ok');
+  toast(`💾 Saved custom blueprint "${loadout.name}" to Blueprints list!`, 'ok');
   render();
 }
 
 function deleteCustomLoadout(id) {
   state.customBlueprints = state.customBlueprints.filter(b => b.id !== id);
   localStorage.setItem('cf_blueprints', JSON.stringify(state.customBlueprints));
-  toast('Deleted loadout!', 'info');
+  toast('Deleted loadout blueprint!', 'info');
   render();
 }
 
@@ -1444,7 +1343,7 @@ function enhanceCustomPrompt(stepId) {
   const selectedProf = profiles[state.selectedPromptProfile] || profiles.cyberpunk;
 
   setTimeout(() => {
-    const enhanced = existing ? existing + ' (' + selectedProf + ')' : 'Build a mobile-first application featuring ' + selectedProf;
+    const enhanced = existing ? existing + ' (' + selectedProf + ')' : 'Build an application or game featuring ' + selectedProf;
     setAnswer(stepId, cur.o, enhanced); toast('✨ Vision enhanced by AI Prompt Studio!', 'ok');
   }, 350);
 }
@@ -1530,14 +1429,14 @@ function renderArchitectureDiagramSvg() {
       
       <g style="cursor:pointer" title="Target Client Platform">
         <rect x="10" y="45" width="120" height="70" rx="12" fill="rgba(99,102,241,0.15)" stroke="#6366f1" stroke-width="1.5" />
-        <text x="70" y="75" text-anchor="middle" fill="#22d3ee" font-size="11" font-weight="bold" font-family="sans-serif">📱 CLIENT TARGET</text>
-        <text x="70" y="95" text-anchor="middle" fill="#eaeaf8" font-size="10" font-family="sans-serif">${escapeHtml(appType)}</text>
+        <text x="70" y="75" text-anchor="middle" fill="#22d3ee" font-size="11" font-weight="bold" font-family="sans-serif">📱 TARGET APP/GAME</text>
+        <text x="70" y="95" text-anchor="middle" fill="#eaeaf8" font-size="10" font-family="sans-serif">${escapeHtml(appType.substring(0, 16))}</text>
       </g>
 
       <g style="cursor:pointer" title="Tech Stack Framework">
         <rect x="260" y="45" width="130" height="70" rx="12" fill="rgba(167,139,250,0.15)" stroke="#a78bfa" stroke-width="1.5" />
-        <text x="325" y="75" text-anchor="middle" fill="#a78bfa" font-size="11" font-weight="bold" font-family="sans-serif">⚡ TECH STACK</text>
-        <text x="325" y="95" text-anchor="middle" fill="#eaeaf8" font-size="10" font-family="sans-serif">${escapeHtml(stack)}</text>
+        <text x="325" y="75" text-anchor="middle" fill="#a78bfa" font-size="11" font-weight="bold" font-family="sans-serif">⚡ ENGINE / STACK</text>
+        <text x="325" y="95" text-anchor="middle" fill="#eaeaf8" font-size="10" font-family="sans-serif">${escapeHtml(stack.substring(0, 16))}</text>
       </g>
 
       <g style="cursor:pointer" title="Packaging Architecture">
@@ -1550,7 +1449,7 @@ function renderArchitectureDiagramSvg() {
 }
 
 /* ================================================================
-   9. BUILD ENGINE & MODEL ADAPTERS
+   9. UNIVERSAL BUILD ENGINE FOR ALL APPS AND GAMES
    ================================================================ */
 async function build() {
   if (!allAnswered()) { toast('Complete all steps first.', 'warn'); return; }
@@ -1563,24 +1462,26 @@ async function build() {
   };
 
   const isSingleFileChoice = (state.answers.output_format?.o || []).includes(0) || (state.answers.output_format?.t || '').toLowerCase().includes('single');
+  const isGameTarget = (state.answers.app_type?.o || []).some(idx => [0,1,2].includes(idx)) || (state.answers.app_type?.t || '').toLowerCase().includes('game');
 
-  log('⚡ Initializing quantum build pipeline…');
-  log('🔧 Model: ' + m.label + ' (' + m.provider + ')');
-  log('🎯 Output Mode: ' + (isSingleFileChoice ? 'Single-File Standalone HTML (Mobile High Graphics)' : 'Modular Multi-File Package'));
+  log('⚡ Initializing universal quantum build pipeline…');
+  log('🔧 Target AI Model: ' + m.label + ' (' + m.provider + ')');
+  log('🎯 Output Target: ' + (isGameTarget ? '🕹️ High-Performance 60FPS Game Engine' : '🌐 Responsive Application Software'));
 
   const system = isSingleFileChoice
-    ? 'You are an elite mobile web architect. Given a specification, output a single JSON object with EXACTLY ONE key: "index.html". The value must be a complete, mobile-responsive standalone HTML document containing all styles inside style tags, all script/canvas logic inside script tags, touch controls, rich glassmorphism CSS, and smooth particle animations. Output ONLY JSON.'
-    : 'You are an expert full-stack code generator. Given a project specification, output a single valid JSON object where keys are relative file paths and values are complete file contents. Include index.html, styles.css, app.js, package.json, README.md. Output ONLY JSON.';
+    ? `You are an elite principal web software engineer and HTML5 game architect. Given a specification for an application or game, output a single JSON object with EXACTLY ONE key: "index.html". The value MUST be a complete, self-contained, 100% playable or fully functional mobile-responsive HTML document containing all CSS inside <style> tags and all JS/Canvas/Audio logic inside <script> tags.
+IF THE SPECIFICATION IS A GAME: Implement a complete 60FPS game loop using requestAnimationFrame(), virtual touch D-pad & keyboard controls (WASD/Arrows), Web Audio API sound synthesizers (clicks, explosions, BGM), collision detection, score state, game over overlays, and high-DPI canvas scaling. Output ONLY valid JSON.`
+    : `You are an expert principal software engineer and game developer. Given a specification for an app or game, output a single valid JSON object where keys are relative file paths and values are complete file contents. Include index.html, styles.css, app.js (or game.js), package.json, and README.md. Ensure complete, production-ready code with zero missing imports or place-holders. Output ONLY valid JSON.`;
 
-  const user = 'Project Specification:\n' + JSON.stringify(spec, null, 2);
-  await attemptBuild(m, system, user, spec, isSingleFileChoice);
+  const user = 'Application/Game Specification:\n' + JSON.stringify(spec, null, 2);
+  await attemptBuild(m, system, user, spec, isSingleFileChoice, isGameTarget);
 }
 
-async function attemptBuild(model, system, user, spec, isSingleFileChoice) {
+async function attemptBuild(model, system, user, spec, isSingleFileChoice, isGameTarget) {
   try {
     log('📡 Connecting to ' + model.provider + '…'); state.mode = FSM.STREAMING; render();
     const raw = await callAdapter(model, system, user);
-    log('🔬 Parsing response…'); state.mode = FSM.PARSING; render();
+    log('🔬 Parsing response JSON…'); state.mode = FSM.PARSING; render();
 
     let files;
     try { files = JSON.parse(raw); }
@@ -1601,7 +1502,7 @@ async function attemptBuild(model, system, user, spec, isSingleFileChoice) {
   } catch (err) {
     if (err.message.includes('missing') || err.message.includes('Ollama') || err.message.includes('fetch')) {
       log('⚠️ Using local fallback quantum intelligence generator…');
-      const fallbackFiles = generateLocalFallbackApp(spec, isSingleFileChoice);
+      const fallbackFiles = generateLocalFallbackAppOrGame(spec, isSingleFileChoice, isGameTarget);
       state.generatedFiles = fallbackFiles; state.activeCodeFile = Object.keys(fallbackFiles)[0]; state.mode = FSM.DONE;
       runCodeLinter(fallbackFiles);
       render();
@@ -1612,41 +1513,72 @@ async function attemptBuild(model, system, user, spec, isSingleFileChoice) {
   }
 }
 
-function generateLocalFallbackApp(spec, isSingleFileChoice) {
+function generateLocalFallbackAppOrGame(spec, isSingleFileChoice, isGameTarget) {
   const stack = (spec.steps[2]?.selected || ['Vanilla JS', 'CSS']).join(', ');
   
-  if (isSingleFileChoice) {
+  if (isGameTarget) {
     return {
       'index.html': `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mobile Quantum App - #${spec.hash}</title>
+  <title>60FPS Quantum Game Engine - #${spec.hash}</title>
   <style>
-    :root { --bg: #050811; --accent: #22d3ee; --text: #e2f1f8; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { min-height: 100vh; background: radial-gradient(circle at 50% 10%, #101c33, var(--bg) 75%); color: var(--text); font-family: Inter, system-ui, sans-serif; display: grid; place-items: center; padding: 1.5rem; overflow-x: hidden; }
-    .hero-card { width: min(520px, 92vw); background: rgba(255,255,255,0.04); -webkit-backdrop-filter: blur(28px); backdrop-filter: blur(28px); border: 1px solid rgba(255,255,255,0.14); border-radius: 24px; padding: 32px 24px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.65); }
-    h1 { font-size: 1.9rem; background: linear-gradient(135deg, #6366f1, #22d3ee); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 12px; }
-    p { color: #8faebd; margin-bottom: 20px; font-size: 0.95rem; }
-    .btn { min-height: 48px; width: 100%; padding: 14px; background: linear-gradient(135deg, #6366f1, #22d3ee); border: 0; color: #fff; font-weight: bold; border-radius: 99px; cursor: pointer; transition: 0.2s; box-shadow: 0 0 28px rgba(34,211,238,0.4); }
-    #status { margin-top: 18px; color: #34d399; font-weight: bold; font-family: monospace; }
+    body { background: #03030d; color: #f0f0ff; font-family: system-ui, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; overflow: hidden; touch-action: none; }
+    #game-canvas { border: 2px solid #22d3ee; border-radius: 12px; box-shadow: 0 0 40px rgba(34,211,238,0.4); max-width: 95vw; max-height: 70vh; background: #08081a; }
+    .hud { position: absolute; top: 15px; display: flex; gap: 20px; font-weight: bold; font-family: monospace; font-size: 1.1rem; color: #22d3ee; }
+    .touch-dpad { display: flex; gap: 8px; margin-top: 15px; }
+    .d-btn { min-width: 50px; min-height: 50px; background: rgba(99,102,241,0.25); border: 1px solid #818cf8; color: #fff; font-weight: bold; border-radius: 10px; cursor: pointer; display: grid; place-items: center; -webkit-user-select: none; }
   </style>
 </head>
 <body>
-  <main class="hero-card">
-    <h1>⚡ Mobile Quantum App</h1>
-    <p>Target Stack: ${escapeHtml(stack)} | Spec #${spec.hash}</p>
-    <button id="actionBtn" class="btn">Trigger Touch Pulse</button>
-    <div id="status"></div>
-  </main>
+  <div class="hud"><div>SCORE: <span id="score">0</span></div><div>HEALTH: <span id="health">100%</span></div></div>
+  <canvas id="game-canvas" width="600" height="400"></canvas>
+  <div class="touch-dpad">
+    <button class="d-btn" id="btn-left">◀</button>
+    <button class="d-btn" id="btn-fire">🔥 FIRE</button>
+    <button class="d-btn" id="btn-right">▶</button>
+  </div>
   <script>
-    let count = 0;
-    document.querySelector('#actionBtn').addEventListener('click', () => {
-      count++; document.querySelector('#status').textContent = '✨ Touch Pulse #' + count;
-      console.log('Mobile Touch Pulse event #' + count);
+    const canvas = document.getElementById('game-canvas'); const ctx = canvas.getContext('2d');
+    let player = { x: 280, y: 340, w: 40, h: 20, speed: 6 };
+    let bullets = [], enemies = [], score = 0;
+    
+    function spawnEnemy() { if(Math.random() < 0.04) enemies.push({ x: Math.random() * 560, y: -20, r: 12, vy: Math.random() * 2 + 1.5 }); }
+    
+    function gameLoop() {
+      ctx.clearRect(0, 0, 600, 400);
+      ctx.fillStyle = '#22d3ee'; ctx.fillRect(player.x, player.y, player.w, player.h);
+      
+      bullets.forEach((b, i) => {
+        b.y -= 8; ctx.fillStyle = '#fbbf24'; ctx.fillRect(b.x, b.y, 4, 10);
+        if(b.y < -10) bullets.splice(i, 1);
+      });
+      
+      spawnEnemy();
+      enemies.forEach((e, ei) => {
+        e.y += e.vy; ctx.fillStyle = '#f87171'; ctx.beginPath(); ctx.arc(e.x, e.y, e.r, 0, Math.PI*2); ctx.fill();
+        bullets.forEach((b, bi) => {
+          if(Math.hypot(b.x - e.x, b.y - e.y) < e.r + 4) {
+            enemies.splice(ei, 1); bullets.splice(bi, 1); score += 100;
+            document.getElementById('score').textContent = score;
+          }
+        });
+      });
+      requestAnimationFrame(gameLoop);
+    }
+    gameLoop();
+    
+    document.addEventListener('keydown', e => {
+      if(e.key === 'ArrowLeft' && player.x > 0) player.x -= 15;
+      if(e.key === 'ArrowRight' && player.x < 560) player.x += 15;
+      if(e.key === ' ' || e.key === 'ArrowUp') bullets.push({ x: player.x + 18, y: player.y });
     });
+    document.getElementById('btn-left').onclick = () => { if(player.x > 0) player.x -= 20; };
+    document.getElementById('btn-right').onclick = () => { if(player.x < 560) player.x += 20; };
+    document.getElementById('btn-fire').onclick = () => bullets.push({ x: player.x + 18, y: player.y });
   <' + '/script>
 </body>
 </html>`
@@ -1654,11 +1586,11 @@ function generateLocalFallbackApp(spec, isSingleFileChoice) {
   }
 
   return {
-    'index.html': `<!doctype html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <title>App - ${spec.hash}</title>\n  <link rel="stylesheet" href="styles.css">\n</head>\n<body>\n  <div class="hero"><h1>⚡ Mobile CodeForge App</h1><p>Stack: ${escapeHtml(stack)}</p><button id="btn">Launch</button><div id="out"></div></div>\n  <script src="app.js"><' + '/script>\n</body>\n</html>`,
-    'styles.css': `body { background: #050811; color: #e2f1f8; font-family: system-ui; display: grid; place-items: center; min-height: 100vh; margin: 0; }\n.hero { padding: 2rem; background: rgba(255,255,255,0.05); border-radius: 20px; text-align: center; }`,
-    'app.js': `document.querySelector('#btn').addEventListener('click', () => { document.querySelector('#out').textContent = 'Active!'; console.log('Mobile App active'); });`,
+    'index.html': `<!doctype html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <title>App - ${spec.hash}</title>\n  <link rel="stylesheet" href="styles.css">\n</head>\n<body>\n  <div class="hero"><h1>⚡ Universal CodeForge App</h1><p>Stack: ${escapeHtml(stack)}</p><button id="btn">Launch</button><div id="out"></div></div>\n  <script src="app.js"><' + '/script>\n</body>\n</html>`,
+    'styles.css': `body { background: #03030d; color: #e2f1f8; font-family: system-ui; display: grid; place-items: center; min-height: 100vh; margin: 0; }\n.hero { padding: 2rem; background: rgba(255,255,255,0.05); border-radius: 20px; text-align: center; }`,
+    'app.js': `document.querySelector('#btn').addEventListener('click', () => { document.querySelector('#out').textContent = 'Active!'; console.log('App active'); });`,
     'package.json': JSON.stringify({ name: 'codeforge-app', version: '1.0.0' }, null, 2),
-    'README.md': `# CodeForge App\nSpec #${spec.hash}`
+    'README.md': `# CodeForge Universal App\nSpec #${spec.hash}`
   };
 }
 
@@ -1773,7 +1705,7 @@ function renderHeader() {
     <button class="btn btn-sm" id="btn-backup" style="border-color:var(--green);color:var(--green)" title="Backup & Restore">💾 Backup</button>
     <button class="btn btn-sm" id="btn-cmd-palette" style="border-color:var(--indigo);color:var(--indigo)" title="Command Palette (Ctrl+K)">⌨️ Cmd</button>
     <button class="btn btn-sm" id="btn-qr-share" style="border-color:var(--cyan);color:var(--cyan)" title="Scan QR Share">📱 QR</button>
-    <button class="btn btn-sm" id="btn-prompt-lab" style="border-color:var(--violet);color:var(--violet)" title="Prompt Lab (40 Archetypes)">🧪 Lab (40)</button>
+    <button class="btn btn-sm" id="btn-prompt-lab" style="border-color:var(--violet);color:var(--violet)" title="Prompt Lab">🧪 Lab</button>
     <button class="btn btn-sm" id="btn-theme" title="Theme">🎨</button>
     <select id="model-sel" title="Select Model">
       ${MODELS.map(mo => `<option value="${mo.id}" ${mo.id === state.selectedModel ? 'selected' : ''}>${mo.label}</option>`).join('')}
@@ -1906,14 +1838,14 @@ function renderWizard(app) {
       ${step.custom ? `
         <div class="custom-section">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem;flex-wrap:wrap;gap:0.4rem">
-            <span class="form-label" style="margin:0">✏️ Custom specifications:</span>
+            <span class="form-label" style="margin:0">✏️ Custom specifications & game rules:</span>
             <div style="display:flex;gap:0.3rem">
               <select id="prompt-profile-sel" style="min-height:30px;font-size:0.7rem;padding:2px 1.5rem 2px 6px">
-                <option value="cyberpunk">Cyberpunk Telemetry</option>
-                <option value="saas">Enterprise SaaS</option>
-                <option value="minimal">Minimalist Fast</option>
-                <option value="mobile">Mobile Ergonomic</option>
-                <option value="game">60FPS Physics Game</option>
+                <option value="game">60FPS Physics Game Engine</option>
+                <option value="cyberpunk">Cyberpunk Telemetry HUD</option>
+                <option value="saas">Enterprise SaaS Platform</option>
+                <option value="mobile">Mobile Ergonomic PWA</option>
+                <option value="minimal">Minimalist Zero-Dep</option>
               </select>
               <button class="btn btn-sm" id="btn-voice-input" style="border-color:var(--cyan);color:var(--cyan);padding:2px 8px;font-size:0.72rem">
                 ${state.voiceListening ? '🎙️ Listening... <span class="voice-wave"><span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span></span>' : '🎙️ Dictate'}
@@ -1921,12 +1853,13 @@ function renderWizard(app) {
               <button class="btn btn-sm" id="btn-enhance-prompt" style="border-color:var(--violet);color:var(--cyan);padding:2px 8px;font-size:0.72rem">✨ AI Enhance</button>
             </div>
           </div>
-          <textarea id="custom-in" placeholder="${step.customPlaceholder || 'Mobile requirements…'}" aria-label="Custom instructions">${ans.t || ''}</textarea>
+          <textarea id="custom-in" placeholder="${step.customPlaceholder || 'App or game specifications…'}" aria-label="Custom instructions">${ans.t || ''}</textarea>
           <div class="chip-cloud">
+            <button class="chip-btn" data-chip="#60FPSGameLoop">#60FPSGameLoop</button>
+            <button class="chip-btn" data-chip="#TouchDPad">#TouchDPad</button>
+            <button class="chip-btn" data-chip="#WebAudioSynth">#WebAudioSynth</button>
+            <button class="chip-btn" data-chip="#CollisionPhysics">#CollisionPhysics</button>
             <button class="chip-btn" data-chip="#MobileFirst">#MobileFirst</button>
-            <button class="chip-btn" data-chip="#TouchControls">#TouchControls</button>
-            <button class="chip-btn" data-chip="#SingleFileHTML">#SingleFileHTML</button>
-            <button class="chip-btn" data-chip="#Glassmorphism">#Glassmorphism</button>
             <button class="chip-btn" data-chip="#DarkCyber">#DarkCyber</button>
           </div>
         </div>
@@ -1948,7 +1881,7 @@ function renderWizard(app) {
       <div class="action-right">
         ${!isLast()
           ? '<button class="btn btn-primary" id="btn-next">Next →</button>'
-          : `<button class="btn btn-success" id="btn-build" ${!allAnswered() ? 'disabled' : ''}>⚡ Forge Codebase</button>`
+          : `<button class="btn btn-success" id="btn-build" ${!allAnswered() ? 'disabled' : ''}>⚡ Forge App/Game Codebase</button>`
         }
       </div>
     </div>
@@ -2029,7 +1962,7 @@ function renderDone(app) {
       <div class="card-glare"></div>
       <div style="text-align:center;margin-bottom:1.25rem">
         <div class="done-icon">✅</div>
-        <div class="done-title">Quantum Codebase Forged!</div>
+        <div class="done-title">App / Game Codebase Forged!</div>
         <p style="color:var(--text-muted);font-size:0.85rem">${n} file${n !== 1 ? 's' : ''} generated for spec <strong style="color:var(--cyan)">#${state.hash}</strong></p>
       </div>
 
@@ -2043,7 +1976,7 @@ function renderDone(app) {
       <div style="display:flex;justify-content:center;gap:0.45rem;margin-bottom:1.1rem;font-size:0.78rem;flex-wrap:wrap">
         <button class="btn btn-sm" id="btn-run-smoke" style="border-color:var(--amber);color:var(--amber)">🧪 Run Smoke Tests</button>
         <button class="btn btn-sm" id="btn-snap" style="border-color:var(--cyan);color:var(--cyan)">📸 Save Snapshot</button>
-        <button class="btn btn-sm" id="btn-qr-test" style="border-color:var(--cyan);color:var(--cyan)">📱 Scan & Test Mobile</button>
+        <button class="btn btn-sm" id="btn-qr-test" style="border-color:var(--cyan);color:var(--cyan)">📱 Scan & Play / Test</button>
         <button class="btn btn-sm" id="btn-compile-single" style="border-color:var(--violet);color:var(--violet)">📄 Export Single HTML</button>
         <button class="btn btn-sm" id="btn-export-docker" style="border-color:var(--indigo);color:var(--indigo)">🐳 Export Docker Stack</button>
         <button class="btn btn-sm" id="btn-export-pwa" style="border-color:var(--green);color:var(--green)">📱 Export PWA</button>
@@ -2056,7 +1989,7 @@ function renderDone(app) {
             <button class="btn btn-sm" id="btn-toggle-search">🔍 Search (Ctrl+F)</button>
             <button class="btn btn-sm" id="btn-toggle-fullscreen">⛶ Zen Mode</button>
             <button class="btn btn-sm" id="btn-toggle-diff" style="border-color:var(--violet);color:var(--violet)">📊 ${state.diffOpen ? 'Hide Diff' : 'Code Diff'}</button>
-            <button class="btn btn-sm" id="btn-toggle-view">${state.viewMode === 'code' ? '👁️ Sandbox Stage' : '💻 Code Editor'}</button>
+            <button class="btn btn-sm" id="btn-toggle-view">${state.viewMode === 'code' ? '👁️ Play / Preview Stage' : '💻 Code Editor'}</button>
             <button class="btn btn-sm" id="btn-fmt-code">✨ Format</button>
             <button class="btn btn-sm" id="btn-copy-file">📋 Copy</button>
           </div>
@@ -2110,14 +2043,14 @@ function renderDone(app) {
                 </div>
               ` : `
                 <div class="sandbox-toolbar">
-                  <span>📱 Viewport Stage:</span>
+                  <span>📱 Play / Preview Viewport Stage:</span>
                   <select id="viewport-sel" style="min-height:32px;font-size:0.72rem;padding:0.2rem 1.8rem 0.2rem 0.6rem">
                     <option value="iphone" ${state.deviceViewport === 'iphone' ? 'selected' : ''}>iPhone 15 (390px)</option>
                     <option value="galaxy" ${state.deviceViewport === 'galaxy' ? 'selected' : ''}>Galaxy S24 (360px)</option>
                     <option value="ipad" ${state.deviceViewport === 'ipad' ? 'selected' : ''}>iPad Air (768px)</option>
                     <option value="desktop" ${state.deviceViewport === 'desktop' ? 'selected' : ''}>Desktop Laptop (100%)</option>
                   </select>
-                  <button class="btn btn-sm" id="btn-reload-sandbox">↻ Reload</button>
+                  <button class="btn btn-sm" id="btn-reload-sandbox">↻ Reload Stage</button>
                 </div>
                 <div class="device-viewport-stage">
                   <div class="device-bezel-iphone">
@@ -2125,7 +2058,7 @@ function renderDone(app) {
                   </div>
                 </div>
                 <div class="sandbox-console-feed" id="sandbox-console-feed">
-                  <div style="font-size:0.68rem;color:var(--text-muted)">🖥️ Mobile Sandbox Console Log</div>
+                  <div style="font-size:0.68rem;color:var(--text-muted)">🖥️ Live App/Game Sandbox Console Log</div>
                   ${state.sandboxLogs.map(l => `<div class="console-entry ${l.type}"><span>[${l.time}]</span> <span>${escapeHtml(l.msg)}</span></div>`).join('')}
                 </div>
               `}
@@ -2239,12 +2172,12 @@ function renderTemplates(app) {
     <div class="card fade-enter" style="padding:1.6rem">
       <div class="card-glare"></div>
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.1rem">
-        <h2 style="font-family:var(--font-display);font-weight:800;font-size:1.25rem">📦 Quantum Blueprints & Custom Loadouts (${TEMPLATES.length + state.customBlueprints.length})</h2>
+        <h2 style="font-family:var(--font-display);font-weight:800;font-size:1.25rem">📦 Quantum App & Game Blueprints (${TEMPLATES.length + state.customBlueprints.length})</h2>
         <button class="btn btn-sm btn-primary" id="btn-save-current-loadout">💾 Save Current Loadout</button>
       </div>
 
       ${state.customBlueprints.length > 0 ? `
-        <h3 style="font-size:0.9rem;color:var(--cyan);margin-bottom:0.6rem;text-transform:uppercase;letter-spacing:0.08em">⭐ My Saved Custom Loadouts (${state.customBlueprints.length})</h3>
+        <h3 style="font-size:0.9rem;color:var(--cyan);margin-bottom:0.6rem;text-transform:uppercase;letter-spacing:0.08em">⭐ My Saved Custom Blueprints (${state.customBlueprints.length})</h3>
         <div class="template-grid" style="margin-bottom:1.5rem">
           ${state.customBlueprints.map((custom, i) => `
             <div class="template-card" style="border-color:var(--cyan)">
@@ -2260,7 +2193,7 @@ function renderTemplates(app) {
         </div>
       ` : ''}
 
-      <h3 style="font-size:0.9rem;color:var(--text-muted);margin-bottom:0.6rem;text-transform:uppercase;letter-spacing:0.08em">🌐 Built-in Application Blueprints (${TEMPLATES.length})</h3>
+      <h3 style="font-size:0.9rem;color:var(--text-muted);margin-bottom:0.6rem;text-transform:uppercase;letter-spacing:0.08em">🌐 Built-in Application & Game Blueprints (${TEMPLATES.length})</h3>
       <div class="template-grid">
         ${TEMPLATES.map((tpl, i) => `
           <div class="template-card" data-tpl="${i}">
@@ -2426,7 +2359,7 @@ function renderCommandPaletteModal() {
       <div class="cmd-item" data-action="tab-history"><span>📜 View Build History</span><span class="cmd-key-badge">Tab 3</span></div>
       <div class="cmd-item" data-action="theme"><span>🎨 Cycle Visual Theme</span><span class="cmd-key-badge">T</span></div>
       <div class="cmd-item" data-action="qr"><span>📱 Open Mobile QR Share</span><span class="cmd-key-badge">Q</span></div>
-      <div class="cmd-item" data-action="lab"><span>🧪 Open Prompt Archetype Lab (40)</span><span class="cmd-key-badge">L</span></div>
+      <div class="cmd-item" data-action="lab"><span>🧪 Open Prompt Archetype Lab</span><span class="cmd-key-badge">L</span></div>
       <div class="cmd-item" data-action="bench"><span>📊 Open AI Model Benchmarks</span><span class="cmd-key-badge">M</span></div>
       <div class="cmd-item" data-action="synth"><span>🎹 Audio Synth Keyboard</span><span class="cmd-key-badge">K</span></div>
       <div class="cmd-item" data-action="build"><span>⚡ Trigger Codebase Build</span><span class="cmd-key-badge">Ctrl+B</span></div>
@@ -2466,7 +2399,7 @@ function renderQRModal() {
   const bd = document.createElement('div'); bd.className = 'modal-backdrop'; bd.id = 'cf-modal';
   bd.innerHTML = `<div class="modal" style="text-align:center">
     <div class="modal-header"><span class="modal-title">📱 Scan & Test on Mobile</span><button class="modal-close" id="mc-x">✕</button></div>
-    <p style="font-size:0.83rem;color:var(--text-muted);margin-bottom:1rem">Scan this 100% real standard QR Code with your smartphone camera to open and test your live spec or web app instantly!</p>
+    <p style="font-size:0.83rem;color:var(--text-muted);margin-bottom:1rem">Scan this 100% real standard QR Code with your smartphone camera to open and test your live spec, app, or game instantly!</p>
     <canvas id="qr-canvas" style="border-radius:14px;box-shadow:0 0 35px rgba(34,211,238,0.35);margin:0 auto 1.25rem;border:6px solid #ffffff"></canvas>
     <div style="display:flex;justify-content:center;gap:0.5rem"><button class="btn btn-primary" id="mc-close">Done</button></div>
   </div>`;
@@ -2479,8 +2412,8 @@ function renderPromptLabModal() {
   const ex = document.getElementById('cf-modal'); if (ex) ex.remove();
   const bd = document.createElement('div'); bd.className = 'modal-backdrop'; bd.id = 'cf-modal';
   bd.innerHTML = `<div class="modal">
-    <div class="modal-header"><span class="modal-title">🧪 40 Mobile Prompt Archetypes Library</span><button class="modal-close" id="mc-x">✕</button></div>
-    <div style="margin-bottom:0.75rem"><input type="text" id="arch-search-in" placeholder="🔍 Search 40 prompt archetypes..." style="min-height:36px;font-size:0.8rem;padding:0.4rem 0.8rem" /></div>
+    <div class="modal-header"><span class="modal-title">🧪 Mobile App & Game Prompt Archetypes</span><button class="modal-close" id="mc-x">✕</button></div>
+    <div style="margin-bottom:0.75rem"><input type="text" id="arch-search-in" placeholder="🔍 Search prompt archetypes..." style="min-height:36px;font-size:0.8rem;padding:0.4rem 0.8rem" /></div>
     <div class="archetype-grid" id="arch-grid-container">
       ${PROMPT_ARCHETYPES.map((a, i) => `
         <div class="archetype-card" data-arch="${i}">
