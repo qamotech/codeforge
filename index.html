@@ -794,10 +794,10 @@ function saveBlueprints() { localStorage.setItem('cf_blueprints', JSON.stringify
 
 function getSteps() { return ALL_STEPS; }
 function getAnswer(id) { return state.answers[id] || { o: [], t: '' }; }
-function setAnswer(id, o, t) {
+function setAnswer(id, o, t, skipRender = false) {
   state.answers[id] = { o, t }; state.hash = computeHash();
   saveAutoState();
-  render();
+  if (!skipRender) render();
 }
 function saveAutoState() {
   try { localStorage.setItem('cf_autosave', JSON.stringify({ answers: state.answers, stepIndex: state.stepIndex })); } catch(e){}
@@ -1419,7 +1419,14 @@ function renderWizard(app) {
   });
 
   const ci = document.getElementById('custom-in');
-  if (ci) { let db; ci.oninput = () => { clearTimeout(db); db = setTimeout(() => { const cur = getAnswer(step.id); setAnswer(step.id, cur.o, ci.value); }, 300); }; }
+  if (ci) {
+    ci.oninput = () => {
+      const cur = getAnswer(step.id);
+      setAnswer(step.id, cur.o, ci.value, true);
+      const bb = document.getElementById('btn-build');
+      if (bb) bb.disabled = !allAnswered();
+    };
+  }
 
   const ep = document.getElementById('btn-enhance-prompt'); if (ep) ep.onclick = () => enhanceCustomPrompt(step.id);
   const vi = document.getElementById('btn-voice-input');
