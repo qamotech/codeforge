@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CodeForge 2040 v11.1 — Deep Space Nebula & Subtle Glare</title>
-  <meta name="description" content="The ultimate AI codebase generator, architecture suite, and live IDE. Featuring cosmic deep space particle background, subtle glare reflection overlay, steady main card frame, custom loadout saving, and real scannable QR matrix." />
+  <title>CodeForge 2040 v12.0 — Deep Space AI Suite & 40 Prompt Archetypes</title>
+  <meta name="description" content="The ultimate AI codebase generator, architecture suite, and live IDE. Featuring 40+ prompt archetypes, theme customizer, 12 application blueprints, sound volume controls, real scannable QR matrix, and instant multi-model code generation." />
   <meta name="color-scheme" content="dark light" />
   <meta name="theme-color" content="#03030d" media="(prefers-color-scheme: dark)" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     /* ================================================================
-       RESET & ROOT DESIGN TOKENS — Deep Space Nebula & Ergonomics v11.1
+       RESET & ROOT DESIGN TOKENS — Deep Space Nebula & Ergonomics v12.0
        ================================================================ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
@@ -352,8 +352,8 @@
     .synth-key.black { width: 24px; height: 48px; background: #111; color: #fff; margin: 0 -13px; z-index: 2; border-radius: 0 0 4px 4px; }
 
     /* TEMPLATE & ARCHETYPE GRIDS */
-    .archetype-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 0.7rem; max-height: 330px; overflow-y: auto; padding: 0.2rem; }
-    .archetype-card { min-height: 65px; padding: 0.85rem; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface); cursor: pointer; transition: all 0.2s var(--ease); touch-action: manipulation; box-shadow: 0 4px 16px rgba(0,0,0,0.25); }
+    .archetype-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.75rem; max-height: 420px; overflow-y: auto; padding: 0.3rem; }
+    .archetype-card { min-height: 70px; padding: 0.85rem; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface); cursor: pointer; transition: all 0.2s var(--ease); touch-action: manipulation; box-shadow: 0 4px 16px rgba(0,0,0,0.25); }
     .archetype-card:hover { border-color: var(--cyan); background: var(--surface-h); box-shadow: 0 0 20px rgba(34,211,238,0.2); }
 
     .template-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; padding: 0.4rem 0; }
@@ -370,7 +370,7 @@
 
     /* MODALS & COMMAND PALETTE */
     .modal-backdrop { position: fixed; inset: 0; background: rgba(3,3,13,0.92); -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px); z-index: var(--z-modal); display: flex; align-items: center; justify-content: center; padding: 1rem; }
-    .modal { background: var(--bg2); border: 1px solid var(--border-h); border-radius: var(--radius-xl); padding: 1.65rem; width: 100%; max-width: 580px; box-shadow: 0 30px 100px rgba(0,0,0,0.8), 0 0 50px rgba(99,102,241,0.2); max-height: 90vh; overflow-y: auto; position: relative; animation: modalEnter 0.2s var(--ease); }
+    .modal { background: var(--bg2); border: 1px solid var(--border-h); border-radius: var(--radius-xl); padding: 1.65rem; width: 100%; max-width: 620px; box-shadow: 0 30px 100px rgba(0,0,0,0.8), 0 0 50px rgba(99,102,241,0.2); max-height: 90vh; overflow-y: auto; position: relative; animation: modalEnter 0.2s var(--ease); }
     @keyframes modalEnter { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
     .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.35rem; }
     .modal-title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 800; display: flex; align-items: center; gap: 0.45rem; }
@@ -443,11 +443,11 @@
 
 <div id="root">
   <header>
-    <div class="logo" id="main-logo" title="CodeForge 2040 v11.1">
+    <div class="logo" id="main-logo" title="CodeForge 2040 v12.0">
       <div class="logo-icon">&#x26A1;</div>
       <div>
-        <div class="logo-text">CodeForge <span class="logo-version">v11.1</span></div>
-        <div class="logo-sub">Deep Space Nebula Quantum AI Suite</div>
+        <div class="logo-text">CodeForge <span class="logo-version">v12.0</span></div>
+        <div class="logo-sub">Deep Space Nebula & 40 Prompt Archetypes</div>
       </div>
     </div>
     <div class="header-controls" id="header-controls"></div>
@@ -757,7 +757,6 @@ function initSubtleGlarePhysics() {
       card.style.setProperty('--glare-x', `${(x / rect.width) * 100}%`);
       card.style.setProperty('--glare-y', `${(y / rect.height) * 100}%`);
       
-      // Ultra-micro frame tilt (max 0.2 deg) so main frame stays virtually static
       const tiltX = -((y - rect.height / 2) / rect.height) * 0.4;
       const tiltY = ((x - rect.width / 2) / rect.width) * 0.4;
       card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
@@ -953,13 +952,13 @@ const ALL_STEPS = [
     hint: 'The AI will synthesize code targeting your stack.',
     opts: [
       { label: 'Vanilla JS (Zero Dependencies)', emoji: '⚡' },
-      { label: 'React',          emoji: '⚛️' },
-      { label: 'Vue 3',          emoji: '💚' },
-      { label: 'Next.js',        emoji: '▲' },
+      { label: 'React / Next.js', emoji: '⚛️' },
+      { label: 'Vue 3 / Vite',   emoji: '💚' },
       { label: 'Node + Express', emoji: '🟢' },
-      { label: 'FastAPI',        emoji: '⚡' },
+      { label: 'FastAPI / Python',emoji: '⚡' },
+      { label: 'Tailwind CSS',   emoji: '🎨' },
       { label: 'Flutter',        emoji: '🐦' },
-      { label: 'Tauri',          emoji: '🖥️' },
+      { label: 'Tauri / Rust',   emoji: '🖥️' },
     ],
     custom: true,
     customPlaceholder: 'Other tech / libraries…',
@@ -969,14 +968,14 @@ const ALL_STEPS = [
     q: 'Select core features:',
     hint: 'Pick feature modules to include.',
     opts: [
-      { label: 'User Auth (OAuth)',   emoji: '🔐' },
-      { label: 'Database (SQL/NoSQL)',emoji: '🗄️' },
-      { label: 'REST / GraphQL API',  emoji: '🔗' },
-      { label: 'WebSocket / Realtime',emoji: '⚡' },
-      { label: 'Payments (Stripe)',  emoji: '💳' },
-      { label: 'Admin Dashboard',    emoji: '📋' },
-      { label: 'Canvas FX / Animations', emoji: '✨' },
-      { label: 'AI / LLM Agent',     emoji: '🤖' },
+      { label: 'User Auth (OAuth/JWT)', emoji: '🔐' },
+      { label: 'Database (SQLite/PostgreSQL)', emoji: '🗄️' },
+      { label: 'REST / GraphQL API',    emoji: '🔗' },
+      { label: 'WebSocket / Realtime',  emoji: '⚡' },
+      { label: 'Payments (Stripe/Lemon)', emoji: '💳' },
+      { label: 'Admin Dashboard Widgets', emoji: '📋' },
+      { label: 'Canvas FX & WebGL 3D',  emoji: '✨' },
+      { label: 'AI / LLM Agent Chatbot', emoji: '🤖' },
     ],
     custom: true,
     customPlaceholder: 'Additional requirements…',
@@ -987,24 +986,72 @@ const ALL_STEPS = [
     hint: 'High-end graphics, dark modes, animations.',
     opts: [
       { label: 'High-End Graphics & FX', emoji: '🎆' },
-      { label: 'Dark Mode (Cyber Neon)', emoji: '🌙' },
-      { label: 'Glassmorphism',        emoji: '🪟' },
+      { label: 'Dark Cyber Neon Theme',  emoji: '🌙' },
+      { label: 'Glassmorphism Tokens',   emoji: '🪟' },
       { label: 'Particle & Physics FX', emoji: '🪐' },
       { label: 'Micro-Animations',     emoji: '✨' },
-      { label: 'Dashboard Layout',     emoji: '📊' },
+      { label: 'Responsive Mobile Ergonomics', emoji: '📱' },
     ],
     custom: true,
     customPlaceholder: 'Color palette or design inspirations…',
   },
 ];
 
+/* 40+ HIGH-VALUE PROMPT ARCHETYPES ACROSS ALL CATEGORIES */
 const PROMPT_ARCHETYPES = [
-  { title: 'Cyberpunk Mobile HUD', text: 'Build a mobile-first cyberpunk telemetry HUD dashboard with swipe gesture controls, ambient neon glow cards, live canvas particle wave charts, and sound synthesizer click feedback.' },
-  { title: 'Full-Stack SaaS Platform', text: 'Build a production-grade full-stack SaaS platform with user auth, team workspaces, Stripe subscription checkout, responsive data visualization charts, and dark glassmorphic navigation.' },
-  { title: 'AI Copilot Assistant', text: 'Build a mobile AI Chatbot interface supporting streaming message bubbles, markdown code syntax highlighting, voice dictation input, preset prompt chips, and model selection dropdowns.' },
-  { title: 'HTML5 Mobile Canvas Game', text: 'Build an interactive 60 FPS HTML5 canvas physics game featuring touch controls, particle collision effects, high-score tracking, and Web Audio synthesizers.' },
-  { title: 'Crypto / NFT Analytics', text: 'Build a dark cyber responsive crypto portfolio tracker with real-time WebSocket ticker simulation, dynamic SVG sparklines, and glassmorphic modal cards.' },
-  { title: 'Developer Code Studio', text: 'Build a sleek browser code playground with tabbed file tree, line-numbered editor, live iframe preview stage, and dark glass design tokens.' },
+  // Mobile & Telemetry (1-8)
+  { title: '1. Cyberpunk Mobile HUD', text: 'Build a mobile-first cyberpunk telemetry HUD dashboard with swipe gesture controls, ambient neon glow cards, live canvas particle wave charts, and sound synthesizer click feedback.' },
+  { title: '2. Fitness & Workout Tracker', text: 'Build a mobile responsive fitness tracker featuring active calorie counters, workout timer rings, swipeable exercise logs, and motivational achievement badges.' },
+  { title: '3. Smart Home IoT Dashboard', text: 'Build a mobile smart home control panel with interactive temperature sliders, light color pickers, room climate graphs, and security camera stream simulation.' },
+  { title: '4. Mobile Food Delivery App', text: 'Build a mobile food ordering application with live GPS driver location tracking canvas, cart checkout summary, and dish rating chips.' },
+  { title: '5. Ambient Soundscape Player', text: 'Build a relaxing white-noise soundscape generator with rain/thunder audio sliders, glowing sound wave visualizers, and sleep timer controls.' },
+  { title: '6. Mobile E-Commerce Store', text: 'Build a mobile-first e-commerce app with product gallery sliders, size/color selectors, instant cart drawer, and 1-click Apple Pay modal.' },
+  { title: '7. Mobile Crypto Wallet', text: 'Build a mobile Web3 wallet interface supporting token balance sparklines, send/receive QR codes, transaction activity feeds, and biometric lock UI.' },
+  { title: '8. Music Player & Visualizer', text: 'Build a sleek mobile music player with album art rotation, Web Audio spectrum analyzer canvas, play/pause controls, and playlist queue.' },
+
+  // SaaS & Enterprise (9-16)
+  { title: '9. Full-Stack SaaS Platform', text: 'Build a production-grade full-stack SaaS platform with user auth, team workspaces, Stripe subscription checkout, responsive data visualization charts, and dark glassmorphic navigation.' },
+  { title: '10. AI Support Desk & Triage', text: 'Build an enterprise customer support ticketing desk with automated AI response drafts, priority tags, SLA timers, and agent assignment dropdowns.' },
+  { title: '11. Project Kanban Planner', text: 'Build a drag-and-drop Kanban task management board supporting sprint columns, task labels, assignee avatars, and progress statistics bar.' },
+  { title: '12. Workflow Automation Builder', text: 'Build a visual node-based workflow automation editor connecting triggers, filters, and API webhooks with live step execution logs.' },
+  { title: '13. Billing & Invoicing Portal', text: 'Build a financial invoicing portal with PDF export simulation, recurring bill schedules, revenue breakdown charts, and client management table.' },
+  { title: '14. CRM & Sales Pipeline', text: 'Build a sales CRM dashboard displaying deal funnels, lead scoring badges, contact activity logs, and monthly target progress meters.' },
+  { title: '15. HR & Payroll System', text: 'Build an employee management workspace with time-off request approvals, salary calculation tables, department directory, and attendance metrics.' },
+  { title: '16. Event Ticketing & QR Scanner', text: 'Build an event management platform with ticket tier selection, real scannable QR ticket generation, and live attendee check-in counter.' },
+
+  // AI & Agents (17-22)
+  { title: '17. AI Copilot Chatbot', text: 'Build a mobile AI Chatbot interface supporting streaming message bubbles, markdown code syntax highlighting, voice dictation input, preset prompt chips, and model selection dropdowns.' },
+  { title: '18. AI Voice Assistant Studio', text: 'Build a hands-free voice AI copilot with web speech dictation, realtime voice frequency canvas rings, speech synthesis audio responses, and transcription logs.' },
+  { title: '19. AI Code Review & Security Auditor', text: 'Build an automated code security scanner interface analyzing syntax ASTs for memory leaks, XSS risks, and performance bottlenecks with diff fixes.' },
+  { title: '20. AI Image Prompt & Canvas Studio', text: 'Build an AI image generation workbench supporting aspect ratio presets, style selector tags, prompt enhancement tools, and gallery lightbox previews.' },
+  { title: '21. AI Document Summarizer & Q&A', text: 'Build a PDF and document AI analyzer with side-by-side text viewing, instant key summary bullet points, and semantic question answering chat.' },
+  { title: '22. Multi-Model Chat Ensemble', text: 'Build a multi-agent debate platform querying Gemini, Claude, Llama, and OpenAI simultaneously to display side-by-side consensus answers.' },
+
+  // Games & Canvas (23-28)
+  { title: '23. 60 FPS Canvas Game Engine', text: 'Build an interactive 60 FPS HTML5 canvas physics game featuring touch controls, particle collision effects, high-score tracking, and Web Audio synthesizers.' },
+  { title: '24. Space Invaders Arcade', text: 'Build a retro 80s arcade space shooter game with player laser cannons, alien fleet movement, particle explosion FX, and chip-tune sound effects.' },
+  { title: '25. Procedural Dungeon Crawler RPG', text: 'Build a top-down tilemap dungeon crawler with character inventory, health bars, random dungeon generation, and turn-based combat.' },
+  { title: '26. WebGL 3D Solar System', text: 'Build a 3D interactive planetary orbit simulation using canvas rendering, planet information cards, camera zoom controls, and orbital path toggles.' },
+  { title: '27. Pixel Art Sprite Editor', text: 'Build a browser 16x16 pixel art canvas editor with color palette swatches, undo/redo stacks, grid lines, and PNG sprite sheet export.' },
+  { title: '28. Audio Piano Synthesizer', text: 'Build a 13-key interactive Web Audio piano keyboard with octave shift, reverb audio effects, chord presets, and note recording playback.' },
+
+  // DevTools & Data (29-34)
+  { title: '29. Developer Code Studio', text: 'Build a sleek browser code playground with tabbed file tree, line-numbered editor, live iframe preview stage, and dark glass design tokens.' },
+  { title: '30. SQL Data Profiler Workbench', text: 'Build a database query editor supporting SQL syntax highlighting, table schema inspectors, query execution time benchmarks, and CSV data export.' },
+  { title: '31. API REST / OpenAPI Tester', text: 'Build an API client workbench supporting GET/POST request methods, header parameters, bearer token auth, JSON body formatting, and status codes.' },
+  { title: '32. Regex Tester & AST Visualizer', text: 'Build a regular expression testing suite with real-time match highlighting, capture group breakdown, match index offsets, and cheat sheet modal.' },
+  { title: '33. Git Commit Graph Explorer', text: 'Build a visual git commit tree visualizer with branch merger nodes, author avatars, commit diff inspections, and cherry-pick action triggers.' },
+  { title: '34. Realtime System Telemetry Monitor', text: 'Build a server monitoring dashboard displaying live CPU/RAM usage gauge charts, network throughput graphs, container health logs, and alert toasts.' },
+
+  // Web3 & FinTech (35-38)
+  { title: '35. Crypto Portfolio & DEX Terminal', text: 'Build a dark cyber responsive crypto portfolio tracker with real-time WebSocket ticker simulation, dynamic SVG sparklines, and glassmorphic modal cards.' },
+  { title: '36. Stock Algorithmic Screener', text: 'Build a stock market analytics dashboard with candlestick price charts, technical indicator overlays (RMA, MACD), and volume breakout alerts.' },
+  { title: '37. Personal Finance Budget App', text: 'Build a mobile budget planner with expense categorization pie charts, monthly savings goal meters, recurring subscription trackers, and transaction filters.' },
+  { title: '38. NFT Marketplace Showcase', text: 'Build an NFT digital art gallery with 3D card tilt physics, rarity score badges, auction bidding countdown timers, and creator profiles.' },
+
+  // Health & Science (39-40)
+  { title: '39. Telehealth Doctor Consultation', text: 'Build a digital healthcare portal featuring video call simulation, patient medical history timeline, prescription manager, and appointment scheduling calendar.' },
+  { title: '40. Genomic Variant Explorer', text: 'Build a bioinformatics variant annotation browser showing chromosome location tracks, pathogenicity score gauges, and gene expression graphs.' },
 ];
 
 const TEMPLATES = [
@@ -1065,16 +1112,77 @@ const TEMPLATES = [
     preset: {
       output_format: { o: [3], t: 'Full Monorepo' },
       app_type: { o: [6], t: 'API Backend' },
-      framework: { o: [5], t: 'FastAPI' }, features: { o: [1,2,3], t: '' }, design: { o: [1,5], t: '' },
+      framework: { o: [4], t: 'FastAPI' }, features: { o: [1,2,3], t: '' }, design: { o: [1,5], t: '' },
+    },
+  },
+  {
+    name: 'Smart Home IoT Control Hub',
+    desc: 'Mobile-first smart home dashboard with interactive climate sliders.',
+    icon: '🏠', color: 'var(--grad-1)', tags: ['IoT', 'Smart Home', 'Sliders'],
+    preset: {
+      output_format: { o: [0], t: 'Single File Mobile App' },
+      app_type: { o: [1], t: 'Smart Home IoT Panel' },
+      framework: { o: [0], t: 'Vanilla JS' }, features: { o: [3,6], t: '' }, design: { o: [1,2,5], t: '' },
+    },
+  },
+  {
+    name: 'Crypto DEX Terminal',
+    desc: 'Dark cyber crypto trading portal with price charts & order book.',
+    icon: '📈', color: 'var(--grad-2)', tags: ['Crypto', 'DEX', 'Trading'],
+    preset: {
+      output_format: { o: [1], t: 'Multi-file web app' },
+      app_type: { o: [0], t: 'DEX Terminal' },
+      framework: { o: [1], t: 'React' }, features: { o: [3,5,6], t: '' }, design: { o: [1,2,4], t: '' },
+    },
+  },
+  {
+    name: 'Developer Code Studio',
+    desc: 'Browser code playground with file tree, editor, & live iframe.',
+    icon: '💻', color: 'var(--grad-3)', tags: ['IDE', 'Code Editor', 'Live Preview'],
+    preset: {
+      output_format: { o: [0], t: 'Standalone Code Playground' },
+      app_type: { o: [0,4], t: 'Browser IDE' },
+      framework: { o: [0], t: 'Vanilla JS' }, features: { o: [6], t: '' }, design: { o: [1,2,4], t: '' },
+    },
+  },
+  {
+    name: 'E-Commerce Mobile Storefront',
+    desc: 'Mobile shopping app with product sliders and checkout drawer.',
+    icon: '🛍️', color: 'var(--grad-1)', tags: ['E-Commerce', 'Cart', 'Mobile'],
+    preset: {
+      output_format: { o: [0], t: 'Single-File Mobile Store' },
+      app_type: { o: [1], t: 'Shopping App' },
+      framework: { o: [0], t: 'Vanilla JS' }, features: { o: [4], t: '' }, design: { o: [0,2,5], t: '' },
+    },
+  },
+  {
+    name: 'Fitness & Health Tracker',
+    desc: 'Workout timer rings, exercise logs, and goal metrics.',
+    icon: '💪', color: 'var(--grad-2)', tags: ['Fitness', 'Health', 'Mobile'],
+    preset: {
+      output_format: { o: [0], t: 'Mobile Fitness Tracker' },
+      app_type: { o: [1], t: 'Fitness Tracker' },
+      framework: { o: [0], t: 'Vanilla JS' }, features: { o: [6], t: '' }, design: { o: [1,4,5], t: '' },
+    },
+  },
+  {
+    name: 'Audio Synth & Visualizer',
+    desc: 'Interactive 13-key piano keyboard with audio spectrum canvas.',
+    icon: '🎹', color: 'var(--grad-3)', tags: ['Audio Synth', 'Web Audio', 'Keyboard'],
+    preset: {
+      output_format: { o: [0], t: 'Audio Synthesizer' },
+      app_type: { o: [0,3], t: 'Audio App' },
+      framework: { o: [0], t: 'Vanilla JS' }, features: { o: [6], t: '' }, design: { o: [0,1,3], t: '' },
     },
   },
 ];
 
 const MODELS = [
   { id:'gemini2',      label:'Gemini 2.0 Flash',       provider:'OpenRouter', adapter:'openrouter', model:'google/gemini-2.0-flash-001', badge:'Recommended', speed:'180 t/s', lat:'0.3s', ctx:'1M' },
+  { id:'deepseekr1',   label:'DeepSeek R1 Reasoning',  provider:'OpenRouter', adapter:'openrouter', model:'deepseek/deepseek-r1', badge:'Deep Logic', speed:'70 t/s', lat:'0.6s', ctx:'128k' },
+  { id:'claude35',     label:'Claude 3.5 Sonnet',      provider:'Anthropic',  adapter:'anthropic',  model:'claude-3-5-sonnet-20241022', badge:'High Precision', speed:'90 t/s', lat:'0.5s', ctx:'200k' },
   { id:'qwen25coder',  label:'Qwen 2.5-Coder 32B',   provider:'Ollama',     adapter:'ollama',     model:'qwen2.5-coder:32b', badge:'Best Quality', speed:'45 t/s', lat:'0.8s', ctx:'128k' },
   { id:'llama33',      label:'Llama 3.3 70B',          provider:'Groq',       adapter:'groq',       model:'llama-3.3-70b-versatile', badge:'Fastest', speed:'220 t/s', lat:'0.2s', ctx:'128k' },
-  { id:'claude35',     label:'Claude 3.5 Sonnet',      provider:'Anthropic',  adapter:'anthropic',  model:'claude-3-5-sonnet-20241022', badge:'High Precision', speed:'90 t/s', lat:'0.5s', ctx:'200k' },
   { id:'custom_openai',label:'Custom OpenAI Endpoint', provider:'Custom API', adapter:'openai',     model:'gpt-4o', badge:'Custom', speed:'120 t/s', lat:'0.4s', ctx:'128k' },
 ];
 
@@ -1090,7 +1198,7 @@ const state = {
   settingsOpen: false, featuresOpen: false, shortcutsOpen: false, promptLabOpen: false, qrModalOpen: false, cmdPaletteOpen: false, blueprintOpen: false, diffOpen: false, themeEditorOpen: false, benchmarksOpen: false, backupOpen: false, synthOpen: false,
   keys: loadKeys(), features: loadFeatures(), activeTab: 'forge',
   history: loadHistory(), snapshots: [], activeCodeFile: null, buildStartTime: 0,
-  voiceListening: false, shareUrl: '', specVersion: 11.1, viewMode: 'code', deviceViewport: 'iphone', viewportOrientation: 'portrait',
+  voiceListening: false, shareUrl: '', specVersion: 12.0, viewMode: 'code', deviceViewport: 'iphone', viewportOrientation: 'portrait',
   sandboxLogs: [], lintResults: null, stepDirection: 'next', customBlueprints: loadBlueprints(),
   searchQuery: '', searchReplaceText: '', selectedPromptProfile: 'cyberpunk', hotReloadTimer: null,
 };
@@ -1665,7 +1773,7 @@ function renderHeader() {
     <button class="btn btn-sm" id="btn-backup" style="border-color:var(--green);color:var(--green)" title="Backup & Restore">💾 Backup</button>
     <button class="btn btn-sm" id="btn-cmd-palette" style="border-color:var(--indigo);color:var(--indigo)" title="Command Palette (Ctrl+K)">⌨️ Cmd</button>
     <button class="btn btn-sm" id="btn-qr-share" style="border-color:var(--cyan);color:var(--cyan)" title="Scan QR Share">📱 QR</button>
-    <button class="btn btn-sm" id="btn-prompt-lab" style="border-color:var(--violet);color:var(--violet)" title="Prompt Lab">🧪 Lab</button>
+    <button class="btn btn-sm" id="btn-prompt-lab" style="border-color:var(--violet);color:var(--violet)" title="Prompt Lab (40 Archetypes)">🧪 Lab (40)</button>
     <button class="btn btn-sm" id="btn-theme" title="Theme">🎨</button>
     <select id="model-sel" title="Select Model">
       ${MODELS.map(mo => `<option value="${mo.id}" ${mo.id === state.selectedModel ? 'selected' : ''}>${mo.label}</option>`).join('')}
@@ -2131,7 +2239,7 @@ function renderTemplates(app) {
     <div class="card fade-enter" style="padding:1.6rem">
       <div class="card-glare"></div>
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.1rem">
-        <h2 style="font-family:var(--font-display);font-weight:800;font-size:1.25rem">📦 Quantum Blueprints & Custom Loadouts</h2>
+        <h2 style="font-family:var(--font-display);font-weight:800;font-size:1.25rem">📦 Quantum Blueprints & Custom Loadouts (${TEMPLATES.length + state.customBlueprints.length})</h2>
         <button class="btn btn-sm btn-primary" id="btn-save-current-loadout">💾 Save Current Loadout</button>
       </div>
 
@@ -2152,7 +2260,7 @@ function renderTemplates(app) {
         </div>
       ` : ''}
 
-      <h3 style="font-size:0.9rem;color:var(--text-muted);margin-bottom:0.6rem;text-transform:uppercase;letter-spacing:0.08em">🌐 Built-in Application Blueprints</h3>
+      <h3 style="font-size:0.9rem;color:var(--text-muted);margin-bottom:0.6rem;text-transform:uppercase;letter-spacing:0.08em">🌐 Built-in Application Blueprints (${TEMPLATES.length})</h3>
       <div class="template-grid">
         ${TEMPLATES.map((tpl, i) => `
           <div class="template-card" data-tpl="${i}">
@@ -2318,7 +2426,7 @@ function renderCommandPaletteModal() {
       <div class="cmd-item" data-action="tab-history"><span>📜 View Build History</span><span class="cmd-key-badge">Tab 3</span></div>
       <div class="cmd-item" data-action="theme"><span>🎨 Cycle Visual Theme</span><span class="cmd-key-badge">T</span></div>
       <div class="cmd-item" data-action="qr"><span>📱 Open Mobile QR Share</span><span class="cmd-key-badge">Q</span></div>
-      <div class="cmd-item" data-action="lab"><span>🧪 Open Prompt Archetype Lab</span><span class="cmd-key-badge">L</span></div>
+      <div class="cmd-item" data-action="lab"><span>🧪 Open Prompt Archetype Lab (40)</span><span class="cmd-key-badge">L</span></div>
       <div class="cmd-item" data-action="bench"><span>📊 Open AI Model Benchmarks</span><span class="cmd-key-badge">M</span></div>
       <div class="cmd-item" data-action="synth"><span>🎹 Audio Synth Keyboard</span><span class="cmd-key-badge">K</span></div>
       <div class="cmd-item" data-action="build"><span>⚡ Trigger Codebase Build</span><span class="cmd-key-badge">Ctrl+B</span></div>
@@ -2371,8 +2479,9 @@ function renderPromptLabModal() {
   const ex = document.getElementById('cf-modal'); if (ex) ex.remove();
   const bd = document.createElement('div'); bd.className = 'modal-backdrop'; bd.id = 'cf-modal';
   bd.innerHTML = `<div class="modal">
-    <div class="modal-header"><span class="modal-title">🧪 Mobile Prompt Archetypes</span><button class="modal-close" id="mc-x">✕</button></div>
-    <div class="archetype-grid">
+    <div class="modal-header"><span class="modal-title">🧪 40 Mobile Prompt Archetypes Library</span><button class="modal-close" id="mc-x">✕</button></div>
+    <div style="margin-bottom:0.75rem"><input type="text" id="arch-search-in" placeholder="🔍 Search 40 prompt archetypes..." style="min-height:36px;font-size:0.8rem;padding:0.4rem 0.8rem" /></div>
+    <div class="archetype-grid" id="arch-grid-container">
       ${PROMPT_ARCHETYPES.map((a, i) => `
         <div class="archetype-card" data-arch="${i}">
           <div style="font-weight:bold;font-size:0.86rem;color:var(--cyan);margin-bottom:0.25rem">${a.title}</div>
@@ -2385,6 +2494,17 @@ function renderPromptLabModal() {
   document.body.appendChild(bd);
   bd.onclick = e => { if (e.target === bd) closeModal(); };
   document.getElementById('mc-x').onclick = closeModal; document.getElementById('mc-close').onclick = closeModal;
+
+  const archInp = document.getElementById('arch-search-in');
+  if(archInp) {
+    archInp.oninput = () => {
+      const q = archInp.value.toLowerCase();
+      bd.querySelectorAll('.archetype-card').forEach(el => {
+        el.style.display = el.textContent.toLowerCase().includes(q) ? 'block' : 'none';
+      });
+    };
+  }
+
   bd.querySelectorAll('.archetype-card').forEach(el => {
     el.onclick = () => {
       const arch = PROMPT_ARCHETYPES[parseInt(el.dataset.arch)];
