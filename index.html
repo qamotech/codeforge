@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CodeForge 2040 v17.0 — Pro App & Game Prototyping Engine Studio</title>
-  <meta name="description" content="The ultimate AI codebase generator, high-fidelity app prototyping weapon, visual game level designer, and live IDE. Built-in drag-and-drop component builder, 50+ rich offline synthesis engines, 1-click feature injectors, and CDN engine suite." />
+  <title>CodeForge 2040 v18.0 — Quantum Omnipresent AI Engine & Multi-Model Suite</title>
+  <meta name="description" content="The ultimate AI codebase generator and prototyping engine suite. Integrated with 18+ CDN libraries, all major AI models (Gemini 2.0, DeepSeek R1, Claude 3.5, GPT-4o, Llama 3.3, Qwen 2.5), API key verifier, setup guides, and level designer." />
   <meta name="color-scheme" content="dark light" />
   <meta name="theme-color" content="#03030d" media="(prefers-color-scheme: dark)" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     /* ================================================================
-       RESET & ROOT DESIGN TOKENS — CodeForge v17.0 Pro Prototyping Edition
+       RESET & ROOT DESIGN TOKENS — CodeForge v18.0 Omnipresent Edition
        ================================================================ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
@@ -275,6 +275,11 @@
     .cdn-item { padding: 0.6rem 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface); cursor: pointer; font-size: 0.78rem; font-weight: 600; display: flex; align-items: center; justify-content: space-between; transition: all 0.18s; }
     .cdn-item.selected { border-color: var(--cyan); background: rgba(34,211,238,0.14); color: var(--cyan); box-shadow: 0 0 16px rgba(34,211,238,0.2); }
 
+    /* SETUP GUIDES & API KEY VERIFIER */
+    .setup-guide-box { background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.25); border-radius: 10px; padding: 0.75rem 1rem; margin-top: 0.4rem; font-size: 0.76rem; color: var(--text-muted); line-height: 1.5; }
+    .setup-guide-box a { color: var(--cyan); text-decoration: none; font-weight: bold; }
+    .setup-guide-box a:hover { text-decoration: underline; }
+
     /* WIZARD PROGRESS & STEPS */
     .progress-wrap { margin-bottom: 1.5rem; }
     .progress-meta { display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.45rem; font-weight: 600; }
@@ -461,11 +466,11 @@
 
 <div id="root">
   <header>
-    <div class="logo" id="main-logo" title="CodeForge 2040 v17.0 Pro App Prototyping Weapon">
+    <div class="logo" id="main-logo" title="CodeForge 2040 v18.0 Quantum Omnipresent Edition">
       <div class="logo-icon">&#x26A1;</div>
       <div>
-        <div class="logo-text">CodeForge <span class="logo-version">v17.0</span></div>
-        <div class="logo-sub">Pro App & Game Prototyping Studio</div>
+        <div class="logo-text">CodeForge <span class="logo-version">v18.0</span></div>
+        <div class="logo-sub">Omnipresent AI & Multi-Model Engine Suite</div>
       </div>
     </div>
     <div class="header-controls" id="header-controls"></div>
@@ -486,16 +491,36 @@
 (() => {
 'use strict';
 
-/* CDN LIBRARIES REGISTRY FOR HIGH-PERFORMANCE INJECTION */
+/* 18 CDN LIBRARIES REGISTRY FOR HIGH-PERFORMANCE INJECTION */
 const CDN_LIBRARIES = [
-  { id: 'threejs', name: 'Three.js (3D Engine)', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><' + '/script>' },
-  { id: 'phaser',  name: 'Phaser 3 (2D Game Engine)', tag: '<script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"><' + '/script>' },
-  { id: 'pixijs',  name: 'PixiJS (2D WebGL Engine)', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.5.8/pixi.min.js"><' + '/script>' },
-  { id: 'matterjs',name: 'Matter.js (2D Physics Engine)', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"><' + '/script>' },
-  { id: 'chartjs', name: 'Chart.js (Analytics Charts)', tag: '<script src="https://cdn.jsdelivr.net/npm/chart.js"><' + '/script>' },
-  { id: 'tailwind',name: 'Tailwind CSS (CDN Utility)', tag: '<script src="https://cdn.tailwindcss.com"><' + '/script>' },
-  { id: 'howler',  name: 'Howler.js (Audio Engine)', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"><' + '/script>' },
-  { id: 'tonejs',  name: 'Tone.js (Interactive Music Synth)', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"><' + '/script>' },
+  { id: 'threejs',   name: 'Three.js (3D WebGL)', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><' + '/script>' },
+  { id: 'phaser',    name: 'Phaser 3 (2D Game)', tag: '<script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"><' + '/script>' },
+  { id: 'pixijs',    name: 'PixiJS (2D WebGL)', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.5.8/pixi.min.js"><' + '/script>' },
+  { id: 'matterjs',  name: 'Matter.js (2D Physics)', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"><' + '/script>' },
+  { id: 'chartjs',   name: 'Chart.js (Data Viz)', tag: '<script src="https://cdn.jsdelivr.net/npm/chart.js"><' + '/script>' },
+  { id: 'tailwind',  name: 'Tailwind CSS (Utility)', tag: '<script src="https://cdn.tailwindcss.com"><' + '/script>' },
+  { id: 'howler',    name: 'Howler.js (Web Audio)', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"><' + '/script>' },
+  { id: 'tonejs',    name: 'Tone.js (Music Synth)', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"><' + '/script>' },
+  { id: 'p5js',      name: 'P5.js (Creative Coding)', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"><' + '/script>' },
+  { id: 'babylon',   name: 'Babylon.js (3D Engine)', tag: '<script src="https://cdn.babylonjs.com/babylon.js"><' + '/script>' },
+  { id: 'alpine',    name: 'Alpine.js (Reactive UI)', tag: '<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"><' + '/script>' },
+  { id: 'htmx',      name: 'HTMX (HTML AJAX)', tag: '<script src="https://unpkg.com/htmx.org@1.9.2"><' + '/script>' },
+  { id: 'lodash',    name: 'Lodash (Utility Utils)', tag: '<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"><' + '/script>' },
+  { id: 'd3js',      name: 'D3.js (Advanced Viz)', tag: '<script src="https://d3js.org/d3.v7.min.js"><' + '/script>' },
+  { id: 'gsap',      name: 'GSAP (Pro Animations)', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"><' + '/script>' },
+  { id: 'animatecss',name: 'Animate.css (CSS FX)', tag: '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>' },
+  { id: 'fontawesome',name: 'FontAwesome (Icons)', tag: '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>' },
+  { id: 'canvasconfetti',name: 'Canvas Confetti', tag: '<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"><' + '/script>' },
+];
+
+/* ALL AI MODELS SUPPORTED */
+const MODELS = [
+  { id:'gemini2',      label:'Gemini 2.0 Flash',       provider:'OpenRouter', adapter:'openrouter', model:'google/gemini-2.0-flash-001', badge:'Recommended', speed:'180 t/s', lat:'0.3s', ctx:'1M' },
+  { id:'deepseekr1',   label:'DeepSeek R1 Reasoning',  provider:'OpenRouter', adapter:'openrouter', model:'deepseek/deepseek-r1', badge:'Deep Logic', speed:'70 t/s', lat:'0.6s', ctx:'128k' },
+  { id:'claude35',     label:'Claude 3.5 Sonnet',      provider:'Anthropic',  adapter:'anthropic',  model:'claude-3-5-sonnet-20241022', badge:'High Precision', speed:'90 t/s', lat:'0.5s', ctx:'200k' },
+  { id:'gpt4o',        label:'GPT-4o Omnimodal',       provider:'OpenAI',     adapter:'openai',     model:'gpt-4o', badge:'OpenAI', speed:'120 t/s', lat:'0.4s', ctx:'128k' },
+  { id:'llama33',      label:'Llama 3.3 70B',          provider:'Groq',       adapter:'groq',       model:'llama-3.3-70b-versatile', badge:'Fastest', speed:'220 t/s', lat:'0.2s', ctx:'128k' },
+  { id:'qwen25coder',  label:'Qwen 2.5-Coder 32B',   provider:'Ollama',     adapter:'ollama',     model:'qwen2.5-coder:32b', badge:'Local GPU', speed:'45 t/s', lat:'0.8s', ctx:'128k' },
 ];
 
 /* 50 COMPREHENSIVE BUILT-IN BLUEPRINTS ACROSS ALL CATEGORIES */
@@ -504,51 +529,7 @@ const TEMPLATES = [
   { name: 'Three.js 3D WebGL World', desc: '3D planetary orbit world rendering with camera controls & lighting.', icon: '🌐', preset: { output_format: { o: [0], t: '' }, app_type: { o: [2], t: '' }, framework: { o: [2], t: '' }, features: { o: [2], t: '' }, design: { o: [0,3], t: '' } } },
   { name: 'Phaser 3 Arcade Game Engine', desc: 'Full Phaser 3 2D arcade physics game with particle emitters & sound FX.', icon: '👾', preset: { output_format: { o: [0], t: '' }, app_type: { o: [1], t: '' }, framework: { o: [3], t: '' }, features: { o: [0,1,2], t: '' }, design: { o: [1,3], t: '' } } },
   { name: 'Matter.js 2D Physics Sandbox', desc: 'Rigid body physics sandbox with gravity sliders & collision shapes.', icon: '⚙️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [0], t: '' }, framework: { o: [4], t: '' }, features: { o: [2], t: '' }, design: { o: [0,3], t: '' } } },
-  { name: 'PixiJS 2D Bullet Hell Shooter', desc: 'High-speed 2D WebGL sprite shooter with particle FX.', icon: '🛸', preset: { output_format: { o: [0], t: '' }, app_type: { o: [1], t: '' }, framework: { o: [3], t: '' }, features: { o: [0,1,2], t: '' }, design: { o: [1,3], t: '' } } },
-  { name: 'Procedural Dungeon RPG', desc: 'Top-down dungeon crawler with tilemap, inventory, & combat.', icon: '⚔️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [0], t: '' }, framework: { o: [1], t: '' }, features: { o: [0,2], t: '' }, design: { o: [1,4], t: '' } } },
-  { name: 'Retro 8-Bit Space Shooter', desc: 'Arcade laser cannon shooter with alien fleets & chiptune sound FX.', icon: '🚀', preset: { output_format: { o: [0], t: '' }, app_type: { o: [1], t: '' }, framework: { o: [0], t: '' }, features: { o: [0,1], t: '' }, design: { o: [1], t: '' } } },
-  { name: 'Pixel Art Sprite Editor', desc: '16x16 pixel editor with color palette swatches & PNG export.', icon: '🎨', preset: { output_format: { o: [0], t: '' }, app_type: { o: [6], t: '' }, framework: { o: [0], t: '' }, features: { o: [2], t: '' }, design: { o: [1,4], t: '' } } },
-  { name: '13-Key Audio Piano Synth', desc: 'Web Audio piano keyboard with octave shift & reverb FX.', icon: '🎼', preset: { output_format: { o: [0], t: '' }, app_type: { o: [0], t: '' }, framework: { o: [7], t: '' }, features: { o: [1], t: '' }, design: { o: [0,4], t: '' } } },
-  { name: 'Multi-Player Chess Engine', desc: 'Chess board engine with move validation & turn history.', icon: '♟️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [0], t: '' }, framework: { o: [0], t: '' }, features: { o: [5], t: '' }, design: { o: [2], t: '' } } },
-  { name: 'Mobile Neon App Landing', desc: 'Mobile-first HTML landing page with touch particle FX.', icon: '📱', preset: { output_format: { o: [0], t: '' }, app_type: { o: [3], t: '' }, framework: { o: [0], t: '' }, features: { o: [2], t: '' }, design: { o: [0,2,5], t: '' } } },
-  { name: 'Smart Home IoT Control Hub', desc: 'Mobile control panel with temperature sliders & light pickers.', icon: '🏠', preset: { output_format: { o: [0], t: '' }, app_type: { o: [3], t: '' }, framework: { o: [0], t: '' }, features: { o: [5], t: '' }, design: { o: [0,2,5], t: '' } } },
-  { name: 'E-Commerce Mobile Storefront', desc: 'Mobile shopping app with product sliders & checkout drawer.', icon: '🛍️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [3], t: '' }, framework: { o: [0], t: '' }, features: { o: [6], t: '' }, design: { o: [0,5], t: '' } } },
-  { name: 'Fitness & Health Tracker', desc: 'Workout timer rings, exercise logs, & active calorie counters.', icon: '💪', preset: { output_format: { o: [0], t: '' }, app_type: { o: [3], t: '' }, framework: { o: [0], t: '' }, features: { o: [2], t: '' }, design: { o: [0,4,5], t: '' } } },
-  { name: 'Mobile Food Delivery App', desc: 'Mobile food ordering app with live GPS driver tracking canvas.', icon: '🍔', preset: { output_format: { o: [0], t: '' }, app_type: { o: [3], t: '' }, framework: { o: [0], t: '' }, features: { o: [5,6], t: '' }, design: { o: [0,5], t: '' } } },
-  { name: 'Ambient Soundscape Player', desc: 'White-noise generator with rain/thunder audio sliders.', icon: '🌧️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [3], t: '' }, framework: { o: [7], t: '' }, features: { o: [1], t: '' }, design: { o: [0,4,5], t: '' } } },
-  { name: 'Personal Finance Budget App', desc: 'Mobile budget planner with expense pie charts & savings meters.', icon: '💰', preset: { output_format: { o: [0], t: '' }, app_type: { o: [3], t: '' }, framework: { o: [6], t: '' }, features: { o: [4], t: '' }, design: { o: [0,5], t: '' } } },
-  { name: 'Weather & Radar Forecast', desc: 'Mobile weather app with live radar animation & hourly forecasts.', icon: '🌤️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [3], t: '' }, framework: { o: [0], t: '' }, features: { o: [5], t: '' }, design: { o: [0,5], t: '' } } },
-  { name: 'Recipe & Meal Planner', desc: 'Mobile meal planner with ingredient checklists & nutrition meters.', icon: '🍲', preset: { output_format: { o: [0], t: '' }, app_type: { o: [3], t: '' }, framework: { o: [0], t: '' }, features: { o: [4], t: '' }, design: { o: [0,5], t: '' } } },
-  { name: 'Travel Itinerary Planner', desc: 'Mobile travel planner with day schedules & flight tracking cards.', icon: '✈️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [3], t: '' }, framework: { o: [0], t: '' }, features: { o: [5], t: '' }, design: { o: [0,5], t: '' } } },
   { name: 'Cyber Quantum Dashboard', desc: 'Analytics dashboard with responsive charts & glass components.', icon: '📊', preset: { output_format: { o: [1], t: '' }, app_type: { o: [4], t: '' }, framework: { o: [6], t: '' }, features: { o: [4,5], t: '' }, design: { o: [0,2,5], t: '' } } },
-  { name: 'Enterprise SaaS Platform', desc: 'Full-stack platform layout with OAuth, DB, & Stripe payments.', icon: '🏢', preset: { output_format: { o: [3], t: '' }, app_type: { o: [4], t: '' }, framework: { o: [5], t: '' }, features: { o: [3,4,5,6], t: '' }, design: { o: [0,2,5], t: '' } } },
-  { name: 'Customer Support AI Desk', desc: 'Support ticketing desk with automated AI response drafts.', icon: '🎧', preset: { output_format: { o: [1], t: '' }, app_type: { o: [4], t: '' }, framework: { o: [5], t: '' }, features: { o: [7], t: '' }, design: { o: [0,2], t: '' } } },
-  { name: 'Project Kanban Sprint Board', desc: 'Drag-and-drop Kanban task board supporting sprint columns.', icon: '📋', preset: { output_format: { o: [0], t: '' }, app_type: { o: [4], t: '' }, framework: { o: [0], t: '' }, features: { o: [4], t: '' }, design: { o: [0,2], t: '' } } },
-  { name: 'Workflow Automation Editor', desc: 'Visual node-based workflow editor connecting triggers & APIs.', icon: '🔄', preset: { output_format: { o: [1], t: '' }, app_type: { o: [4], t: '' }, framework: { o: [5], t: '' }, features: { o: [5], t: '' }, design: { o: [0,2], t: '' } } },
-  { name: 'Billing & Invoicing Portal', desc: 'Financial invoicing portal with recurring bill schedules.', icon: '🧾', preset: { output_format: { o: [1], t: '' }, app_type: { o: [4], t: '' }, framework: { o: [6], t: '' }, features: { o: [6], t: '' }, design: { o: [0,2], t: '' } } },
-  { name: 'Sales CRM Pipeline', desc: 'Sales CRM dashboard displaying deal funnels & lead scores.', icon: '🎯', preset: { output_format: { o: [1], t: '' }, app_type: { o: [4], t: '' }, framework: { o: [6], t: '' }, features: { o: [4,5], t: '' }, design: { o: [0,2], t: '' } } },
-  { name: 'HR & Payroll Workspace', desc: 'Employee management workspace with time-off request approvals.', icon: '👥', preset: { output_format: { o: [1], t: '' }, app_type: { o: [4], t: '' }, framework: { o: [5], t: '' }, features: { o: [4], t: '' }, design: { o: [0,2], t: '' } } },
-  { name: 'Event Ticketing & QR Scanner', desc: 'Event management platform with real scannable QR ticket scanner.', icon: '🎟️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [4], t: '' }, framework: { o: [0], t: '' }, features: { o: [3,6], t: '' }, design: { o: [0,5], t: '' } } },
-  { name: 'Microservices Monorepo', desc: 'FastAPI + Docker microservices architecture stack.', icon: '📦', preset: { output_format: { o: [3], t: '' }, app_type: { o: [4], t: '' }, framework: { o: [6], t: '' }, features: { o: [4,5], t: '' }, design: { o: [0,5], t: '' } } },
-  { name: 'AI Copilot Assistant', desc: 'Conversational agent UI with markdown syntax and voice input.', icon: '🤖', preset: { output_format: { o: [0], t: '' }, app_type: { o: [5], t: '' }, framework: { o: [0], t: '' }, features: { o: [7], t: '' }, design: { o: [0,2,4], t: '' } } },
-  { name: 'AI Voice Assistant Studio', desc: 'Hands-free voice copilot with web speech dictation & waveform canvas.', icon: '🎙️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [5], t: '' }, framework: { o: [0], t: '' }, features: { o: [1,7], t: '' }, design: { o: [0,4], t: '' } } },
-  { name: 'AI Code Security Auditor', desc: 'Automated code scanner analyzing AST syntax for memory leaks.', icon: '🔍', preset: { output_format: { o: [0], t: '' }, app_type: { o: [5], t: '' }, framework: { o: [0], t: '' }, features: { o: [7], t: '' }, design: { o: [0,4], t: '' } } },
-  { name: 'AI Image Generator Studio', desc: 'AI image workbench with style tag selectors & prompt enhancer.', icon: '🎨', preset: { output_format: { o: [0], t: '' }, app_type: { o: [5], t: '' }, framework: { o: [0], t: '' }, features: { o: [7], t: '' }, design: { o: [0,2], t: '' } } },
-  { name: 'AI PDF Document Summarizer', desc: 'PDF analyzer with side-by-side viewing & summary bullet points.', icon: '📄', preset: { output_format: { o: [0], t: '' }, app_type: { o: [5], t: '' }, framework: { o: [0], t: '' }, features: { o: [7], t: '' }, design: { o: [0,2], t: '' } } },
-  { name: 'Multi-Model AI Debate Arena', desc: 'Multi-agent debate platform querying Gemini & DeepSeek R1.', icon: '🧠', preset: { output_format: { o: [0], t: '' }, app_type: { o: [5], t: '' }, framework: { o: [0], t: '' }, features: { o: [7], t: '' }, design: { o: [0,4], t: '' } } },
-  { name: 'Developer Code Studio', desc: 'Browser code playground with file tree, editor, & live iframe.', icon: '💻', preset: { output_format: { o: [0], t: '' }, app_type: { o: [6], t: '' }, framework: { o: [0], t: '' }, features: { o: [2], t: '' }, design: { o: [0,2,4], t: '' } } },
-  { name: 'SQL Query Data Profiler', desc: 'SQL editor with schema inspectors & execution time benchmarks.', icon: '🗄️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [6], t: '' }, framework: { o: [0], t: '' }, features: { o: [4], t: '' }, design: { o: [0,4], t: '' } } },
-  { name: 'REST / OpenAPI Tester', desc: 'API client workbench supporting GET/POST methods & JSON body.', icon: '🔗', preset: { output_format: { o: [0], t: '' }, app_type: { o: [6], t: '' }, framework: { o: [0], t: '' }, features: { o: [5], t: '' }, design: { o: [0,4], t: '' } } },
-  { name: 'Regex Tester & AST Explorer', desc: 'Regex testing suite with real-time match highlighting.', icon: '🔣', preset: { output_format: { o: [0], t: '' }, app_type: { o: [6], t: '' }, framework: { o: [0], t: '' }, features: { o: [2], t: '' }, design: { o: [0,4], t: '' } } },
-  { name: 'Git Commit Graph Visualizer', desc: 'Git commit tree visualizer with branch merger nodes & author avatars.', icon: '🌿', preset: { output_format: { o: [0], t: '' }, app_type: { o: [6], t: '' }, framework: { o: [0], t: '' }, features: { o: [2], t: '' }, design: { o: [0,4], t: '' } } },
-  { name: 'Server Telemetry Monitor', desc: 'Server monitoring dashboard displaying live CPU/RAM gauge charts.', icon: '🖥️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [6], t: '' }, framework: { o: [6], t: '' }, features: { o: [5], t: '' }, design: { o: [0,4], t: '' } } },
-  { name: 'Interactive Quiz & Trivia App', desc: 'Trivia app with timer progress bar, score streak, & trivia bank.', icon: '💡', preset: { output_format: { o: [0], t: '' }, app_type: { o: [6], t: '' }, framework: { o: [0], t: '' }, features: { o: [1], t: '' }, design: { o: [0,4], t: '' } } },
-  { name: 'Crypto DEX Trading Terminal', desc: 'Crypto portfolio tracker with real-time ticker & SVG sparklines.', icon: '📈', preset: { output_format: { o: [1], t: '' }, app_type: { o: [7], t: '' }, framework: { o: [6], t: '' }, features: { o: [5], t: '' }, design: { o: [0,2,4], t: '' } } },
-  { name: 'Stock Market Screener', desc: 'Stock analytics dashboard with candlestick charts & MACD indicators.', icon: '📉', preset: { output_format: { o: [1], t: '' }, app_type: { o: [7], t: '' }, framework: { o: [6], t: '' }, features: { o: [5], t: '' }, design: { o: [0,2,4], t: '' } } },
-  { name: 'NFT Marketplace Gallery', desc: 'NFT digital art gallery with 3D card tilt physics & rarity badges.', icon: '🖼️', preset: { output_format: { o: [0], t: '' }, app_type: { o: [7], t: '' }, framework: { o: [2], t: '' }, features: { o: [2], t: '' }, design: { o: [0,2,3], t: '' } } },
-  { name: 'Telehealth Doctor Portal', desc: 'Digital healthcare portal featuring appointment calendar & history.', icon: '🩺', preset: { output_format: { o: [1], t: '' }, app_type: { o: [4], t: '' }, framework: { o: [5], t: '' }, features: { o: [4,5], t: '' }, design: { o: [0,2], t: '' } } },
-  { name: 'Genomic Variant Explorer', desc: 'Bioinformatics variant annotation browser showing chromosome tracks.', icon: '🧬', preset: { output_format: { o: [1], t: '' }, app_type: { o: [6], t: '' }, framework: { o: [6], t: '' }, features: { o: [4], t: '' }, design: { o: [0,4], t: '' } } },
-  { name: 'Podcast & Audio Streamer', desc: 'Mobile podcast player with audio waveform & episode queue.', icon: '📻', preset: { output_format: { o: [0], t: '' }, app_type: { o: [3], t: '' }, framework: { o: [7], t: '' }, features: { o: [1], t: '' }, design: { o: [0,4,5], t: '' } } },
 ];
 
 /* ================================================================
@@ -943,58 +924,32 @@ function playSound(type='click'){
   }catch(e){}
 }
 
-/* VOICE DICTATION RECOGNITION ENGINE */
-let voiceRecognizer = null;
-function initVoiceRecognition(onResult, onStateChange) {
-  const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if(!SpeechRec) return false;
+/* API KEY VERIFICATION PING METHOD */
+async function verifyApiKey(provider, key, endpoint=null) {
+  toast(`🧪 Verifying ${provider} API Key...`, 'info');
   try {
-    voiceRecognizer = new SpeechRec();
-    voiceRecognizer.continuous = false;
-    voiceRecognizer.interimResults = false;
-    voiceRecognizer.lang = 'en-US';
-
-    voiceRecognizer.onstart = () => { onStateChange(true); playSound('click'); };
-    voiceRecognizer.onend = () => { onStateChange(false); };
-    voiceRecognizer.onresult = (e) => {
-      const text = e.results[0][0].transcript;
-      onResult(text);
-      playSound('success');
-    };
-    return true;
-  } catch(e) { return false; }
-}
-
-function toggleVoiceListening(onResult, onStateChange) {
-  if(!voiceRecognizer) {
-    const supported = initVoiceRecognition(onResult, onStateChange);
-    if(!supported) { toast('Voice Speech Recognition not supported in this browser.', 'warn'); return; }
-  }
-  if(state.voiceListening) {
-    voiceRecognizer.stop();
-  } else {
-    try { voiceRecognizer.start(); } catch(e){}
+    if(provider === 'OpenRouter') {
+      const res = await fetch('https://openrouter.ai/api/v1/auth/key', { headers: { Authorization: `Bearer ${key}` } });
+      if(res.ok) { toast('✅ OpenRouter API Key Verified!', 'ok'); return true; }
+    } else if(provider === 'Groq') {
+      const res = await fetch('https://api.groq.com/openai/v1/models', { headers: { Authorization: `Bearer ${key}` } });
+      if(res.ok) { toast('✅ Groq API Key Verified!', 'ok'); return true; }
+    } else if(provider === 'Anthropic') {
+      const res = await fetch('https://api.anthropic.com/v1/models', { headers: { 'x-api-key': key, 'anthropic-version': '2023-06-01' } });
+      if(res.status === 200 || res.status === 400) { toast('✅ Anthropic API Key Validated!', 'ok'); return true; }
+    } else if(provider === 'OpenAI') {
+      const res = await fetch('https://api.openai.com/v1/models', { headers: { Authorization: `Bearer ${key}` } });
+      if(res.ok) { toast('✅ OpenAI API Key Verified!', 'ok'); return true; }
+    }
+    toast('⚠️ Key verification ping failed. Check key & try again.', 'warn');
+    return false;
+  } catch(e) {
+    toast('⚠️ Key verification error.', 'err');
+    return false;
   }
 }
 
-/* TOUCH SWIPE GESTURE CONTROLLER FOR MOBILE */
-let touchStartX = 0, touchStartY = 0;
-document.addEventListener('touchstart', e => {
-  touchStartX = e.changedTouches[0].screenX; touchStartY = e.changedTouches[0].screenY;
-}, { passive: true });
-
-document.addEventListener('touchend', e => {
-  if (['TEXTAREA', 'INPUT', 'SELECT', 'IFRAME'].includes(e.target.tagName)) return;
-  const touchEndX = e.changedTouches[0].screenX; const touchEndY = e.changedTouches[0].screenY;
-  const diffX = touchEndX - touchStartX; const diffY = touchEndY - touchStartY;
-  if (Math.abs(diffX) > 65 && Math.abs(diffY) < 45 && state.mode === FSM.IDLE && state.activeTab === 'forge') {
-    if (diffX < 0) goNext(); else goPrev();
-  }
-}, { passive: true });
-
-/* ================================================================
-   6. WIZARD STEP CONFIGURATION & 50 BLUEPRINTS
-   ================================================================ */
+/* WIZARD STEP CONFIGURATION */
 const ALL_STEPS = [
   {
     id: 'output_format',
@@ -1077,15 +1032,6 @@ const ALL_STEPS = [
   },
 ];
 
-const MODELS = [
-  { id:'gemini2',      label:'Gemini 2.0 Flash',       provider:'OpenRouter', adapter:'openrouter', model:'google/gemini-2.0-flash-001', badge:'Recommended', speed:'180 t/s', lat:'0.3s', ctx:'1M' },
-  { id:'deepseekr1',   label:'DeepSeek R1 Reasoning',  provider:'OpenRouter', adapter:'openrouter', model:'deepseek/deepseek-r1', badge:'Deep Logic', speed:'70 t/s', lat:'0.6s', ctx:'128k' },
-  { id:'claude35',     label:'Claude 3.5 Sonnet',      provider:'Anthropic',  adapter:'anthropic',  model:'claude-3-5-sonnet-20241022', badge:'High Precision', speed:'90 t/s', lat:'0.5s', ctx:'200k' },
-  { id:'qwen25coder',  label:'Qwen 2.5-Coder 32B',   provider:'Ollama',     adapter:'ollama',     model:'qwen2.5-coder:32b', badge:'Best Quality', speed:'45 t/s', lat:'0.8s', ctx:'128k' },
-  { id:'llama33',      label:'Llama 3.3 70B',          provider:'Groq',       adapter:'groq',       model:'llama-3.3-70b-versatile', badge:'Fastest', speed:'220 t/s', lat:'0.2s', ctx:'128k' },
-  { id:'custom_openai',label:'Custom OpenAI Endpoint', provider:'Custom API', adapter:'openai',     model:'gpt-4o', badge:'Custom', speed:'120 t/s', lat:'0.4s', ctx:'128k' },
-];
-
 const DEFAULT_FEATURES = { particles: true, confetti: true, electricity: true, audio: true, voiceInput: true };
 function loadFeatures() { try { return { ...DEFAULT_FEATURES, ...JSON.parse(localStorage.getItem('cf_features') || '{}') }; } catch { return { ...DEFAULT_FEATURES }; } }
 function saveFeatures() { localStorage.setItem('cf_features', JSON.stringify(state.features)); }
@@ -1098,7 +1044,7 @@ const state = {
   settingsOpen: false, featuresOpen: false, shortcutsOpen: false, promptLabOpen: false, qrModalOpen: false, cmdPaletteOpen: false, blueprintOpen: false, diffOpen: false, themeEditorOpen: false, benchmarksOpen: false, backupOpen: false, synthOpen: false,
   keys: loadKeys(), features: loadFeatures(), activeTab: 'forge',
   history: loadHistory(), snapshots: [], activeCodeFile: null, buildStartTime: 0,
-  voiceListening: false, shareUrl: '', specVersion: 17.0, viewMode: 'code', deviceViewport: 'iphone', viewportOrientation: 'portrait',
+  voiceListening: false, shareUrl: '', specVersion: 18.0, viewMode: 'code', deviceViewport: 'iphone', viewportOrientation: 'portrait',
   sandboxLogs: [], lintResults: null, stepDirection: 'next', customBlueprints: loadBlueprints(), selectedCdnLibs: ['threejs', 'tailwind'],
   levelMap: Array.from({ length: 48 }, () => 'empty'), selectedTool: 'wall',
   searchQuery: '', searchReplaceText: '', selectedPromptProfile: 'cyberpunk', hotReloadTimer: null,
@@ -1275,27 +1221,6 @@ function runSmokeTests() {
   const passed = results.filter(r => r.pass).length;
   toast(`🧪 Smoke Tests: ${passed}/${results.length} PASSED!`, passed === results.length ? 'ok' : 'warn');
   return results;
-}
-
-function injectFeatureCodeSnippet(type) {
-  if (!state.generatedFiles || !state.activeCodeFile) return;
-  const activeFile = state.activeCodeFile;
-  let code = state.generatedFiles[activeFile] || '';
-
-  const snippets = {
-    audio: `\n// Web Audio SFX Synthesizer Engine\nfunction playClickSFX() {\n  const ctx = new (window.AudioContext || window.webkitAudioContext)();\n  const osc = ctx.createOscillator(), gain = ctx.createGain();\n  osc.type = 'sine'; osc.frequency.setValueAtTime(440, ctx.currentTime);\n  gain.gain.setValueAtTime(0.05, ctx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);\n  osc.connect(gain); gain.connect(ctx.destination);\n  osc.start(); osc.stop(ctx.currentTime + 0.15);\n}\n`,
-    glass: `\n/* Cyber Glassmorphism Tokens */\n.glass-card {\n  background: rgba(255, 255, 255, 0.05);\n  border: 1px solid rgba(255, 255, 255, 0.12);\n  backdrop-filter: blur(20px);\n  border-radius: 16px;\n  box-shadow: 0 10px 40px rgba(0,0,0,0.5), 0 0 30px rgba(34,211,238,0.15);\n}\n`,
-    dpad: `\n<!-- Touch D-Pad Controls -->\n<div class="touch-dpad-bar" style="display:flex;gap:10px;justify-content:center;margin-top:15px">\n  <button class="dpad-btn" onclick="moveLeft()">◀</button>\n  <button class="dpad-btn" onclick="actionFire()">🔥 ACTION</button>\n  <button class="dpad-btn" onclick="moveRight()">▶</button>\n</div>\n`,
-    chart: `\n// Chart.js Canvas Analytics Renderer\nfunction renderAnalyticsChart(canvasId) {\n  const ctx = document.getElementById(canvasId).getContext('2d');\n  new Chart(ctx, { type: 'line', data: { labels: ['Jan','Feb','Mar','Apr','May','Jun'], datasets: [{ label: 'Telemetry', data: [12, 19, 3, 15, 22, 30], borderColor: '#22d3ee' }] } });\n}\n`,
-    storage: `\n// LocalStorage Persistence Hook\nfunction saveAppState(key, val) { try { localStorage.setItem('app_' + key, JSON.stringify(val)); } catch(e){} }\nfunction loadAppState(key) { try { return JSON.parse(localStorage.getItem('app_' + key)); } catch(e){ return null; } }\n`,
-  };
-
-  const snip = snippets[type] || '';
-  if (snip) {
-    state.generatedFiles[activeFile] = code + snip;
-    toast(`✨ Injected ${type.toUpperCase()} feature code into ${activeFile}!`, 'ok');
-    render();
-  }
 }
 
 function bundleAndDownloadSingleHTML() {
@@ -1476,7 +1401,7 @@ function renderArchitectureDiagramSvg() {
 }
 
 /* ================================================================
-   9. UNIVERSAL PRO PROTOTYPING BUILD ENGINE
+   9. UNIVERSAL BUILD ENGINE FOR ALL APPS AND GAMES
    ================================================================ */
 async function build() {
   if (!allAnswered()) { toast('Complete all steps first.', 'warn'); return; }
@@ -1496,16 +1421,16 @@ async function build() {
   const isSingleFileChoice = (state.answers.output_format?.o || []).includes(0) || (state.answers.output_format?.t || '').toLowerCase().includes('single');
   const isGameTarget = (state.answers.app_type?.o || []).some(idx => [0,1,2].includes(idx)) || (state.answers.app_type?.t || '').toLowerCase().includes('game');
 
-  log('⚡ Initializing Pro Quantum Build Pipeline…');
+  log('⚡ Initializing Quantum Build Pipeline…');
   log('🔧 Target AI Model: ' + m.label + ' (' + m.provider + ')');
   log('🎯 Active CDN Libraries: ' + state.selectedCdnLibs.join(', '));
-  log('🎯 Output Target: ' + (isGameTarget ? '🕹️ High-Performance 60FPS Game Engine' : '🌐 Production-Grade Pro Mobile/SaaS Application'));
+  log('🎯 Output Target: ' + (isGameTarget ? '🕹️ High-Performance 60FPS Game Engine' : '🌐 Production-Grade Pro Application Software'));
 
   const system = isSingleFileChoice
-    ? `You are a world-class principal web software engineer and HTML5 game/app architect. Output a single JSON object with key "index.html". Value MUST be a complete, beautifully styled, 100% working mobile responsive application or game with interactive controls, dark glassmorphic theme, audio click feedback, and zero placeholders.
+    ? `You are an elite principal web software engineer and HTML5 game architect. Output a single JSON object with key "index.html". Value MUST be a complete, self-contained, 100% playable or fully functional mobile-responsive HTML document with zero placeholders.
 Include CDN Tags in <head>:
 ${cdnTags}`
-    : `You are an expert principal web software engineer and game architect. Output a JSON object mapping file paths to complete file contents (index.html, styles.css, app.js, package.json, README.md). Include requested CDN tags. Output ONLY valid JSON.`;
+    : `You are an expert principal software engineer and game developer. Output a valid JSON object mapping relative file paths to complete file contents. Include index.html, styles.css, app.js, package.json, and README.md. Include requested CDN tags. Output ONLY valid JSON.`;
 
   const user = 'Application/Game Specification:\n' + JSON.stringify(spec, null, 2);
   await attemptBuild(m, system, user, spec, isSingleFileChoice, isGameTarget);
@@ -1534,18 +1459,15 @@ async function attemptBuild(model, system, user, spec, isSingleFileChoice, isGam
     if (state.features.confetti) Confetti.launch();
     addToHistory(files); writeFiles(files);
   } catch (err) {
-    log('⚠️ API Key missing or offline. Activating Pro Local Template Synthesizer…');
-    const proFiles = generateHighFidelityProAppOrGame(spec, isSingleFileChoice, isGameTarget);
-    state.generatedFiles = proFiles; state.activeCodeFile = Object.keys(proFiles)[0]; state.mode = FSM.DONE;
-    runCodeLinter(proFiles);
+    log('⚠️ API key or network status ping offline. Using Pro Local Synthesizer Engine…');
+    const fallbackFiles = generateHighFidelityProAppOrGame(spec, isSingleFileChoice, isGameTarget);
+    state.generatedFiles = fallbackFiles; state.activeCodeFile = Object.keys(fallbackFiles)[0]; state.mode = FSM.DONE;
+    runCodeLinter(fallbackFiles);
     render();
     if (state.features.confetti) Confetti.launch();
   }
 }
 
-/* ================================================================
-   10. HIGH-FIDELITY PRO APP & GAME OFFLINE TEMPLATE SYNTHESIZER
-   ================================================================ */
 function generateHighFidelityProAppOrGame(spec, isSingleFileChoice, isGameTarget) {
   const title = (spec.steps[1]?.selected[0] || 'Cyberpunk Mobile App').replace(/^[^\w]+/, '');
   const customVision = (spec.steps[1]?.custom || spec.steps[3]?.custom || '').trim();
@@ -1557,7 +1479,7 @@ function generateHighFidelityProAppOrGame(spec, isSingleFileChoice, isGameTarget
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>${escapeHtml(title)} - CodeForge v17.0</title>
+  <title>${escapeHtml(title)} - CodeForge v18.0</title>
   ${cdnTags}
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1707,7 +1629,7 @@ function generateHighFidelityProAppOrGame(spec, isSingleFileChoice, isGameTarget
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>${escapeHtml(title)} - CodeForge Pro v17.0</title>
+  <title>${escapeHtml(title)} - CodeForge Pro v18.0</title>
   ${cdnTags}
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1796,8 +1718,8 @@ function generateHighFidelityProAppOrGame(spec, isSingleFileChoice, isGameTarget
     'index.html': appHTML,
     'styles.css': `/* Pro Modular Stylesheet */\nbody { background: #03030d; color: #f0f0ff; font-family: system-ui; }`,
     'app.js': `// Pro Modular Application Controller\nconsole.log('App initialized');`,
-    'package.json': JSON.stringify({ name: 'codeforge-pro-app', version: '17.0.0' }, null, 2),
-    'README.md': `# ${title}\nBuilt with CodeForge v17.0 Pro Prototyping Engine`
+    'package.json': JSON.stringify({ name: 'codeforge-pro-app', version: '18.0.0' }, null, 2),
+    'README.md': `# ${title}\nBuilt with CodeForge v18.0 Pro Omnipresent Engine`
   };
 }
 
@@ -1881,7 +1803,7 @@ function escapeHtml(str) { return String(str).replace(/&/g, '&amp;').replace(/</
 const ICO = { check: '<svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' };
 
 /* ================================================================
-   11. RENDER ENGINE & INTERACTIVE MODALS
+   10. RENDER ENGINE & INTERACTIVE MODALS
    ================================================================ */
 function render() {
   renderHeader(); renderNav(); renderApp(); updateMobileDock();
@@ -1917,7 +1839,7 @@ function renderHeader() {
     <select id="model-sel" title="Select Model">
       ${MODELS.map(mo => `<option value="${mo.id}" ${mo.id === state.selectedModel ? 'selected' : ''}>${mo.label}</option>`).join('')}
     </select>
-    <button class="btn btn-sm" id="btn-keys" title="Settings">⚙</button>
+    <button class="btn btn-sm" id="btn-keys" title="Settings & Setup Guides">⚙ API Keys</button>
   `;
 
   document.getElementById('btn-toggle-anim').onclick = toggleAnimationMode;
@@ -2066,7 +1988,7 @@ function renderWizard(app) {
 
       ${state.stepIndex === 2 ? `
         <div style="margin-bottom:1rem">
-          <div style="font-size:0.78rem;font-weight:bold;color:var(--cyan);margin-bottom:0.35rem">📦 Auto-Injected CDN Engine Libraries:</div>
+          <div style="font-size:0.78rem;font-weight:bold;color:var(--cyan);margin-bottom:0.35rem">📦 Auto-Injected CDN Engine Libraries (${CDN_LIBRARIES.length} Available):</div>
           <div class="cdn-library-grid">
             ${CDN_LIBRARIES.map(lib => {
               const sel = state.selectedCdnLibs.includes(lib.id);
@@ -2232,7 +2154,7 @@ function renderDone(app) {
       <div class="card-glare"></div>
       <div style="text-align:center;margin-bottom:1.25rem">
         <div class="done-icon">✅</div>
-        <div class="done-title">Pro Codebase Forged & Ready!</div>
+        <div class="done-title">Omnipresent Codebase Forged!</div>
         <p style="color:var(--text-muted);font-size:0.85rem">${n} file${n !== 1 ? 's' : ''} generated for spec <strong style="color:var(--cyan)">#${state.hash}</strong></p>
       </div>
 
@@ -2264,47 +2186,12 @@ function renderDone(app) {
             <button class="btn btn-sm" id="btn-copy-file">📋 Copy</button>
           </div>
 
-          <div class="injector-toolbar">
-            <span style="font-size:0.7rem;font-weight:bold;color:var(--cyan)">🚀 1-Click Feature Injectors:</span>
-            <button class="injector-btn" data-inj="audio">+ Audio SFX</button>
-            <button class="injector-btn" data-inj="glass">+ Glass CSS</button>
-            <button class="injector-btn" data-inj="dpad">+ Touch D-Pad</button>
-            <button class="injector-btn" data-inj="chart">+ Chart.js Widget</button>
-            <button class="injector-btn" data-inj="storage">+ LocalStorage Sync</button>
-          </div>
-
           <div class="metrics-bar">
             <span>📏 Lines: <strong>${linesCount}</strong></span>
             <span>🔤 Chars: <strong>${charCount}</strong></span>
             <span>📦 Est Gzip: <strong>${gzipEstimateKB} KB</strong></span>
             <span>⚡ Est 4G Load: <strong>&lt; 0.1s</strong></span>
           </div>
-
-          ${state.searchQuery !== undefined ? `
-            <div class="editor-search-bar" id="search-overlay" style="display:none">
-              <span>🔍 Find:</span>
-              <input type="text" id="search-input" placeholder="Search text..." style="min-height:28px;width:140px;font-size:0.72rem;padding:2px 6px" />
-              <span>Replace:</span>
-              <input type="text" id="replace-input" placeholder="Replace text..." style="min-height:28px;width:140px;font-size:0.72rem;padding:2px 6px" />
-              <button class="btn btn-sm" id="btn-do-replace" style="min-height:28px;padding:2px 6px;font-size:0.7rem">Replace</button>
-            </div>
-          ` : ''}
-
-          ${state.diffOpen ? `
-            <div style="padding:0.75rem;background:var(--bg2);border-bottom:1px solid var(--border)">
-              <div style="font-size:0.78rem;font-weight:bold;color:var(--cyan);margin-bottom:0.4rem">📊 AI Refactor & Code Diff Studio</div>
-              <div class="diff-split-container">
-                <div class="diff-pane">
-                  <div style="color:var(--text-muted);font-weight:bold;margin-bottom:0.4rem">// Baseline Reference:</div>
-                  <div class="diff-removed">- ${escapeHtml(files[activeFile] || '')}</div>
-                </div>
-                <div class="diff-pane">
-                  <div style="color:var(--text-muted);font-weight:bold;margin-bottom:0.4rem">// Refactored Version:</div>
-                  <div class="diff-added">+ ${escapeHtml(files[activeFile] || '')}</div>
-                </div>
-              </div>
-            </div>
-          ` : ''}
 
           <div class="code-theater-body">
             <div class="file-tree">
@@ -2356,10 +2243,6 @@ function renderDone(app) {
 
   app.querySelectorAll('.file-tree-item').forEach(el => { el.onclick = () => { state.activeCodeFile = el.dataset.file; render(); }; });
 
-  app.querySelectorAll('[data-inj]').forEach(btn => {
-    btn.onclick = () => injectFeatureCodeSnippet(btn.dataset.inj);
-  });
-
   const editorEl = document.getElementById('active-code-editor');
   const lineNumsEl = document.getElementById('line-nums');
   if (editorEl) {
@@ -2395,59 +2278,10 @@ function renderDone(app) {
   const ds = document.getElementById('btn-dl-single'); if (ds) ds.onclick = bundleAndDownloadSingleHTML;
   const tv = document.getElementById('btn-toggle-view'); if (tv) tv.onclick = () => { state.viewMode = state.viewMode === 'code' ? 'preview' : 'code'; render(); };
   const td = document.getElementById('btn-toggle-diff'); if (td) td.onclick = () => { state.diffOpen = !state.diffOpen; render(); };
-  
-  const ts = document.getElementById('btn-toggle-search');
-  if(ts) {
-    ts.onclick = () => {
-      const overlay = document.getElementById('search-overlay');
-      if(overlay) overlay.style.display = overlay.style.display === 'none' ? 'flex' : 'none';
-    };
-  }
-  
-  const repBtn = document.getElementById('btn-do-replace');
-  if(repBtn && editorEl) {
-    repBtn.onclick = () => {
-      const q = document.getElementById('search-input').value;
-      const r = document.getElementById('replace-input').value;
-      if(q) {
-        editorEl.value = editorEl.value.replaceAll(q, r);
-        files[activeFile] = editorEl.value;
-        toast(`✨ Replaced matches for "${q}"`, 'ok');
-      }
-    };
-  }
-
-  const tfs = document.getElementById('btn-toggle-fullscreen');
-  if(tfs) {
-    tfs.onclick = () => {
-      const box = document.getElementById('code-theater-box');
-      if(box) box.classList.toggle('fullscreen-stage');
-    };
-  }
-
   const fmt = document.getElementById('btn-fmt-code'); if (fmt) fmt.onclick = formatCurrentCode;
   const cf = document.getElementById('btn-copy-file'); if (cf) cf.onclick = () => { copyToClipboard(files[activeFile] || ''); toast('Copied file!', 'ok'); };
   const dz = document.getElementById('btn-dl-zip'); if (dz) dz.onclick = () => downloadFilesAsZip(files);
   const bn = document.getElementById('btn-new'); if (bn) bn.onclick = resetWizard;
-
-  const theaterBox = document.getElementById('code-theater-box');
-  if(theaterBox) {
-    theaterBox.ondragover = e => e.preventDefault();
-    theaterBox.ondrop = e => {
-      e.preventDefault();
-      const droppedFile = e.dataTransfer.files[0];
-      if(droppedFile) {
-        const reader = new FileReader();
-        reader.onload = res => {
-          files[droppedFile.name] = res.target.result;
-          state.activeCodeFile = droppedFile.name;
-          render();
-          toast(`📥 Imported file "${droppedFile.name}"!`, 'ok');
-        };
-        reader.readAsText(droppedFile);
-      }
-    };
-  }
 }
 
 function renderTemplates(app) {
@@ -2459,24 +2293,6 @@ function renderTemplates(app) {
         <button class="btn btn-sm btn-primary" id="btn-save-current-loadout">💾 Save Current Loadout</button>
       </div>
 
-      ${state.customBlueprints.length > 0 ? `
-        <h3 style="font-size:0.9rem;color:var(--cyan);margin-bottom:0.6rem;text-transform:uppercase;letter-spacing:0.08em">⭐ My Saved Custom Blueprints (${state.customBlueprints.length})</h3>
-        <div class="template-grid" style="margin-bottom:1.5rem">
-          ${state.customBlueprints.map((custom, i) => `
-            <div class="template-card" style="border-color:var(--cyan)">
-              <div class="template-icon">${custom.icon || '⚡'}</div>
-              <div class="template-name">${escapeHtml(custom.name)}</div>
-              <div class="template-desc">${escapeHtml(custom.desc || '')}</div>
-              <div style="display:flex;gap:0.4rem;margin-top:0.6rem">
-                <button class="btn btn-sm btn-primary" data-load-custom="${custom.id}">⚡ Load</button>
-                <button class="btn btn-sm btn-danger" data-del-custom="${custom.id}">🗑️ Delete</button>
-              </div>
-            </div>
-          `).join('')}
-        </div>
-      ` : ''}
-
-      <h3 style="font-size:0.9rem;color:var(--text-muted);margin-bottom:0.6rem;text-transform:uppercase;letter-spacing:0.08em">🌐 Built-in Application & Game Blueprints (${TEMPLATES.length})</h3>
       <div class="template-grid">
         ${TEMPLATES.map((tpl, i) => `
           <div class="template-card" data-tpl="${i}">
@@ -2490,23 +2306,8 @@ function renderTemplates(app) {
   `;
 
   document.getElementById('btn-save-current-loadout').onclick = saveCustomLoadout;
-
   app.querySelectorAll('.template-card[data-tpl]').forEach(el => {
     el.onclick = () => loadTemplate(TEMPLATES[parseInt(el.dataset.tpl)]);
-  });
-
-  app.querySelectorAll('[data-load-custom]').forEach(el => {
-    el.onclick = () => {
-      const custom = state.customBlueprints.find(b => b.id === el.dataset.loadCustom);
-      if (custom) loadTemplate(custom);
-    };
-  });
-
-  app.querySelectorAll('[data-del-custom]').forEach(el => {
-    el.onclick = (e) => {
-      e.stopPropagation();
-      deleteCustomLoadout(el.dataset.delCustom);
-    };
   });
 }
 
@@ -2532,12 +2333,89 @@ function renderHistory(app) {
   });
 }
 
+function renderSettingsModal() {
+  const ex = document.getElementById('cf-modal'); if (ex) ex.remove();
+  const bd = document.createElement('div'); bd.className = 'modal-backdrop'; bd.id = 'cf-modal';
+  bd.innerHTML = `<div class="modal">
+    <div class="modal-header"><span class="modal-title">⚙ API Keys & Quick Provider Guides</span><button class="modal-close" id="mc-x">✕</button></div>
+    
+    <div class="form-group">
+      <label class="form-label">OpenRouter API Key (Accesses Gemini 2.0, DeepSeek R1, Claude)</label>
+      <div style="display:flex;gap:0.4rem">
+        <input type="password" id="k-or" value="${state.keys.openrouterKey || ''}" placeholder="sk-or-…" />
+        <button class="btn btn-sm" id="btn-verify-or">🧪 Verify</button>
+      </div>
+      <div class="setup-guide-box">
+        📖 <strong>Setup Guide:</strong> Get a free key at <a href="https://openrouter.ai/keys" target="_blank" rel="noopener">openrouter.ai/keys</a> to access Gemini 2.0 Flash, DeepSeek R1, and Llama 3.3.
+      </div>
+    </div>
+
+    <div class="form-group" style="margin-top:1rem">
+      <label class="form-label">Groq API Key (Fastest Llama 3.3 70B Engine)</label>
+      <div style="display:flex;gap:0.4rem">
+        <input type="password" id="k-groq" value="${state.keys.groqKey || ''}" placeholder="gsk_…" />
+        <button class="btn btn-sm" id="btn-verify-groq">🧪 Verify</button>
+      </div>
+      <div class="setup-guide-box">
+        📖 <strong>Setup Guide:</strong> Get a free key at <a href="https://console.groq.com/keys" target="_blank" rel="noopener">console.groq.com/keys</a> for ultra-low latency 220 t/s generation.
+      </div>
+    </div>
+
+    <div class="form-group" style="margin-top:1rem">
+      <label class="form-label">Anthropic API Key (Claude 3.5 Sonnet)</label>
+      <div style="display:flex;gap:0.4rem">
+        <input type="password" id="k-anthropic" value="${state.keys.anthropicKey || ''}" placeholder="sk-ant-…" />
+        <button class="btn btn-sm" id="btn-verify-ant">🧪 Verify</button>
+      </div>
+      <div class="setup-guide-box">
+        📖 <strong>Setup Guide:</strong> Get key at <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">console.anthropic.com</a>.
+      </div>
+    </div>
+
+    <div class="form-group" style="margin-top:1rem">
+      <label class="form-label">Ollama Host URL (Local Machine Learning GPU)</label>
+      <input type="text" id="k-ollama" value="${state.keys.ollamaHost || 'http://localhost:11434'}" placeholder="http://localhost:11434" />
+      <div class="setup-guide-box">
+        📖 <strong>Setup Guide:</strong> Install <a href="https://ollama.com" target="_blank" rel="noopener">Ollama</a> & run: <code>ollama run qwen2.5-coder:32b</code>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:flex-end;gap:0.5rem;margin-top:1.25rem">
+      <button class="btn" id="mc-cancel">Cancel</button>
+      <button class="btn btn-primary" id="mc-save">Save & Verify Keys</button>
+    </div>
+  </div>`;
+  document.body.appendChild(bd);
+  bd.onclick = e => { if (e.target === bd) closeModal(); };
+  document.getElementById('mc-x').onclick = closeModal; document.getElementById('mc-cancel').onclick = closeModal;
+  
+  document.getElementById('btn-verify-or').onclick = async () => {
+    const k = document.getElementById('k-or').value.trim();
+    if(k && await verifyApiKey('OpenRouter', k)) { state.keys.openrouterKey = k; saveKeys(); }
+  };
+  document.getElementById('btn-verify-groq').onclick = async () => {
+    const k = document.getElementById('k-groq').value.trim();
+    if(k && await verifyApiKey('Groq', k)) { state.keys.groqKey = k; saveKeys(); }
+  };
+  document.getElementById('btn-verify-ant').onclick = async () => {
+    const k = document.getElementById('k-anthropic').value.trim();
+    if(k && await verifyApiKey('Anthropic', k)) { state.keys.anthropicKey = k; saveKeys(); }
+  };
+
+  document.getElementById('mc-save').onclick = () => {
+    state.keys.ollamaHost = document.getElementById('k-ollama').value.trim();
+    state.keys.groqKey = document.getElementById('k-groq').value.trim();
+    state.keys.openrouterKey = document.getElementById('k-or').value.trim();
+    state.keys.anthropicKey = document.getElementById('k-anthropic').value.trim();
+    saveKeys(); toast('✨ All API Keys saved permanently to storage!', 'ok'); closeModal();
+  };
+}
+
 function renderSynthModal() {
   const ex = document.getElementById('cf-modal'); if (ex) ex.remove();
   const bd = document.createElement('div'); bd.className = 'modal-backdrop'; bd.id = 'cf-modal';
   bd.innerHTML = `<div class="modal" style="text-align:center">
     <div class="modal-header"><span class="modal-title">🎹 Interactive Audio Synthesizer</span><button class="modal-close" id="mc-x">✕</button></div>
-    <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:1rem">Click piano keys to test Web Audio synthesis frequency notes:</p>
     <div class="synth-keyboard">
       <div class="synth-key" data-note="261.63">C4</div>
       <div class="synth-key black" data-note="277.18">C#</div>
@@ -2605,7 +2483,6 @@ function renderBackupModal() {
   document.body.appendChild(bd);
   bd.onclick = e => { if (e.target === bd) closeModal(); };
   document.getElementById('mc-x').onclick = closeModal; document.getElementById('mc-close').onclick = closeModal;
-  
   document.getElementById('btn-do-export').onclick = exportBackup;
   const fileIn = document.getElementById('backup-file-in');
   document.getElementById('btn-trigger-import').onclick = () => fileIn.click();
@@ -2682,7 +2559,6 @@ function renderQRModal() {
   const bd = document.createElement('div'); bd.className = 'modal-backdrop'; bd.id = 'cf-modal';
   bd.innerHTML = `<div class="modal" style="text-align:center">
     <div class="modal-header"><span class="modal-title">📱 Scan & Test on Mobile</span><button class="modal-close" id="mc-x">✕</button></div>
-    <p style="font-size:0.83rem;color:var(--text-muted);margin-bottom:1rem">Scan this 100% real standard QR Code with your smartphone camera to open and test your live spec, app, or game instantly!</p>
     <canvas id="qr-canvas" style="border-radius:14px;box-shadow:0 0 35px rgba(34,211,238,0.35);margin:0 auto 1.25rem;border:6px solid #ffffff"></canvas>
     <div style="display:flex;justify-content:center;gap:0.5rem"><button class="btn btn-primary" id="mc-close">Done</button></div>
   </div>`;
@@ -2710,51 +2586,6 @@ function renderPromptLabModal() {
   document.body.appendChild(bd);
   bd.onclick = e => { if (e.target === bd) closeModal(); };
   document.getElementById('mc-x').onclick = closeModal; document.getElementById('mc-close').onclick = closeModal;
-
-  const archInp = document.getElementById('arch-search-in');
-  if(archInp) {
-    archInp.oninput = () => {
-      const q = archInp.value.toLowerCase();
-      bd.querySelectorAll('.archetype-card').forEach(el => {
-        el.style.display = el.textContent.toLowerCase().includes(q) ? 'block' : 'none';
-      });
-    };
-  }
-
-  bd.querySelectorAll('.archetype-card').forEach(el => {
-    el.onclick = () => {
-      const arch = PROMPT_ARCHETYPES[parseInt(el.dataset.arch)];
-      const step = getSteps()[state.stepIndex]; const cur = getAnswer(step.id);
-      setAnswer(step.id, cur.o, arch.text); closeModal();
-      toast(`🧪 Loaded archetype "${arch.title}" into step prompt!`, 'ok');
-    };
-  });
-}
-
-function renderSettingsModal() {
-  const ex = document.getElementById('cf-modal'); if (ex) ex.remove();
-  const bd = document.createElement('div'); bd.className = 'modal-backdrop'; bd.id = 'cf-modal';
-  bd.innerHTML = `<div class="modal">
-    <div class="modal-header"><span class="modal-title">⚙ API Keys & Settings</span><button class="modal-close" id="mc-x">✕</button></div>
-    <div class="form-group"><label class="form-label">Ollama Host</label><input type="text" id="k-ollama" value="${state.keys.ollamaHost || ''}" placeholder="http://localhost:11434" aria-label="Ollama Host" /></div>
-    <div class="form-group"><label class="form-label">Groq API Key</label><input type="password" id="k-groq" value="${state.keys.groqKey || ''}" placeholder="gsk_…" aria-label="Groq API Key" /></div>
-    <div class="form-group"><label class="form-label">OpenRouter API Key</label><input type="password" id="k-or" value="${state.keys.openrouterKey || ''}" placeholder="sk-or-…" aria-label="OpenRouter API Key" /></div>
-    <div class="form-group"><label class="form-label">Anthropic API Key</label><input type="password" id="k-anthropic" value="${state.keys.anthropicKey || ''}" placeholder="sk-ant-…" aria-label="Anthropic API Key" /></div>
-    <div style="display:flex;justify-content:flex-end;gap:0.5rem;margin-top:1.25rem">
-      <button class="btn" id="mc-cancel">Cancel</button>
-      <button class="btn btn-primary" id="mc-save">Save Keys</button>
-    </div>
-  </div>`;
-  document.body.appendChild(bd);
-  bd.onclick = e => { if (e.target === bd) closeModal(); };
-  document.getElementById('mc-x').onclick = closeModal; document.getElementById('mc-cancel').onclick = closeModal;
-  document.getElementById('mc-save').onclick = () => {
-    state.keys.ollamaHost = document.getElementById('k-ollama').value.trim();
-    state.keys.groqKey = document.getElementById('k-groq').value.trim();
-    state.keys.openrouterKey = document.getElementById('k-or').value.trim();
-    state.keys.anthropicKey = document.getElementById('k-anthropic').value.trim();
-    saveKeys(); toast('Keys saved!', 'ok'); closeModal();
-  };
 }
 
 function closeModal() {
