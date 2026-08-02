@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CodeForge 2040 v14.0 — Comprehensive App & Game Engine Suite</title>
-  <meta name="description" content="The ultimate AI codebase generator, architecture suite, and live IDE with built-in CDN Engine Injectors for Three.js, Phaser, PixiJS, Matter.js, Chart.js, Tailwind, and Tone.js." />
+  <title>CodeForge 2040 v15.0 — Supreme AI App, Game Engine & Level Designer Studio</title>
+  <meta name="description" content="The ultimate AI codebase generator, architecture suite, visual game level designer, and live IDE. Built-in drag-and-drop game world designer, AI Model Debate engine, 8-bit SFX generator, and CDN engine injectors." />
   <meta name="color-scheme" content="dark light" />
   <meta name="theme-color" content="#03030d" media="(prefers-color-scheme: dark)" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     /* ================================================================
-       RESET & ROOT DESIGN TOKENS — Comprehensive App & Game Suite v14.0
+       RESET & ROOT DESIGN TOKENS — CodeForge v15.0 Supreme Edition
        ================================================================ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
@@ -255,14 +255,15 @@
     input:focus, textarea:focus { border-color: var(--cyan); box-shadow: 0 0 20px rgba(34,211,238,0.3); background: rgba(255,255,255,0.06); }
     textarea { resize: vertical; min-height: 95px; font-size: 0.86rem; line-height: 1.6; }
 
-    .chip-cloud { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.65rem; }
-    .chip-btn {
-      min-height: 32px; padding: 0.28rem 0.7rem; border-radius: 99px; font-size: 0.73rem; font-weight: 600;
-      background: rgba(99,102,241,0.14); border: 1px solid rgba(99,102,241,0.35); color: var(--indigo); cursor: pointer; transition: all 0.15s; touch-action: manipulation;
-    }
-    .chip-btn:hover { background: rgba(99,102,241,0.28); border-color: var(--indigo); box-shadow: 0 0 16px rgba(99,102,241,0.3); }
+    /* VISUAL GAME LEVEL DESIGNER GRID */
+    .level-designer-stage { margin-top: 1rem; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg3); padding: 1rem; box-shadow: inset 0 0 30px rgba(0,0,0,0.5); }
+    .level-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 4px; margin-top: 0.6rem; background: #000; padding: 6px; border-radius: 8px; }
+    .level-cell { aspect-ratio: 1; border: 1px dashed rgba(255,255,255,0.1); border-radius: 4px; cursor: pointer; display: grid; place-items: center; font-size: 0.9rem; -webkit-user-select: none; }
+    .level-cell.wall { background: #475569; }
+    .level-cell.player { background: rgba(34,211,238,0.3); border-color: var(--cyan); }
+    .level-cell.enemy { background: rgba(248,113,113,0.3); border-color: var(--red); }
+    .level-cell.coin { background: rgba(251,191,36,0.3); border-color: var(--amber); }
 
-    /* CDN ENGINE LIBRARY SELECTOR GRID */
     .cdn-library-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.6rem; margin-top: 0.75rem; }
     .cdn-item { padding: 0.6rem 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface); cursor: pointer; font-size: 0.78rem; font-weight: 600; display: flex; align-items: center; justify-content: space-between; transition: all 0.18s; }
     .cdn-item.selected { border-color: var(--cyan); background: rgba(34,211,238,0.14); color: var(--cyan); box-shadow: 0 0 16px rgba(34,211,238,0.2); }
@@ -448,11 +449,11 @@
 
 <div id="root">
   <header>
-    <div class="logo" id="main-logo" title="CodeForge 2040 v14.0">
+    <div class="logo" id="main-logo" title="CodeForge 2040 v15.0 Supreme Edition">
       <div class="logo-icon">&#x26A1;</div>
       <div>
-        <div class="logo-text">CodeForge <span class="logo-version">v14.0</span></div>
-        <div class="logo-sub">Comprehensive App & CDN Game Engine Suite</div>
+        <div class="logo-text">CodeForge <span class="logo-version">v15.0</span></div>
+        <div class="logo-sub">Supreme App & Game Engine Level Designer</div>
       </div>
     </div>
     <div class="header-controls" id="header-controls"></div>
@@ -475,14 +476,14 @@
 
 /* CDN LIBRARIES REGISTRY FOR HIGH-PERFORMANCE INJECTION */
 const CDN_LIBRARIES = [
-  { id: 'threejs', name: 'Three.js (3D Engine)', url: 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><' + '/script>' },
-  { id: 'phaser',  name: 'Phaser 3 (2D Game Engine)', url: 'https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js', tag: '<script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"><' + '/script>' },
-  { id: 'pixijs',  name: 'PixiJS (2D WebGL Engine)', url: 'https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.5.8/pixi.min.js', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.5.8/pixi.min.js"><' + '/script>' },
-  { id: 'matterjs',name: 'Matter.js (2D Physics Engine)', url: 'https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"><' + '/script>' },
-  { id: 'chartjs', name: 'Chart.js (Analytics Charts)', url: 'https://cdn.jsdelivr.net/npm/chart.js', tag: '<script src="https://cdn.jsdelivr.net/npm/chart.js"><' + '/script>' },
-  { id: 'tailwind',name: 'Tailwind CSS (CDN Utility)', url: 'https://cdn.tailwindcss.com', tag: '<script src="https://cdn.tailwindcss.com"><' + '/script>' },
-  { id: 'howler',  name: 'Howler.js (Audio Engine)', url: 'https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"><' + '/script>' },
-  { id: 'tonejs',  name: 'Tone.js (Interactive Music Synth)', url: 'https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"><' + '/script>' },
+  { id: 'threejs', name: 'Three.js (3D Engine)', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><' + '/script>' },
+  { id: 'phaser',  name: 'Phaser 3 (2D Game Engine)', tag: '<script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"><' + '/script>' },
+  { id: 'pixijs',  name: 'PixiJS (2D WebGL Engine)', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.5.8/pixi.min.js"><' + '/script>' },
+  { id: 'matterjs',name: 'Matter.js (2D Physics Engine)', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"><' + '/script>' },
+  { id: 'chartjs', name: 'Chart.js (Analytics Charts)', tag: '<script src="https://cdn.jsdelivr.net/npm/chart.js"><' + '/script>' },
+  { id: 'tailwind',name: 'Tailwind CSS (CDN Utility)', tag: '<script src="https://cdn.tailwindcss.com"><' + '/script>' },
+  { id: 'howler',  name: 'Howler.js (Audio Engine)', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"><' + '/script>' },
+  { id: 'tonejs',  name: 'Tone.js (Interactive Music Synth)', tag: '<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"><' + '/script>' },
 ];
 
 /* ================================================================
@@ -677,7 +678,7 @@ function animateElectricity(){
 animateElectricity();
 
 /* ================================================================
-   4. DEEP SPACE STARFIELD, SHOOTING STARS & CONSTELLATION ENGINE
+   4. DEEP SPACE STARFIELD & CONSTELLATION ENGINE
    ================================================================ */
 (function initSpaceBackground() {
   const canvas = document.getElementById('particle-canvas');
@@ -715,7 +716,6 @@ animateElectricity();
 
     ctx.clearRect(0, 0, w, h);
 
-    // Draw Constellation Connection Lines
     for (let i = 0; i < stars.length; i++) {
       for (let j = i + 1; j < stars.length; j++) {
         const dx = stars[i].x - stars[j].x, dy = stars[i].y - stars[j].y;
@@ -728,7 +728,6 @@ animateElectricity();
       }
     }
 
-    // Draw Stars
     for (let i = 0; i < stars.length; i++) {
       const s = stars[i];
       s.x += s.vx; s.y += s.vy;
@@ -739,7 +738,6 @@ animateElectricity();
       ctx.shadowColor = s.color; ctx.shadowBlur = 10; ctx.fill(); ctx.shadowBlur = 0; ctx.globalAlpha = 1;
     }
 
-    // Spawn & Draw Shooting Stars
     spawnShootingStar();
     shootingStars = shootingStars.filter(st => {
       const endX = st.x + Math.cos(st.angle) * st.len;
@@ -1079,8 +1077,9 @@ const state = {
   settingsOpen: false, featuresOpen: false, shortcutsOpen: false, promptLabOpen: false, qrModalOpen: false, cmdPaletteOpen: false, blueprintOpen: false, diffOpen: false, themeEditorOpen: false, benchmarksOpen: false, backupOpen: false, synthOpen: false,
   keys: loadKeys(), features: loadFeatures(), activeTab: 'forge',
   history: loadHistory(), snapshots: [], activeCodeFile: null, buildStartTime: 0,
-  voiceListening: false, shareUrl: '', specVersion: 14.0, viewMode: 'code', deviceViewport: 'iphone', viewportOrientation: 'portrait',
+  voiceListening: false, shareUrl: '', specVersion: 15.0, viewMode: 'code', deviceViewport: 'iphone', viewportOrientation: 'portrait',
   sandboxLogs: [], lintResults: null, stepDirection: 'next', customBlueprints: loadBlueprints(), selectedCdnLibs: ['threejs', 'tailwind'],
+  levelMap: Array.from({ length: 48 }, () => 'empty'), selectedTool: 'wall',
   searchQuery: '', searchReplaceText: '', selectedPromptProfile: 'cyberpunk', hotReloadTimer: null,
 };
 
@@ -1317,12 +1316,13 @@ function enhanceCustomPrompt(stepId) {
   toast('✨ AI Prompt Studio expanding vision specs...', 'info');
   playSound('click');
   
+  const levelDataStr = JSON.stringify(state.levelMap);
   const profiles = {
     cyberpunk: 'Ensure mobile ergonomics, 60fps glassmorphic touch visual tokens, smooth canvas particle wave charts, ambient neon glowing HUD elements, and high-contrast dark themes.',
     saas: 'Production-grade enterprise SaaS layout, user auth flow, team workspace navigation, responsive chart widgets, clean REST API models, and high accessibility compliance.',
     minimal: 'Ultra-lightweight zero-dependency vanilla JS layout, maximum load performance, minimal CSS footprint, and clean semantic markup.',
     mobile: 'Mobile-first touch-friendly design, 48px minimum touch targets, gesture swipe navigation, bottom app dock, and responsive viewport optimization.',
-    game: '60 FPS HTML5 game engine using Three.js/Phaser/Canvas 2D, Web Audio sound synthesizer, particle collision effects, score tracking, and smooth keyboard/touch controls.',
+    game: `60 FPS HTML5 game engine using Three.js/Phaser/Canvas 2D with custom visual level layout map: ${levelDataStr}, Web Audio sound synthesizer, particle collision effects, score tracking, and smooth keyboard/touch controls.`,
   };
 
   const selectedProf = profiles[state.selectedPromptProfile] || profiles.cyberpunk;
@@ -1447,6 +1447,7 @@ async function build() {
   const spec = {
     version: state.specVersion, hash: state.hash, generatedAt: new Date().toISOString(),
     selectedCdnLibraries: state.selectedCdnLibs,
+    visualLevelLayout: state.levelMap,
     steps: steps.map(s => { const a = getAnswer(s.id); return { question: s.q, selected: a.o.map(i => s.opts[i]?.label || ''), custom: a.t || null }; }),
   };
 
@@ -1462,7 +1463,7 @@ async function build() {
     ? `You are an elite principal web software engineer and HTML5 game architect. Given a specification for an application or game, output a single JSON object with EXACTLY ONE key: "index.html". The value MUST be a complete, self-contained, 100% playable or fully functional mobile-responsive HTML document.
 Include the following CDN Script Tags in the <head>:
 ${cdnTags}
-IF THE SPECIFICATION IS A GAME: Implement a complete 60FPS game loop using requestAnimationFrame(), virtual touch D-pad & keyboard controls (WASD/Arrows), Web Audio API sound synthesizers, collision detection, score state, game over overlays, and high-DPI canvas scaling. Output ONLY valid JSON.`
+IF THE SPECIFICATION IS A GAME: Implement a complete 60FPS game loop using requestAnimationFrame(), virtual touch D-pad & keyboard controls (WASD/Arrows), Web Audio API sound synthesizers, collision detection, score state, game over overlays, and high-DPI canvas scaling. Incorporate visual layout array: ${JSON.stringify(state.levelMap)}. Output ONLY valid JSON.`
     : `You are an expert principal software engineer and game developer. Given a specification for an app or game, output a single valid JSON object where keys are relative file paths and values are complete file contents. Include index.html, styles.css, app.js (or game.js), package.json, and README.md. Include requested CDN tags. Output ONLY valid JSON.`;
 
   const user = 'Application/Game Specification:\n' + JSON.stringify(spec, null, 2);
@@ -1799,6 +1800,8 @@ function renderWizard(app) {
   const progress = ((state.stepIndex + (isAnswered(step.id) ? 1 : 0)) / steps.length) * 100;
   const slideClass = state.stepDirection === 'next' ? 'slide-next' : 'slide-prev';
 
+  const toolEmojis = { wall: '🧱', player: '🚀', enemy: '👾', coin: '⭐', empty: ' ' };
+
   app.innerHTML = `
     <div class="card ${slideClass}">
       <div class="card-glare"></div>
@@ -1827,6 +1830,26 @@ function renderWizard(app) {
           </div>`;
         }).join('')}
       </div>
+
+      ${state.stepIndex === 1 ? `
+        <div class="level-designer-stage">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.4rem">
+            <span style="font-size:0.8rem;font-weight:bold;color:var(--cyan)">🎮 Interactive Game World Level Designer:</span>
+            <div style="display:flex;gap:0.3rem">
+              <button class="btn btn-sm ${state.selectedTool === 'wall' ? 'btn-primary' : ''}" data-tool="wall">🧱 Wall</button>
+              <button class="btn btn-sm ${state.selectedTool === 'player' ? 'btn-primary' : ''}" data-tool="player">🚀 Player</button>
+              <button class="btn btn-sm ${state.selectedTool === 'enemy' ? 'btn-primary' : ''}" data-tool="enemy">👾 Enemy</button>
+              <button class="btn btn-sm ${state.selectedTool === 'coin' ? 'btn-primary' : ''}" data-tool="coin">⭐ Coin</button>
+              <button class="btn btn-sm ${state.selectedTool === 'empty' ? 'btn-primary' : ''}" data-tool="empty">🗑️ Eraser</button>
+            </div>
+          </div>
+          <div class="level-grid">
+            ${state.levelMap.map((type, idx) => `
+              <div class="level-cell ${type}" data-cell="${idx}">${toolEmojis[type]}</div>
+            `).join('')}
+          </div>
+        </div>
+      ` : ''}
 
       ${state.stepIndex === 2 ? `
         <div style="margin-bottom:1rem">
@@ -1901,6 +1924,19 @@ function renderWizard(app) {
       let o = cur.o.slice(); o = o.includes(i) ? o.filter(x => x !== i) : [...o, i];
       setAnswer(step.id, o, cur.t); playSound('click');
       updateNextIllumination();
+    };
+  });
+
+  app.querySelectorAll('[data-tool]').forEach(b => {
+    b.onclick = () => { state.selectedTool = b.dataset.tool; render(); };
+  });
+
+  app.querySelectorAll('[data-cell]').forEach(c => {
+    c.onclick = () => {
+      const idx = parseInt(c.dataset.cell);
+      state.levelMap[idx] = state.selectedTool;
+      playSound('click');
+      render();
     };
   });
 
@@ -1983,7 +2019,7 @@ function renderDone(app) {
       <div class="card-glare"></div>
       <div style="text-align:center;margin-bottom:1.25rem">
         <div class="done-icon">✅</div>
-        <div class="done-title">Comprehensive App / Game Forged!</div>
+        <div class="done-title">Supreme App / Game Forged!</div>
         <p style="color:var(--text-muted);font-size:0.85rem">${n} file${n !== 1 ? 's' : ''} generated for spec <strong style="color:var(--cyan)">#${state.hash}</strong></p>
       </div>
 
