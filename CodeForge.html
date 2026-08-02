@@ -502,7 +502,7 @@
   <header>
     <div class="logo" id="main-logo" title="CodeForge 2040 v18.0 Quantum Omnipresent Edition" role="banner" tabindex="0">
       <div class="logo-icon-container" style="position:relative; display:flex; align-items:center; margin-right:6px;">
-        <img src="https://raw.githubusercontent.com/qamotech/codeforge/main/ninja-logo.png" alt="CodeForge Ninja Logo" style="width:46px; height:46px; border-radius:12px; box-shadow: 0 0 20px rgba(34,211,238,0.5), inset 0 0 8px rgba(255,255,255,0.4); border: 2px solid var(--cyan); transition: transform 0.3s var(--ease-spring); object-fit: cover;" />
+        <img src="https://raw.githubusercontent.com/qamotech/codeforge/main/ninja-logo.png" alt="CodeForge Ninja Logo" loading="lazy" decoding="async" style="width:46px; height:46px; border-radius:12px; box-shadow: 0 0 20px rgba(34,211,238,0.5), inset 0 0 8px rgba(255,255,255,0.4); border: 2px solid var(--cyan); transition: transform 0.3s var(--ease-spring); object-fit: cover;" />
         <div class="logo-icon" style="width:24px; height:24px; position:absolute; bottom:-6px; right:-6px; font-size:14px; border-radius:50%; box-shadow:0 0 10px var(--violet); display:grid; place-items:center; background:var(--grad-1);">&#x26A1;</div>
       </div>
       <div>
@@ -1531,12 +1531,19 @@ async function build() {
   log('🎯 Output Target: ' + (isGameTarget ? '🕹️ High-Performance 60FPS Game Engine' : '🌐 Production-Grade Pro Application Software'));
 
   const system = isSingleFileChoice
-    ? `You are an elite principal web software engineer and HTML5 game architect. Output a single JSON object with key "index.html". Value MUST be a complete, self-contained, 100% playable or fully functional mobile-responsive HTML document with zero placeholders.
-Include CDN Tags in <head>:
+    ? `You are an elite principal software architect, modern UX UI engineer, and HTML5 application designer. Output a single valid JSON object with key "index.html".
+MANDATORY ARCHITECTURE & QUALITY DIRECTIVES:
+1. EXPANSIVE & COMPLETE FRAMEWORK: Do NOT generate simple toys, MVPs, or truncated examples. Output a massive, feature-complete, highly immersive, production-grade application with deep functionality, comprehensive dashboards/views, rich mock datasets, state management, audio/visual sound FX feedback (Web Audio API), and realistic user workflows.
+2. ZERO PLACEHOLDERS: NEVER use TODOs, stubs, comments like "// add logic here", or abbreviated code. Every button, tab, dialog, form, chart, and interactive feature must be fully wired up and functioning.
+3. VISUAL & PERFORMANCE EXCELLENCE: Use responsive CSS grid/flex layouts with rem/vw/fr units, harmonious color themes, glassmorphism, smooth CSS keyframe micro-animations, accessible high-contrast colors, and comprehensive hover/focus/active interactive states.
+4. OPTIMIZED PERFORMANCE: Batch DOM operations, debounce/throttle window resize and scroll events, use memoization for heavy filtering/sorting, and ensure any embedded images or canvases include loading="lazy" decoding="async".
+5. STRICT OUTPUT: Return ONLY a valid JSON object mapping {"index.html": "<complete_html_document>"}. Save all tokens for deep code complexity and feature volume. NO conversational explanations.
+Include requested CDN tags in <head>:
 ${cdnTags}`
-    : `You are an expert principal software engineer and game developer. Output a valid JSON object mapping relative file paths to complete file contents. Include index.html, styles.css, app.js, package.json, and README.md. Include requested CDN tags. Output ONLY valid JSON.`;
+    : `You are an elite principal software architect and game engineer. Output a valid JSON object mapping relative file paths to complete file contents. Include index.html, styles.css, app.js, package.json, and README.md.
+MANDATORY QUALITY RULES: Generate an expansive, production-grade multi-file system with comprehensive features, robust error handling, accessible responsive styling (rem/vw/fr), full keyboard interactions, zero placeholders or TODOs, and optimized DOM rendering. Output ONLY valid JSON. Include requested CDN tags.`;
 
-  const user = 'Application/Game Specification:\n' + JSON.stringify(spec, null, 2);
+  const user = 'EXPLICIT DIRECTIVE: Build an expansive, deeply featured, polished web application/game framework with complete functioning logic and zero shortcuts based on this full architectural specification:\n' + JSON.stringify(spec, null, 2);
   await attemptBuild(m, system, user, spec, isSingleFileChoice, isGameTarget);
 }
 
@@ -1849,19 +1856,19 @@ async function callAdapter(m, system, user) {
   }
   if (m.adapter === 'groq') {
     const key = state.keys.groqKey; if (!key) throw new Error('Groq key missing.');
-    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', { method: 'POST', headers: { Authorization: 'Bearer ' + key, 'Content-Type': 'application/json' }, body: JSON.stringify({ model: m.model, messages: [{ role: 'system', content: system }, { role: 'user', content: user }] }) });
+    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', { method: 'POST', headers: { Authorization: 'Bearer ' + key, 'Content-Type': 'application/json' }, body: JSON.stringify({ model: m.model, max_tokens: 8192, messages: [{ role: 'system', content: system }, { role: 'user', content: user }] }) });
     if (!res.ok) { if (res.status === 429 || res.status === 402) throw new Error('429 Quota Exhausted'); throw new Error('Groq status ' + res.status); }
     return (await res.json()).choices[0].message.content;
   }
   if (m.adapter === 'openrouter') {
     const key = state.keys.openrouterKey; if (!key) throw new Error('OpenRouter key missing.');
-    const res = await fetch('https://openrouter.ai/api/v1/chat/completions', { method: 'POST', headers: { Authorization: 'Bearer ' + key, 'Content-Type': 'application/json' }, body: JSON.stringify({ model: m.model, messages: [{ role: 'system', content: system }, { role: 'user', content: user }] }) });
+    const res = await fetch('https://openrouter.ai/api/v1/chat/completions', { method: 'POST', headers: { Authorization: 'Bearer ' + key, 'Content-Type': 'application/json' }, body: JSON.stringify({ model: m.model, max_tokens: 8192, messages: [{ role: 'system', content: system }, { role: 'user', content: user }] }) });
     if (!res.ok) { if (res.status === 429 || res.status === 402) throw new Error('429 Quota Exhausted'); throw new Error('OpenRouter status ' + res.status); }
     return (await res.json()).choices[0].message.content;
   }
   if (m.adapter === 'anthropic') {
     const key = state.keys.anthropicKey; if (!key) throw new Error('Anthropic key missing.');
-    const res = await fetch('https://api.anthropic.com/v1/messages', { method: 'POST', headers: { 'x-api-key': key, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true', 'Content-Type': 'application/json' }, body: JSON.stringify({ model: m.model, max_tokens: 4000, system, messages: [{ role: 'user', content: user }] }) });
+    const res = await fetch('https://api.anthropic.com/v1/messages', { method: 'POST', headers: { 'x-api-key': key, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true', 'Content-Type': 'application/json' }, body: JSON.stringify({ model: m.model, max_tokens: 8192, system, messages: [{ role: 'user', content: user }] }) });
     if (!res.ok) {
       if (res.status === 429 || res.status === 402) throw new Error('429 Quota Exhausted');
       const errBody = await res.json().catch(() => ({}));
@@ -1872,7 +1879,7 @@ async function callAdapter(m, system, user) {
   if (m.adapter === 'openai') {
     const endpoint = state.keys.openaiEndpoint || 'https://api.openai.com/v1/chat/completions';
     const key = state.keys.openaiKey; if(!key) throw new Error('Custom OpenAI key missing.');
-    const res = await fetch(endpoint, { method: 'POST', headers: { Authorization: 'Bearer ' + key, 'Content-Type': 'application/json' }, body: JSON.stringify({ model: m.model, messages: [{ role: 'system', content: system }, { role: 'user', content: user }] }) });
+    const res = await fetch(endpoint, { method: 'POST', headers: { Authorization: 'Bearer ' + key, 'Content-Type': 'application/json' }, body: JSON.stringify({ model: m.model, max_tokens: 8192, messages: [{ role: 'system', content: system }, { role: 'user', content: user }] }) });
     if (!res.ok) { if (res.status === 429 || res.status === 402) throw new Error('429 Quota Exhausted'); throw new Error('Custom OpenAI status ' + res.status); }
     return (await res.json()).choices[0].message.content;
   }
