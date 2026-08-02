@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CodeForge 2040 v11.0 — Deep Space Nebula Quantum AI Suite</title>
-  <meta name="description" content="The ultimate AI codebase generator, architecture suite, and live IDE. Featuring cosmic deep space particle background, shooting stars, constellation links, neon glass drop shadows, custom loadout saving, and real scannable QR matrix." />
+  <title>CodeForge 2040 v11.1 — Deep Space Nebula & Subtle Glare</title>
+  <meta name="description" content="The ultimate AI codebase generator, architecture suite, and live IDE. Featuring cosmic deep space particle background, subtle glare reflection overlay, steady main card frame, custom loadout saving, and real scannable QR matrix." />
   <meta name="color-scheme" content="dark light" />
   <meta name="theme-color" content="#03030d" media="(prefers-color-scheme: dark)" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     /* ================================================================
-       RESET & ROOT DESIGN TOKENS — Deep Space Nebula & Ergonomics v11.0
+       RESET & ROOT DESIGN TOKENS — Deep Space Nebula & Ergonomics v11.1
        ================================================================ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
@@ -191,15 +191,23 @@
     .nav-tab:hover { color: var(--text); background: var(--surface-h); }
     .nav-tab.active { color: #fff; background: var(--grad-1); box-shadow: 0 0 30px rgba(99,102,241,0.45); }
 
-    /* CARDS — RICH COSMIC GLASS & NEON SHADOWS */
+    /* CARDS — RICH COSMIC GLASS & SUBTLE SPECULAR CARD GLARE */
     .card {
       width: 100%; max-width: 980px; background: var(--surface); border: 1px solid var(--border);
       border-radius: var(--radius-xl); -webkit-backdrop-filter: blur(36px); backdrop-filter: blur(36px);
-      padding: 1.85rem; box-shadow: 0 20px 80px rgba(0,0,0,0.7), 0 0 50px rgba(99,102,241,0.15); transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
-      position: relative; overflow: hidden;
+      padding: 1.85rem; box-shadow: 0 20px 80px rgba(0,0,0,0.7), 0 0 50px rgba(99,102,241,0.15);
+      transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform 0.25s var(--ease);
+      position: relative; overflow: hidden; transform-style: preserve-3d;
     }
     .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--grad-border); opacity: 0.7; }
-    .card-glare { display: none !important; }
+
+    /* RESTORED SUBTLE LIGHT GLARE REFLCTION (NO FRAME SHIFT) */
+    .card-glare {
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255,255,255,0.06) 0%, transparent 60%);
+      pointer-events: none; opacity: 0; transition: opacity 0.3s var(--ease); border-radius: var(--radius-xl);
+    }
+    .card:hover .card-glare { opacity: 1; }
 
     /* BUTTONS & ILLUMINATED NEXT ARROW */
     .btn {
@@ -435,10 +443,10 @@
 
 <div id="root">
   <header>
-    <div class="logo" id="main-logo" title="CodeForge 2040 v11.0">
+    <div class="logo" id="main-logo" title="CodeForge 2040 v11.1">
       <div class="logo-icon">&#x26A1;</div>
       <div>
-        <div class="logo-text">CodeForge <span class="logo-version">v11.0</span></div>
+        <div class="logo-text">CodeForge <span class="logo-version">v11.1</span></div>
         <div class="logo-sub">Deep Space Nebula Quantum AI Suite</div>
       </div>
     </div>
@@ -737,6 +745,27 @@ animateElectricity();
   }
   draw();
 })();
+
+/* SUBTLE GLARE SPECULAR LIGHT TRACKING (MAIN CARD STAYS STEADY) */
+function initSubtleGlarePhysics() {
+  document.addEventListener('mousemove', e => {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--glare-x', `${(x / rect.width) * 100}%`);
+      card.style.setProperty('--glare-y', `${(y / rect.height) * 100}%`);
+      
+      // Ultra-micro frame tilt (max 0.2 deg) so main frame stays virtually static
+      const tiltX = -((y - rect.height / 2) / rect.height) * 0.4;
+      const tiltY = ((x - rect.width / 2) / rect.width) * 0.4;
+      card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initSubtleGlarePhysics);
+setTimeout(initSubtleGlarePhysics, 300);
 
 const Confetti = {
   canvas: document.getElementById('confetti-canvas'), particles: [], running: false,
@@ -1061,7 +1090,7 @@ const state = {
   settingsOpen: false, featuresOpen: false, shortcutsOpen: false, promptLabOpen: false, qrModalOpen: false, cmdPaletteOpen: false, blueprintOpen: false, diffOpen: false, themeEditorOpen: false, benchmarksOpen: false, backupOpen: false, synthOpen: false,
   keys: loadKeys(), features: loadFeatures(), activeTab: 'forge',
   history: loadHistory(), snapshots: [], activeCodeFile: null, buildStartTime: 0,
-  voiceListening: false, shareUrl: '', specVersion: 11.0, viewMode: 'code', deviceViewport: 'iphone', viewportOrientation: 'portrait',
+  voiceListening: false, shareUrl: '', specVersion: 11.1, viewMode: 'code', deviceViewport: 'iphone', viewportOrientation: 'portrait',
   sandboxLogs: [], lintResults: null, stepDirection: 'next', customBlueprints: loadBlueprints(),
   searchQuery: '', searchReplaceText: '', selectedPromptProfile: 'cyberpunk', hotReloadTimer: null,
 };
@@ -1700,12 +1729,12 @@ function renderApp() {
   if (state.activeTab === 'history') { renderHistory(app); return; }
 
   if (state.mode === FSM.BUILDING || state.mode === FSM.STREAMING || state.mode === FSM.PARSING || state.mode === FSM.WRITING) {
-    app.innerHTML = `<div class="overlay fade-enter"><div class="card overlay-inner"><div class="build-spinner"></div><div class="build-title">Forging Quantum Codebase…</div><div class="build-log" id="build-log">${state.buildLog.map(l => `<div>${l}</div>`).join('')}</div></div></div>`;
+    app.innerHTML = `<div class="overlay fade-enter"><div class="card overlay-inner"><div class="card-glare"></div><div class="build-spinner"></div><div class="build-title">Forging Quantum Codebase…</div><div class="build-log" id="build-log">${state.buildLog.map(l => `<div>${l}</div>`).join('')}</div></div></div>`;
     return;
   }
   if (state.mode === FSM.DONE) { renderDone(app); return; }
   if (state.mode === FSM.ERROR) {
-    app.innerHTML = `<div class="overlay fade-enter"><div class="card overlay-inner"><h2>Build Failed</h2><p>${escapeHtml(state.errorMsg)}</p><button class="btn btn-primary" id="btn-retry">Retry Build</button></div></div>`;
+    app.innerHTML = `<div class="overlay fade-enter"><div class="card overlay-inner"><div class="card-glare"></div><h2>Build Failed</h2><p>${escapeHtml(state.errorMsg)}</p><button class="btn btn-primary" id="btn-retry">Retry Build</button></div></div>`;
     document.getElementById('btn-retry').onclick = build; return;
   }
   renderWizard(app);
@@ -1739,6 +1768,7 @@ function renderWizard(app) {
 
   app.innerHTML = `
     <div class="card ${slideClass}">
+      <div class="card-glare"></div>
       <div class="progress-wrap">
         <div class="progress-meta">
           <span>Step ${state.stepIndex + 1} of ${steps.length}</span>
@@ -1888,6 +1918,7 @@ function renderDone(app) {
 
   app.innerHTML = `
     <div class="overlay fade-enter"><div class="card" style="padding:1.6rem" id="done-main-card">
+      <div class="card-glare"></div>
       <div style="text-align:center;margin-bottom:1.25rem">
         <div class="done-icon">✅</div>
         <div class="done-title">Quantum Codebase Forged!</div>
@@ -2098,6 +2129,7 @@ function renderDone(app) {
 function renderTemplates(app) {
   app.innerHTML = `
     <div class="card fade-enter" style="padding:1.6rem">
+      <div class="card-glare"></div>
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.1rem">
         <h2 style="font-family:var(--font-display);font-weight:800;font-size:1.25rem">📦 Quantum Blueprints & Custom Loadouts</h2>
         <button class="btn btn-sm btn-primary" id="btn-save-current-loadout">💾 Save Current Loadout</button>
@@ -2157,6 +2189,7 @@ function renderTemplates(app) {
 function renderHistory(app) {
   app.innerHTML = `
     <div class="card fade-enter" style="padding:1.6rem">
+      <div class="card-glare"></div>
       <h2 style="font-family:var(--font-display);font-weight:800;font-size:1.25rem;margin-bottom:0.85rem">📜 Build History & Snapshots</h2>
       ${state.history.length === 0 ? '<p style="color:var(--text-muted)">No build history yet.</p>' : `
         <div class="history-list">
