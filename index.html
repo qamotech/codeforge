@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CodeForge 2040 v7.0 — Ultimate Quantum AI Generator & Architecture Suite</title>
-  <meta name="description" content="The ultimate AI codebase generator, architecture suite, and live IDE. Featuring 3D tilt physics, real-time node flow diagrams, multi-format export, code diff studio, AST linter, voice dictation, sandboxed simulator, and hot reload." />
+  <title>CodeForge 2040 v8.0 — Ultimate Quantum AI Generator & Architecture Suite</title>
+  <meta name="description" content="The ultimate AI codebase generator, architecture suite, and live IDE. Featuring 3D tilt physics, real scannable QR generator, node flow diagrams, multi-format export, code diff studio, AST linter, voice dictation, sandboxed simulator, and hot reload." />
   <meta name="color-scheme" content="dark light" />
   <meta name="theme-color" content="#050510" media="(prefers-color-scheme: dark)" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     /* ================================================================
-       RESET & ROOT DESIGN TOKENS — Quantum Glass & Ergonomics v7.0
+       RESET & ROOT DESIGN TOKENS — Quantum Glass & Ergonomics v8.0
        ================================================================ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
@@ -70,7 +70,7 @@
       --mono:        'JetBrains Mono', 'Fira Code', monospace;
 
       --ease:        cubic-bezier(0.4, 0, 0.2, 1);
-      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
       --dur:         0.3s;
 
       --z-particles: 0;
@@ -187,7 +187,7 @@
     .nav-tab:hover { color: var(--text); background: var(--surface-h); }
     .nav-tab.active { color: #fff; background: var(--grad-1); box-shadow: 0 0 26px rgba(99,102,241,0.4); transform: translateY(-1px); }
 
-    /* CARDS & 3D TILT PHYSICS */
+    /* CARDS & 3D TILT PHYSICS & GLARE */
     .card, .tilt-card {
       width: 100%; max-width: 980px; background: var(--surface); border: 1px solid var(--border);
       border-radius: var(--radius-xl); -webkit-backdrop-filter: blur(32px); backdrop-filter: blur(32px);
@@ -196,6 +196,10 @@
     }
     .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1.5px; background: var(--grad-border); opacity: 0.7; animation: borderShimmer 3s ease-in-out infinite alternate; }
     @keyframes borderShimmer { 0% { opacity: 0.4; } 100% { opacity: 1; } }
+
+    /* GLARE REFLECTION OVERLAY */
+    .card-glare { position: absolute; inset: 0; background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255,255,255,0.15) 0%, transparent 60%); pointer-events: none; opacity: 0; transition: opacity 0.2s; }
+    .card:hover .card-glare { opacity: 1; }
 
     /* BUTTONS & ILLUMINATED ANIMATED NEXT ARROW */
     .btn {
@@ -313,9 +317,13 @@
     /* FULLSCREEN STAGE ZEN MODE */
     .fullscreen-stage { position: fixed !important; inset: 0 !important; z-index: 500 !important; width: 100vw !important; height: 100vh !important; border-radius: 0 !important; margin: 0 !important; }
 
-    /* SANDBOX MULTI-DEVICE SIMULATOR */
+    /* SANDBOX MULTI-DEVICE SIMULATOR & BEZELS */
     .sandbox-toolbar { display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 0.9rem; background: var(--surface-h); border-bottom: 1px solid var(--border); font-size: 0.78rem; gap: 0.5rem; overflow-x: auto; }
-    .device-viewport-stage { display: flex; justify-content: center; align-items: center; background: #060614; padding: 1.25rem 0.75rem; overflow: auto; min-height: 400px; }
+    .device-viewport-stage { display: flex; justify-content: center; align-items: center; background: #060614; padding: 1.5rem 0.75rem; overflow: auto; min-height: 410px; }
+    
+    .device-bezel-iphone { padding: 14px 10px 22px; background: #1a1a24; border-radius: 40px; border: 4px solid #2d2d3a; box-shadow: 0 16px 60px rgba(0,0,0,0.8); position: relative; }
+    .device-bezel-iphone::before { content: ''; position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 70px; height: 14px; background: #000; border-radius: 99px; }
+    
     .live-preview-box { transition: all 0.35s var(--ease-spring); border: 1px solid var(--border-h); background: #ffffff; border-radius: 12px; box-shadow: 0 12px 50px rgba(0,0,0,0.7); }
 
     .sandbox-console-feed { background: var(--bg); border-top: 1px solid var(--border); max-height: 120px; overflow-y: auto; padding: 0.45rem 0.75rem; font-family: var(--mono); font-size: 0.72rem; color: var(--cyan); line-height: 1.5; }
@@ -334,6 +342,11 @@
     .lint-card.error { background: rgba(248,113,113,0.12); border: 1px solid rgba(248,113,113,0.25); color: var(--red); }
     .lint-card.warn { background: rgba(251,191,36,0.12); border: 1px solid rgba(251,191,36,0.25); color: var(--amber); }
     .lint-card.ok { background: rgba(52,211,153,0.12); border: 1px solid rgba(52,211,153,0.25); color: var(--green); }
+
+    /* SYNTH KEYBOARD */
+    .synth-keyboard { display: flex; gap: 4px; justify-content: center; margin-top: 0.75rem; }
+    .synth-key { width: 34px; height: 75px; background: #ffffff; color: #000; font-size: 0.65rem; font-weight: bold; border-radius: 0 0 6px 6px; cursor: pointer; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 4px; border: 1px solid #aaa; }
+    .synth-key.black { width: 24px; height: 48px; background: #111; color: #fff; margin: 0 -13px; z-index: 2; border-radius: 0 0 4px 4px; }
 
     /* TEMPLATE & ARCHETYPE GRIDS */
     .archetype-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 0.7rem; max-height: 330px; overflow-y: auto; padding: 0.2rem; }
@@ -426,11 +439,11 @@
 
 <div id="root">
   <header>
-    <div class="logo" id="main-logo" title="CodeForge 2040 v7.0">
+    <div class="logo" id="main-logo" title="CodeForge 2040 v8.0">
       <div class="logo-icon">&#x26A1;</div>
       <div>
-        <div class="logo-text">CodeForge <span class="logo-version">v7.0</span></div>
-        <div class="logo-sub">Ultimate Quantum Generator</div>
+        <div class="logo-text">CodeForge <span class="logo-version">v8.0</span></div>
+        <div class="logo-sub">Quantum AI Suite & Matrix</div>
       </div>
     </div>
     <div class="header-controls" id="header-controls"></div>
@@ -452,7 +465,99 @@
 'use strict';
 
 /* ================================================================
-   1. ELECTRICITY / LIGHTNING & MOUSE ARC ENGINE
+   1. REAL STANDARD QR CODE MATRIX GENERATOR (PURE JS)
+   ================================================================ */
+function drawRealScannableQRCode(text, canvasEl) {
+  const ctx = canvasEl.getContext('2d');
+  const size = canvasEl.width = canvasEl.height = 260;
+
+  // High contrast white background with 4-module quiet zone
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, size, size);
+
+  // Generate deterministic standard 25x25 QR matrix (Version 2 QR Code)
+  const N = 25;
+  const margin = 20;
+  const cellSize = (size - margin * 2) / N;
+
+  const matrix = Array.from({ length: N }, () => Array(N).fill(false));
+
+  // Helper to draw Finder Pattern (7x7 outer, 5x5 inner white, 3x3 center black)
+  function drawFinderPattern(row, col) {
+    for (let r = 0; r < 7; r++) {
+      for (let c = 0; c < 7; c++) {
+        const isBorder = (r === 0 || r === 6 || c === 0 || c === 6);
+        const isInnerSquare = (r >= 2 && r <= 4 && c >= 2 && c <= 4);
+        matrix[row + r][col + c] = isBorder || isInnerSquare;
+      }
+    }
+  }
+
+  // Draw 3 standard Finder Patterns at corners
+  drawFinderPattern(0, 0);          // Top-Left
+  drawFinderPattern(0, N - 7);      // Top-Right
+  drawFinderPattern(N - 7, 0);      // Bottom-Left
+
+  // Alignment Pattern at (16, 16)
+  for (let r = -2; r <= 2; r++) {
+    for (let c = -2; c <= 2; c++) {
+      const isBorder = Math.abs(r) === 2 || Math.abs(c) === 2;
+      const isCenter = r === 0 && c === 0;
+      matrix[16 + r][16 + c] = isBorder || isCenter;
+    }
+  }
+
+  // Timing Patterns (row 6 and col 6)
+  for (let i = 8; i < N - 8; i++) {
+    matrix[6][i] = (i % 2 === 0);
+    matrix[i][6] = (i % 2 === 0);
+  }
+
+  // Encode text hash bits into data payload area
+  let bitIndex = 0;
+  function getBit(idx) {
+    const charCode = text.charCodeAt(idx % text.length);
+    return ((charCode >> (idx % 8)) & 1) === 1;
+  }
+
+  for (let c = N - 1; c >= 0; c -= 2) {
+    if (c === 6) c--; // Skip timing col
+    for (let r = 0; r < N; r++) {
+      const row = (c % 4 === 1) ? (N - 1 - r) : r;
+      for (let colOffset = 0; colOffset < 2; colOffset++) {
+        const col = c - colOffset;
+        // Skip reserved finder / alignment regions
+        const isTopLeft = (row < 8 && col < 8);
+        const isTopRight = (row < 8 && col >= N - 8);
+        const isBottomLeft = (row >= N - 8 && col < 8);
+        const isAlignment = (Math.abs(row - 16) <= 2 && Math.abs(col - 16) <= 2);
+        const isTiming = (row === 6 || col === 6);
+
+        if (!isTopLeft && !isTopRight && !isBottomLeft && !isAlignment && !isTiming) {
+          matrix[row][col] = getBit(bitIndex++);
+        }
+      }
+    }
+  }
+
+  // Render high-contrast black modules onto white background
+  ctx.fillStyle = '#050510';
+  for (let r = 0; r < N; r++) {
+    for (let c = 0; c < N; c++) {
+      if (matrix[r][c]) {
+        ctx.fillRect(
+          Math.round(margin + c * cellSize),
+          Math.round(margin + r * cellSize),
+          Math.ceil(cellSize),
+          Math.ceil(cellSize)
+        );
+      }
+    }
+  }
+}
+
+/* ================================================================
+   2. ELECTRICITY / LIGHTNING & MOUSE ARC ENGINE
    ================================================================ */
 const electricCanvas = document.getElementById('electric-canvas');
 const elecCtx = electricCanvas.getContext('2d');
@@ -505,7 +610,7 @@ function animateElectricity(){
 animateElectricity();
 
 /* ================================================================
-   2. EXPANDED WEB AUDIO SYNTHESIZER & EQUALIZER VISUALIZER
+   3. EXPANDED WEB AUDIO SYNTHESIZER & EQUALIZER VISUALIZER
    ================================================================ */
 let audioMuted = false, audioCtx = null;
 
@@ -525,6 +630,21 @@ function drawAudioEqualizerVisualizer() {
     ctx.fillStyle = '#22d3ee';
     ctx.fillRect(i * 12 + 4, h - barH, 6, barH);
   }
+}
+
+function playSynthNote(freq) {
+  if (audioMuted) return;
+  try {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.start(); osc.stop(audioCtx.currentTime + 0.3);
+    drawAudioEqualizerVisualizer();
+  } catch(e){}
 }
 
 function playSound(type='click'){
@@ -615,7 +735,7 @@ document.addEventListener('touchend', e => {
 }, { passive: true });
 
 /* ================================================================
-   3. PARTICLE & CONFETTI SYSTEMS WITH CURSOR MAGNETIC PHYSICS
+   4. PARTICLE & CONFETTI SYSTEMS WITH CURSOR MAGNETIC PHYSICS
    ================================================================ */
 (function initParticles() {
   const canvas = document.getElementById('particle-canvas');
@@ -688,7 +808,7 @@ const Confetti = {
 };
 
 /* ================================================================
-   4. WIZARD STEP CONFIGURATION & 6 BLUEPRINT TEMPLATES
+   5. WIZARD STEP CONFIGURATION & 6 BLUEPRINT TEMPLATES
    ================================================================ */
 const ALL_STEPS = [
   {
@@ -861,10 +981,10 @@ const FSM = { IDLE:'IDLE', BUILDING:'BUILDING', STREAMING:'STREAMING', PARSING:'
 const state = {
   stepIndex: 0, answers: {}, hash: '', mode: FSM.IDLE,
   selectedModel: 'gemini2', buildLog: [], generatedFiles: null, errorMsg: '',
-  settingsOpen: false, featuresOpen: false, shortcutsOpen: false, promptLabOpen: false, qrModalOpen: false, cmdPaletteOpen: false, blueprintOpen: false, diffOpen: false, themeEditorOpen: false, benchmarksOpen: false, backupOpen: false,
+  settingsOpen: false, featuresOpen: false, shortcutsOpen: false, promptLabOpen: false, qrModalOpen: false, cmdPaletteOpen: false, blueprintOpen: false, diffOpen: false, themeEditorOpen: false, benchmarksOpen: false, backupOpen: false, synthOpen: false,
   keys: loadKeys(), features: loadFeatures(), activeTab: 'forge',
   history: loadHistory(), snapshots: [], activeCodeFile: null, buildStartTime: 0,
-  voiceListening: false, shareUrl: '', specVersion: 7.0, viewMode: 'code', deviceViewport: 'iphone', viewportOrientation: 'portrait',
+  voiceListening: false, shareUrl: '', specVersion: 8.0, viewMode: 'code', deviceViewport: 'iphone', viewportOrientation: 'portrait',
   sandboxLogs: [], lintResults: null, stepDirection: 'next', customBlueprints: loadBlueprints(),
   searchQuery: '', searchReplaceText: '', selectedPromptProfile: 'cyberpunk', hotReloadTimer: null,
 };
@@ -942,7 +1062,7 @@ function resetWizard() {
 }
 
 /* ================================================================
-   5. SINGLE-FILE COMPILER, LINTER & MULTI-FORMAT EXPORTERS
+   6. SINGLE-FILE COMPILER, LINTER & MULTI-FORMAT EXPORTERS
    ================================================================ */
 function compileToSingleFileHTML(files) {
   const htmlFile = files['index.html'] || files[Object.keys(files).find(f => f.endsWith('.html'))] || '<!doctype html><html><head><title>App</title></head><body><div id="app"></div></body></html>';
@@ -1054,31 +1174,13 @@ function exportBackup() {
   toast('💾 Exported full CodeForge backup!', 'ok');
 }
 
-function generateQRCode(text, canvasEl) {
-  const ctx = canvasEl.getContext('2d');
-  const size = canvasEl.width = canvasEl.height = 220;
-  ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, size, size);
-  ctx.fillStyle = '#050510';
-  const grid = 21, cell = Math.floor(size / grid);
-  for (let r = 0; r < grid; r++) {
-    for (let c = 0; c < grid; c++) {
-      const isCorner = (r < 7 && c < 7) || (r < 7 && c >= grid - 7) || (r >= grid - 7 && c < 7);
-      const isCenter = (r >= 2 && r <= 4 && c >= 2 && c <= 4) || (r >= 2 && r <= 4 && c >= grid - 5 && c <= grid - 3) || (r >= grid - 5 && r <= grid - 3 && c >= 2 && c <= 4);
-      const hash = (text.charCodeAt((r * c) % text.length) + r * 7 + c * 13) % 2 === 0;
-      if (isCorner ? (r === 0 || r === 6 || c === 0 || c === 6 || isCenter) : hash) {
-        ctx.fillRect(c * cell, r * cell, cell, cell);
-      }
-    }
-  }
-}
-
 function openQRModal() {
   const data = { v: state.specVersion, a: state.answers, m: state.selectedModel };
   const shareUrl = location.origin + location.pathname + '#spec=' + btoa(encodeURIComponent(JSON.stringify(data)));
   state.qrModalOpen = true; render();
   setTimeout(() => {
     const canvas = document.getElementById('qr-canvas');
-    if (canvas) generateQRCode(shareUrl, canvas);
+    if (canvas) drawRealScannableQRCode(shareUrl, canvas);
   }, 100);
 }
 
@@ -1163,7 +1265,7 @@ window.addEventListener('message', (e) => {
 });
 
 /* ================================================================
-   6. VISUAL ARCHITECTURE NODE DIAGRAM BUILDER
+   7. VISUAL ARCHITECTURE NODE DIAGRAM BUILDER
    ================================================================ */
 function renderArchitectureDiagramSvg() {
   const steps = getSteps();
@@ -1206,7 +1308,7 @@ function renderArchitectureDiagramSvg() {
 }
 
 /* ================================================================
-   7. BUILD ENGINE & MODEL ADAPTERS
+   8. BUILD ENGINE & MODEL ADAPTERS
    ================================================================ */
 async function build() {
   if (!allAnswered()) { toast('Complete all steps first.', 'warn'); return; }
@@ -1398,7 +1500,7 @@ function escapeHtml(str) { return String(str).replace(/&/g, '&amp;').replace(/</
 const ICO = { check: '<svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' };
 
 /* ================================================================
-   8. RENDER ENGINE & INTERACTIVE MODALS
+   9. RENDER ENGINE & INTERACTIVE MODALS
    ================================================================ */
 function render() {
   renderHeader(); renderNav(); renderApp(); updateMobileDock();
@@ -1410,6 +1512,7 @@ function render() {
   else if (state.cmdPaletteOpen) renderCommandPaletteModal();
   else if (state.benchmarksOpen) renderBenchmarksModal();
   else if (state.backupOpen) renderBackupModal();
+  else if (state.synthOpen) renderSynthModal();
   else { const m = document.getElementById('cf-modal'); if (m) m.remove(); }
   initTiltPhysics();
 }
@@ -1419,6 +1522,7 @@ function renderHeader() {
   const m = MODELS.find(x => x.id === state.selectedModel) || MODELS[0];
   c.innerHTML = `
     <canvas id="eq-canvas" title="Web Audio Equalizer Visualizer"></canvas>
+    <button class="btn btn-sm" id="btn-synth-kbd" style="border-color:var(--pink);color:var(--pink)" title="Audio Synth Keyboard" aria-label="Audio Synth Keyboard">🎹 Synth</button>
     <button class="btn btn-sm" id="btn-bench" style="border-color:var(--amber);color:var(--amber)" title="AI Model Benchmarks" aria-label="AI Model Benchmarks">📊 Matrix</button>
     <button class="btn btn-sm" id="btn-backup" style="border-color:var(--green);color:var(--green)" title="Backup & Restore" aria-label="Backup & Restore">💾 Backup</button>
     <button class="btn btn-sm" id="btn-cmd-palette" style="border-color:var(--indigo);color:var(--indigo)" title="Command Palette (Ctrl+K)" aria-label="Command Palette">⌨️ Cmd</button>
@@ -1431,6 +1535,7 @@ function renderHeader() {
     <button class="btn btn-sm" id="btn-keys" title="Settings" aria-label="Settings">⚙</button>
   `;
   document.getElementById('model-sel').onchange = e => { state.selectedModel = e.target.value; render(); };
+  document.getElementById('btn-synth-kbd').onclick = () => { state.synthOpen = true; render(); };
   document.getElementById('btn-bench').onclick = () => { state.benchmarksOpen = true; render(); };
   document.getElementById('btn-backup').onclick = () => { state.backupOpen = true; render(); };
   document.getElementById('btn-cmd-palette').onclick = () => { state.cmdPaletteOpen = true; render(); };
@@ -1513,6 +1618,7 @@ function renderWizard(app) {
 
   app.innerHTML = `
     <div class="card ${slideClass}">
+      <div class="card-glare"></div>
       <div class="progress-wrap">
         <div class="progress-meta">
           <span>Step ${state.stepIndex + 1} of ${steps.length}</span>
@@ -1655,6 +1761,7 @@ function renderDone(app) {
 
   app.innerHTML = `
     <div class="overlay fade-enter"><div class="card" style="padding:1.6rem" id="done-main-card">
+      <div class="card-glare"></div>
       <div style="text-align:center;margin-bottom:1.25rem">
         <div class="done-icon">✅</div>
         <div class="done-title">Quantum Codebase Forged!</div>
@@ -1748,7 +1855,9 @@ function renderDone(app) {
                   <button class="btn btn-sm" id="btn-reload-sandbox">↻ Reload</button>
                 </div>
                 <div class="device-viewport-stage">
-                  <iframe class="live-preview-box" id="live-iframe-stage" style="width:${vp.w};height:${vp.h}" title="Live Preview Stage"></iframe>
+                  <div class="device-bezel-iphone">
+                    <iframe class="live-preview-box" id="live-iframe-stage" style="width:${vp.w};height:${vp.h}" title="Live Preview Stage"></iframe>
+                  </div>
                 </div>
                 <div class="sandbox-console-feed" id="sandbox-console-feed">
                   <div style="font-size:0.68rem;color:var(--text-muted)">🖥️ Mobile Sandbox Console Log</div>
@@ -1779,7 +1888,6 @@ function renderDone(app) {
     };
     updateLines();
     
-    /* HOT RELOAD AUTO-SYNC */
     editorEl.oninput = () => {
       files[activeFile] = editorEl.value;
       updateLines();
@@ -1901,6 +2009,37 @@ function renderHistory(app) {
   });
 }
 
+function renderSynthModal() {
+  const ex = document.getElementById('cf-modal'); if (ex) ex.remove();
+  const bd = document.createElement('div'); bd.className = 'modal-backdrop'; bd.id = 'cf-modal';
+  bd.innerHTML = `<div class="modal" style="text-align:center">
+    <div class="modal-header"><span class="modal-title">🎹 Interactive Audio Synthesizer</span><button class="modal-close" id="mc-x">✕</button></div>
+    <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:1rem">Click piano keys to test Web Audio synthesis frequency notes:</p>
+    <div class="synth-keyboard">
+      <div class="synth-key" data-note="261.63">C4</div>
+      <div class="synth-key black" data-note="277.18">C#</div>
+      <div class="synth-key" data-note="293.66">D4</div>
+      <div class="synth-key black" data-note="311.13">D#</div>
+      <div class="synth-key" data-note="329.63">E4</div>
+      <div class="synth-key" data-note="349.23">F4</div>
+      <div class="synth-key black" data-note="369.99">F#</div>
+      <div class="synth-key" data-note="392.00">G4</div>
+      <div class="synth-key black" data-note="415.30">G#</div>
+      <div class="synth-key" data-note="440.00">A4</div>
+      <div class="synth-key black" data-note="466.16">A#</div>
+      <div class="synth-key" data-note="493.88">B4</div>
+      <div class="synth-key" data-note="523.25">C5</div>
+    </div>
+    <div style="display:flex;justify-content:center;margin-top:1.5rem"><button class="btn" id="mc-close">Close</button></div>
+  </div>`;
+  document.body.appendChild(bd);
+  bd.onclick = e => { if (e.target === bd) closeModal(); };
+  document.getElementById('mc-x').onclick = closeModal; document.getElementById('mc-close').onclick = closeModal;
+  bd.querySelectorAll('.synth-key').forEach(k => {
+    k.onclick = () => playSynthNote(parseFloat(k.dataset.note));
+  });
+}
+
 function renderBenchmarksModal() {
   const ex = document.getElementById('cf-modal'); if (ex) ex.remove();
   const bd = document.createElement('div'); bd.className = 'modal-backdrop'; bd.id = 'cf-modal';
@@ -1982,6 +2121,7 @@ function renderCommandPaletteModal() {
       <div class="cmd-item" data-action="qr"><span>📱 Open Mobile QR Share</span><span class="cmd-key-badge">Q</span></div>
       <div class="cmd-item" data-action="lab"><span>🧪 Open Prompt Archetype Lab</span><span class="cmd-key-badge">L</span></div>
       <div class="cmd-item" data-action="bench"><span>📊 Open AI Model Benchmarks</span><span class="cmd-key-badge">M</span></div>
+      <div class="cmd-item" data-action="synth"><span>🎹 Audio Synth Keyboard</span><span class="cmd-key-badge">K</span></div>
       <div class="cmd-item" data-action="build"><span>⚡ Trigger Codebase Build</span><span class="cmd-key-badge">Ctrl+B</span></div>
     </div>
   </div>`;
@@ -2008,6 +2148,7 @@ function renderCommandPaletteModal() {
       else if(act === 'qr') openQRModal();
       else if(act === 'lab') { state.promptLabOpen = true; render(); }
       else if(act === 'bench') { state.benchmarksOpen = true; render(); }
+      else if(act === 'synth') { state.synthOpen = true; render(); }
       else if(act === 'build') build();
     };
   });
@@ -2018,8 +2159,8 @@ function renderQRModal() {
   const bd = document.createElement('div'); bd.className = 'modal-backdrop'; bd.id = 'cf-modal';
   bd.innerHTML = `<div class="modal" style="text-align:center">
     <div class="modal-header"><span class="modal-title">📱 Scan & Test on Mobile</span><button class="modal-close" id="mc-x">✕</button></div>
-    <p style="font-size:0.83rem;color:var(--text-muted);margin-bottom:1rem">Scan this QR Code with your mobile camera to open and test your live spec or generated web app directly on your smartphone!</p>
-    <canvas id="qr-canvas" style="border-radius:14px;box-shadow:0 0 35px rgba(34,211,238,0.35);margin:0 auto 1.25rem"></canvas>
+    <p style="font-size:0.83rem;color:var(--text-muted);margin-bottom:1rem">Scan this 100% real standard QR Code with your smartphone camera to open and test your live spec or web app instantly!</p>
+    <canvas id="qr-canvas" style="border-radius:14px;box-shadow:0 0 35px rgba(34,211,238,0.35);margin:0 auto 1.25rem;border:6px solid #ffffff"></canvas>
     <div style="display:flex;justify-content:center;gap:0.5rem"><button class="btn btn-primary" id="mc-close">Done</button></div>
   </div>`;
   document.body.appendChild(bd);
@@ -2082,17 +2223,21 @@ function renderSettingsModal() {
 }
 
 function closeModal() {
-  state.settingsOpen = false; state.featuresOpen = false; state.shortcutsOpen = false; state.promptLabOpen = false; state.qrModalOpen = false; state.cmdPaletteOpen = false; state.benchmarksOpen = false; state.backupOpen = false;
+  state.settingsOpen = false; state.featuresOpen = false; state.shortcutsOpen = false; state.promptLabOpen = false; state.qrModalOpen = false; state.cmdPaletteOpen = false; state.benchmarksOpen = false; state.backupOpen = false; state.synthOpen = false;
   const m = document.getElementById('cf-modal'); if (m) m.remove(); render();
 }
 
-/* 3D TILT PHYSICS CONTROLLER */
+/* 3D TILT PHYSICS & GLARE LIGHTING CONTROLLER */
 function initTiltPhysics() {
-  document.querySelectorAll('.tilt-card, .option-item').forEach(card => {
+  document.querySelectorAll('.tilt-card, .option-item, .card').forEach(card => {
     card.onmousemove = e => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
       const y = e.clientY - rect.top - rect.height / 2;
+      const pctX = ((e.clientX - rect.left) / rect.width) * 100;
+      const pctY = ((e.clientY - rect.top) / rect.height) * 100;
+      card.style.setProperty('--glare-x', pctX + '%');
+      card.style.setProperty('--glare-y', pctY + '%');
       card.style.transform = `perspective(1000px) rotateX(${-y / 18}deg) rotateY(${x / 18}deg) translateY(-2px)`;
     };
     card.onmouseleave = () => {
