@@ -6,7 +6,7 @@
   <title>CodeForge 2040 v18.0 — Quantum Omnipresent AI Engine & Multi-Model Suite</title>
   <meta name="description" content="The ultimate AI codebase generator and prototyping engine suite. Integrated with 18+ CDN libraries, all major AI models (Gemini 2.0, DeepSeek R1, Claude 3.5, GPT-4o, Llama 3.3, Qwen 2.5), API key verifier, setup guides, and level designer." />
   <meta name="color-scheme" content="dark light" />
-  <meta name="theme-color" content="#03030d" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#03030d" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -156,7 +156,7 @@
       width: 100%; max-width: 980px; display: flex; align-items: center; justify-content: space-between;
       padding: 1.1rem 0 1.25rem; gap: 0.75rem; flex-wrap: wrap; position: relative; z-index: var(--z-header);
     }
-    .logo { display: flex; align-items: center; gap: 0.7rem; text-decoration: none; cursor: pointer; user-select: none; }
+    .logo { display: flex; align-items: center; gap: 0.7rem; text-decoration: none; cursor: pointer; -webkit-user-select: none; user-select: none; }
     .logo-icon {
       width: 48px; height: 48px; background: var(--grad-1); border-radius: 14px; display: grid; place-items: center;
       font-size: 25px; box-shadow: var(--glow-v); flex-shrink: 0; position: relative; overflow: hidden; animation: logoFloat 4s ease-in-out infinite;
@@ -265,7 +265,7 @@
     /* LEVEL DESIGNER STAGE */
     .level-designer-stage { margin-top: 1rem; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg3); padding: 1rem; box-shadow: inset 0 0 30px rgba(0,0,0,0.5); }
     .level-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 4px; margin-top: 0.6rem; background: #000; padding: 6px; border-radius: 8px; }
-    .level-cell { aspect-ratio: 1; border: 1px dashed rgba(255,255,255,0.1); border-radius: 4px; cursor: pointer; display: grid; place-items: center; font-size: 0.9rem; -webkit-user-select: none; }
+    .level-cell { aspect-ratio: 1; border: 1px dashed rgba(255,255,255,0.1); border-radius: 4px; cursor: pointer; display: grid; place-items: center; font-size: 0.9rem; -webkit-user-select: none; user-select: none; }
     .level-cell.wall { background: #475569; }
     .level-cell.player { background: rgba(34,211,238,0.3); border-color: var(--cyan); }
     .level-cell.enemy { background: rgba(248,113,113,0.3); border-color: var(--red); }
@@ -326,7 +326,7 @@
     .code-theater-header { display: flex; align-items: center; padding: 0.55rem 0.95rem; background: var(--surface); border-bottom: 1px solid var(--border); gap: 0.55rem; overflow-x: auto; }
     .metrics-bar { display: flex; align-items: center; justify-content: space-around; padding: 0.35rem 0.9rem; background: rgba(0,0,0,0.4); border-bottom: 1px solid var(--border); font-family: var(--mono); font-size: 0.72rem; color: var(--cyan); }
     .code-editor-area { width: 100%; height: 390px; background: transparent; color: var(--text); font-family: var(--mono); font-size: 0.83rem; line-height: 1.6; border: 0; outline: 0; padding: 0.85rem; resize: none; tab-size: 2; }
-    .editor-line-numbers { padding: 0.85rem 0.5rem; background: rgba(0,0,0,0.3); border-right: 1px solid var(--border); color: var(--text-dim); font-family: var(--mono); font-size: 0.78rem; line-height: 1.6; text-align: right; user-select: none; width: 45px; flex-shrink: 0; overflow: hidden; }
+    .editor-line-numbers { padding: 0.85rem 0.5rem; background: rgba(0,0,0,0.3); border-right: 1px solid var(--border); color: var(--text-dim); font-family: var(--mono); font-size: 0.78rem; line-height: 1.6; text-align: right; -webkit-user-select: none; user-select: none; width: 45px; flex-shrink: 0; overflow: hidden; }
     .file-tree { width: 195px; border-right: 1px solid var(--border); padding: 0.7rem; max-height: 430px; overflow-y: auto; flex-shrink: 0; background: rgba(0,0,0,0.2); }
     .file-tree-item { min-height: 38px; display: flex; align-items: center; padding: 0.35rem 0.6rem; border-radius: 6px; font-family: var(--mono); font-size: 0.74rem; color: var(--text-muted); cursor: pointer; transition: all 0.15s; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; touch-action: manipulation; }
     .file-tree-item.active { background: rgba(99,102,241,0.2); color: var(--indigo); font-weight: bold; border-left: 2px solid var(--cyan); box-shadow: 0 0 16px rgba(34,211,238,0.2); }
@@ -1634,18 +1634,18 @@ function generateHighFidelityProAppOrGame(spec, isSingleFileChoice, isGameTarget
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: #03030d; color: #f0f0ff; font-family: 'Inter', system-ui, sans-serif; min-height: 100vh; padding-bottom: 70px; }
-    .header { padding: 1.2rem 1.5rem; background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(20px); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 50; }
+    .header { padding: 1.2rem 1.5rem; background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 50; }
     .brand { font-size: 1.3rem; font-weight: 900; background: linear-gradient(135deg, #22d3ee, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .container { padding: 1.5rem; max-width: 800px; margin: 0 auto; }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
-    .card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 1.25rem; backdrop-filter: blur(24px); box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+    .card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 1.25rem; backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
     .card-title { font-size: 0.8rem; color: #8a8ab8; text-transform: uppercase; font-weight: 700; margin-bottom: 0.4rem; }
     .card-val { font-size: 1.8rem; font-weight: 800; color: #22d3ee; }
     .btn { min-height: 44px; padding: 0.6rem 1.2rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: linear-gradient(135deg, #6366f1, #a78bfa); color: #fff; font-weight: 700; cursor: pointer; transition: all 0.2s; }
     .btn:hover { box-shadow: 0 0 25px rgba(99,102,241,0.5); }
     .feed { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.5rem; }
     .feed-item { padding: 0.9rem 1.1rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; display: flex; justify-content: space-between; align-items: center; }
-    .dock { position: fixed; bottom: 0; left: 0; right: 0; height: 60px; background: rgba(8,8,26,0.95); border-top: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(24px); display: flex; justify-content: space-around; align-items: center; z-index: 100; }
+    .dock { position: fixed; bottom: 0; left: 0; right: 0; height: 60px; background: rgba(8,8,26,0.95); border-top: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); display: flex; justify-content: space-around; align-items: center; z-index: 100; }
     .dock-tab { background: transparent; border: none; color: #8a8ab8; font-size: 0.75rem; font-weight: 600; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px; }
     .dock-tab.active { color: #22d3ee; }
   </style>
@@ -2006,7 +2006,7 @@ function renderWizard(app) {
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem;flex-wrap:wrap;gap:0.4rem">
             <span class="form-label" style="margin:0">✏️ Custom specifications & game rules:</span>
             <div style="display:flex;gap:0.3rem">
-              <select id="prompt-profile-sel" style="min-height:30px;font-size:0.7rem;padding:2px 1.5rem 2px 6px">
+              <select id="prompt-profile-sel" title="Select Prompt Profile" style="min-height:30px;font-size:0.7rem;padding:2px 1.5rem 2px 6px">
                 <option value="game">60FPS Physics Game Engine</option>
                 <option value="cyberpunk">Cyberpunk Telemetry HUD</option>
                 <option value="saas">Enterprise SaaS Platform</option>
@@ -2210,7 +2210,7 @@ function renderDone(app) {
               ` : `
                 <div class="sandbox-toolbar">
                   <span>📱 Play / Preview Viewport Stage:</span>
-                  <select id="viewport-sel" style="min-height:32px;font-size:0.72rem;padding:0.2rem 1.8rem 0.2rem 0.6rem">
+                  <select id="viewport-sel" title="Select Viewport" style="min-height:32px;font-size:0.72rem;padding:0.2rem 1.8rem 0.2rem 0.6rem">
                     <option value="iphone" ${state.deviceViewport === 'iphone' ? 'selected' : ''}>iPhone 15 (390px)</option>
                     <option value="galaxy" ${state.deviceViewport === 'galaxy' ? 'selected' : ''}>Galaxy S24 (360px)</option>
                     <option value="ipad" ${state.deviceViewport === 'ipad' ? 'selected' : ''}>iPad Air (768px)</option>

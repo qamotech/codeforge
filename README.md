@@ -11,6 +11,7 @@
 ---
 
 ## 🌐 Live Web Application & Documentation
+
 - **Live App URL:** [https://qamotech.github.io/codeforge/](https://qamotech.github.io/codeforge/)
 - **Repository:** `qamotech/codeforge`
 - **License:** MIT License
@@ -20,7 +21,9 @@
 ## 🔥 Key Features & Capabilities
 
 ### 1. 🤖 Omnipresent AI Multi-Model Suite
+
 Choose from the world's leading generative AI models with built-in adapter routing:
+
 - **Google Gemini 2.0 Flash** *(Recommended, ultra-fast 1M context)*
 - **DeepSeek R1 Reasoning** *(Deep architectural logic & multi-step planning)*
 - **Anthropic Claude 3.5 Sonnet** *(High-precision frontend code generation)*
@@ -29,19 +32,25 @@ Choose from the world's leading generative AI models with built-in adapter routi
 - **Ollama Qwen 2.5-Coder 32B** *(100% private local GPU offline execution)*
 
 ### 2. 📦 18+ Auto-Injected CDN Engine Libraries
+
 Inject high-performance game, 3D physics, UI, and audio libraries with 1-click checkboxes:
+
 - **Game & 3D Engines**: `Three.js` (WebGL 3D), `Phaser 3` (2D Arcade), `PixiJS` (2D WebGL), `Matter.js` (2D Physics), `Babylon.js` (3D), `P5.js` (Creative Coding)
 - **UI & Web Frameworks**: `Tailwind CSS`, `Alpine.js`, `HTMX`, `Lodash`, `FontAwesome`, `Animate.css`
 - **Web Audio & Music**: `Howler.js`, `Tone.js` (Web Audio Synth)
 - **Data & Animation**: `Chart.js`, `D3.js`, `GSAP` (Pro Animation), `Canvas Confetti`
 
 ### 3. 🛠️ High-Fidelity Pro Offline Template Synthesizer Engine
+
 Never blocked by offline status or missing API keys. CodeForge includes an offline local synthesizer engine that generates 300+ lines of production-ready, interactive code:
+
 - **For Games**: Renders a complete 60 FPS HTML5 canvas physics game engine with particle explosion emitters, health bars, high scores, restart overlays, and Web Audio SFX.
 - **For Apps**: Renders a dark glassmorphic mobile app/dashboard with real-time telemetry feeds, stats cards, and touch audio feedback.
 
 ### 4. 📱 Multi-Device Viewport Sandbox Simulator
+
 Test responsive layouts inside real device bezels with live hot-reloading:
+
 - **iPhone 15** (390px Mobile Viewport)
 - **Galaxy S24** (360px Mobile Viewport)
 - **iPad Air** (768px Tablet Viewport)
@@ -49,16 +58,19 @@ Test responsive layouts inside real device bezels with live hot-reloading:
 - **Live Console Feed**: Captures `console.log`, `console.error`, and `console.warn` from inside the sandbox frame.
 
 ### 5. 🎮 Interactive Level Designer & 3D Matrix
+
 - **Visual Level Designer**: Paint custom game level maps (Walls 🧱, Players 🚀, Enemies 👾, Coins ⭐) directly into the prompt specification!
 - **3D Holographic Cube**: Real-time WebGL/Canvas 3D holographic matrix rendering active architecture state.
 - **Visual Architecture Flow Diagram**: Dynamic SVG node chart illustrating client target, tech stack, and packaging.
 
 ### 6. 🧪 AI Prompt Studio & Voice Dictation
+
 - **Prompt Archetypes**: Choose from pre-configured prompt profiles (`60FPS Physics Game Engine`, `Cyberpunk Telemetry HUD`, `Enterprise SaaS Platform`, `Mobile Ergonomic PWA`).
 - **Voice Dictation**: Built-in speech-to-text dictation for hands-free prompt input.
 - **Chip Cloud Tags**: Quick-insert tags like `#60FPSGameLoop`, `#TouchDPad`, `#WebAudioSynth`, and `#ThreeJS3D`.
 
 ### 7. 📸 Snapshots, AST Linter, & Export Options
+
 - **Code Theater Editor**: Live syntax highlighting with line numbers, search & replace (`Ctrl+F`), and code formatter.
 - **AST Security Linter**: Scans generated files for missing DOCTYPE, unclosed braces, or `eval()` calls.
 - **Export Options**:
